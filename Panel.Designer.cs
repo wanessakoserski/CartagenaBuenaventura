@@ -1,6 +1,6 @@
 ﻿namespace CartagenaBuenaventura
 {
-    partial class Form1
+    partial class Panel
     {
         /// <summary>
         /// Required designer variable.
