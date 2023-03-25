@@ -11,3 +11,17 @@ C:\Users\luish\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventur
 C:\Users\luish\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.csproj.CopyComplete
 C:\Users\luish\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.exe
 C:\Users\luish\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.pdb
+C:\Users\Windows\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.csproj.AssemblyReference.cache
+C:\Users\Windows\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.csproj.SuggestedBindingRedirects.cache
+C:\Users\Windows\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.Properties.Resources.resources
+C:\Users\Windows\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.csproj.GenerateResource.cache
+C:\Users\Windows\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.csproj.CoreCompileInputs.cache
+C:\Users\Windows\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.exe
+C:\Users\Windows\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.pdb
+C:\Users\Windows\source\repos\CartagenaBuenaventura\bin\Debug\CartagenaBuenaventura.exe.config
+C:\Users\Windows\source\repos\CartagenaBuenaventura\bin\Debug\CartagenaBuenaventura.exe
+C:\Users\Windows\source\repos\CartagenaBuenaventura\bin\Debug\CartagenaBuenaventura.pdb
+C:\Users\Windows\source\repos\CartagenaBuenaventura\bin\Debug\CartagenaServer.dll
+C:\Users\Windows\source\repos\CartagenaBuenaventura\bin\Debug\CartagenaServer.xml
+C:\Users\Windows\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.Home.resources
+C:\Users\Windows\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.csproj.CopyComplete

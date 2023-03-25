@@ -14,7 +14,7 @@ namespace CartagenaBuenaventura
             this.Dock = DockStyle.Fill;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.TopLevel = false;
-            //this.Show();
+            this.Show();
         }
     }
 }

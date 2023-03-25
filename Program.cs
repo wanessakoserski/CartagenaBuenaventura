@@ -16,7 +16,7 @@ namespace CartagenaBuenaventura
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Panel());
+            Application.Run(Panel.getInstance());
         }
     }
 }
