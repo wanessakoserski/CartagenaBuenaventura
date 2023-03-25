@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CartagenaBuenaventura.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,5 +18,9 @@ namespace CartagenaBuenaventura
             InitializeComponent();
         }
 
+        private void btnPlayCartagena_Click(object sender, EventArgs e)
+        {
+            Panel.getInstance().ChangeForm(this, new Matches());
+        }
     }
 }

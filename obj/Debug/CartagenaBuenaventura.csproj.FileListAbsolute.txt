@@ -23,5 +23,4 @@ C:\Users\Windows\source\repos\CartagenaBuenaventura\bin\Debug\CartagenaBuenavent
 C:\Users\Windows\source\repos\CartagenaBuenaventura\bin\Debug\CartagenaBuenaventura.pdb
 C:\Users\Windows\source\repos\CartagenaBuenaventura\bin\Debug\CartagenaServer.dll
 C:\Users\Windows\source\repos\CartagenaBuenaventura\bin\Debug\CartagenaServer.xml
-C:\Users\Windows\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.Home.resources
 C:\Users\Windows\source\repos\CartagenaBuenaventura\obj\Debug\CartagenaBuenaventura.csproj.CopyComplete
