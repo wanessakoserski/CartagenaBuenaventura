@@ -13,15 +13,27 @@ namespace CartagenaBuenaventura
 {
     public partial class Panel : Form
     {
-        public Panel()
+        private static Panel instance;
+
+        private Panel()
         {
             InitializeComponent();
+            this.Controls.Add(new Home());
+        }
+
+        // Ensures that only a single instance of panel will be created and used
+        public static Panel getInstance()
+        {
+            if (instance == null)
+                instance = new Panel();
+
+            return instance;
         }
 
         // Remove all controls from Panel and add a new class full of them to it
         // (i.e. buttons, lists, textboxes, etc), therefore, changing the displayed
         // screen in the application window.
-        public void ChangeForm(Form current, Form next) 
+        public void ChangeForm(Screen current, Screen next) 
         {
             current.Close();
             this.Controls.Clear();
