@@ -22,5 +22,10 @@ namespace CartagenaBuenaventura
         {
             Panel.getInstance().ChangeForm(this, new Matches());
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Panel.getInstance().Close();
+        }
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.btnPlayCartagena = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPlayCartagena
@@ -41,11 +42,22 @@
             this.btnPlayCartagena.UseVisualStyleBackColor = true;
             this.btnPlayCartagena.Click += new System.EventHandler(this.btnPlayCartagena_Click);
             // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(286, 338);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(120, 23);
+            this.btnExit.TabIndex = 1;
+            this.btnExit.Text = "Sair";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(858, 456);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnPlayCartagena);
             this.Name = "Home";
             this.Text = "Home";
@@ -56,5 +68,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnPlayCartagena;
+        private System.Windows.Forms.Button btnExit;
     }
 }
