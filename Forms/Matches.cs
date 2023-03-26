@@ -16,26 +16,38 @@ namespace CartagenaBuenaventura.Forms
         public Matches()
         {
             InitializeComponent();
+            SetListMatches();
+        }
+
+        private void SetListMatches()
+        {
+            lstMatches.GridLines = true;
+            lstMatches.View = View.Details;
+            lstMatches.FullRowSelect = true;
+
+            lstMatches.Columns.Add("Id", 50, HorizontalAlignment.Center);
+            lstMatches.Columns.Add("Nome", 100, HorizontalAlignment.Center);
+            lstMatches.Columns.Add("Criação", 100, HorizontalAlignment.Center);
+            lstMatches.Columns.Add("Status", 100, HorizontalAlignment.Center);
+
             ShowListMatches();
         }
 
         private void ShowListMatches()
         {
-            DataTable datatable = new DataTable();
-
-            datatable.Columns.Add("Id", typeof(uint));
-            datatable.Columns.Add("Nome", typeof(string));
-            datatable.Columns.Add("Criação", typeof(DateTime));
-            datatable.Columns.Add("Status", typeof(enums.MatchStatus));
+            lstMatches.Items.Clear();
 
             List<Match> ListMatches = Game.ListMatches();
 
+            ListViewItem item;
             foreach (Match match in ListMatches)
             {
-                datatable.Rows.Add(match.id, match.name, match.creationDate, match.status);
+                item = new ListViewItem(match.id + "");
+                item.SubItems.Add(match.name);
+                item.SubItems.Add(match.creationDate.ToShortDateString());
+                item.SubItems.Add(match.status + "");
+                lstMatches.Items.Add(item);
             }
-
-            grdMatches.DataSource = datatable;
         }
 
         private void btnCreateMatch_Click(object sender, EventArgs e)
