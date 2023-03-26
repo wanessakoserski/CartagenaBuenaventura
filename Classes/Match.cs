@@ -15,4 +15,11 @@ namespace CartagenaBuenaventura.Classes
         public string password;
         public List<Player> players;
     }
+
+    public enum Status 
+    {
+        Open,
+        Close,
+        InProgress
+    }
 }
