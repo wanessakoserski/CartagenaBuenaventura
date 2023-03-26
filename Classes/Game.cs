@@ -103,5 +103,23 @@ namespace CartagenaBuenaventura.Classes
             
             return match;
         }
+
+        // Request to the server the ingress of a new player to the match corresponding to the match Id
+        // passed as a parameter and return the Player (with its password)
+        public static Player EnterMatch(uint matchId, string playerName, string matchPassword) 
+        {
+            string[] aux = Jogo.EntrarPartida(Convert.ToInt32(matchId), playerName, matchPassword)
+                .Replace("\r\n", "")
+                .Split(',');
+
+            Player player = new Player
+            {
+                id = Convert.ToUInt32(aux[0]),
+                name = playerName,
+                password = aux[1],
+                color = TranslateColor(aux[2]),
+            };
+            return player;
+        }
     }
 }
