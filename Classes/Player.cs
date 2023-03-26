@@ -13,7 +13,7 @@ namespace CartagenaBuenaventura.Classes
     {
         public uint id;
         public string name;
-        public Color color;
+        public Color? color;
         public string password;
         public List<Move> moves;
         public List<enums.Symbol?> hand;

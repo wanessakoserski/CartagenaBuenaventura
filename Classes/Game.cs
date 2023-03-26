@@ -3,6 +3,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,7 +48,7 @@ namespace CartagenaBuenaventura.Classes
                 {
                     id = Convert.ToUInt32(content[0]),
                     name = content[1],
-                    //color = content[2]
+                    color = TranslateColor(content[2])
                 };
                 plyrs.Add(player);
                 return iteration(lst, length - 1, plyrs);
@@ -62,6 +63,26 @@ namespace CartagenaBuenaventura.Classes
             aux.RemoveAt(aux.Count - 1);
 
             return iteration(aux, aux.Count, new List<Player>());
+        }
+
+        // receive a color as a string in Pt-Br and return it as argb color format
+        private static Color? TranslateColor(string color)
+        {
+            switch (color)
+            {
+                case "Vermelho":
+                    return Color.Red;
+                case "Verde":
+                    return Color.Green;
+                case "Amarelo":
+                    return Color.Yellow;
+                case "Azul":
+                    return Color.Blue;
+                case "Marrom":
+                    return Color.Brown;
+                default:
+                    return null;
+            }
         }
 
         // Receive two strings  name and password as parameters, being name length < 20 and
