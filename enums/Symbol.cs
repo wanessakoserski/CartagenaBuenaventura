@@ -10,7 +10,7 @@ namespace CartagenaBuenaventura.enums
     {
         Dager,
         Bottle,
-        Ruby,
+        Tricorn,
         Skull,
         Key,
         Pistol
