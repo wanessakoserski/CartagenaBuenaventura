@@ -78,6 +78,9 @@
     <Compile Include="Forms\Screen.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="Forms\Matches.resx">
+      <DependentUpon>Matches.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
