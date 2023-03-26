@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1198, 664);
+            this.ClientSize = new System.Drawing.Size(1362, 822);
             this.Name = "MatchLobby";
             this.Text = "MatchLobby";
             this.ResumeLayout(false);

@@ -29,7 +29,8 @@ namespace CartagenaBuenaventura.Classes
                     Convert.ToUInt32(info[0]), 
                     info[1],
                     Convert.ToDateTime(info[2]),
-                    info[3] == "A" ? enums.MatchStatus.Open : info[3] == "J" ? enums.MatchStatus.InProgress : enums.MatchStatus.Close));
+                    info[3] == "A" ? enums.MatchStatus.Open : info[3] == "J" ? enums.MatchStatus.InProgress : enums.MatchStatus.Close
+                    ));
             }
 
             return ListMatches;        
