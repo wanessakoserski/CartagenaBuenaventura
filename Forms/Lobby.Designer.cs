@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.lstPlayers = new System.Windows.Forms.ListView();
+            this.btnRefreshListPlayers = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstPlayers
@@ -40,11 +41,22 @@
             this.lstPlayers.TabIndex = 0;
             this.lstPlayers.UseCompatibleStateImageBehavior = false;
             // 
+            // btnRefreshListPlayers
+            // 
+            this.btnRefreshListPlayers.Location = new System.Drawing.Point(127, 277);
+            this.btnRefreshListPlayers.Name = "btnRefreshListPlayers";
+            this.btnRefreshListPlayers.Size = new System.Drawing.Size(173, 23);
+            this.btnRefreshListPlayers.TabIndex = 1;
+            this.btnRefreshListPlayers.Text = "Atualizar Lista de Jogadores";
+            this.btnRefreshListPlayers.UseVisualStyleBackColor = true;
+            this.btnRefreshListPlayers.Click += new System.EventHandler(this.btnRefreshListPlayers_Click);
+            // 
             // Lobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1362, 822);
+            this.Controls.Add(this.btnRefreshListPlayers);
             this.Controls.Add(this.lstPlayers);
             this.Name = "Lobby";
             this.Text = "MatchLobby";
@@ -55,5 +67,6 @@
         #endregion
 
         private System.Windows.Forms.ListView lstPlayers;
+        private System.Windows.Forms.Button btnRefreshListPlayers;
     }
 }

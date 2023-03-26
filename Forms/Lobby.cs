@@ -22,10 +22,10 @@ namespace CartagenaBuenaventura.Forms
             if (this.match.players == null)
                 this.match.players = Game.ListPlayers(this.match.id);
 
-            SetListMatches();
+            SetListPlayers();
         }
 
-        private void SetListMatches()
+        private void SetListPlayers()
         {
             lstPlayers.GridLines = true;
             lstPlayers.View = View.Details;
@@ -34,6 +34,27 @@ namespace CartagenaBuenaventura.Forms
             lstPlayers.Columns.Add("Id", 50, HorizontalAlignment.Center);
             lstPlayers.Columns.Add("Nome", 100, HorizontalAlignment.Center);
             lstPlayers.Columns.Add("Cor", 100, HorizontalAlignment.Center);
+
+            ShowListPlayers();
+        }
+
+        private void ShowListPlayers()
+        {
+            lstPlayers.Items.Clear();
+
+            ListViewItem item;
+            foreach (Player player in this.match.players)
+            {
+                item = new ListViewItem(player.id.ToString());
+                item.SubItems.Add(player.name);
+                item.SubItems.Add(player.color.ToString());
+                lstPlayers.Items.Add(item);
+            }
+        }
+
+        private void btnRefreshListPlayers_Click(object sender, EventArgs e)
+        {
+            ShowListPlayers();
         }
     }
 }
