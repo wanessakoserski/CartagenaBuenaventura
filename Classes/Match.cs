@@ -11,15 +11,8 @@ namespace CartagenaBuenaventura.Classes
         public uint id;
         public string name;
         public DateTime creationDate;
-        public Status status;
+        public enums.MatchStatus status;
         public string password;
         public List<Player> players;
-    }
-
-    public enum Status 
-    {
-        Open,
-        Close,
-        InProgress
     }
 }
