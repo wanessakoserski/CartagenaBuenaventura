@@ -2,6 +2,7 @@
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,34 @@ namespace CartagenaBuenaventura.Classes
             }
 
             return ListMatches;        
+        }
+
+        // Receive one match Id and return a list of all Players inside the match for the corresponding id
+        public static List<Player> ListPlayers(uint matchId) 
+        {
+            List<Player> iteration(List<string> lst, int length, List<Player> plyrs)
+            {
+                if (length == 0) return plyrs;
+                var content = lst[length - 1].Split(',');
+                Player player = new Player
+                {
+                    id = Convert.ToUInt32(content[0]),
+                    name = content[1],
+                    //color = content[2]
+                };
+                plyrs.Add(player);
+                return iteration(lst, length - 1, plyrs);
+            }
+
+            List<Player> players = new List<Player>();
+            List<string> aux = Jogo.ListarJogadores(Convert.ToInt32(matchId))
+                .Replace("\r", "")
+                .Split('\n')
+                .ToList<string>();
+
+            aux.RemoveAt(aux.Count - 1);
+
+            return iteration(aux, aux.Count, new List<Player>());
         }
 
         // Receive two strings  name and password as parameters, being name length < 20 and
