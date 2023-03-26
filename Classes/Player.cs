@@ -14,7 +14,7 @@ namespace CartagenaBuenaventura.Classes
         public Color color;
         public string password;
         public List<Move> moves;
-        public List<Card> hand;
+        //public List<Card> hand;
 
     }
 }

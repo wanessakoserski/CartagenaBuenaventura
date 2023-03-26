@@ -10,7 +10,7 @@ namespace CartagenaBuenaventura.Classes
     {
         public uint id;
         public Player player;
-        public Card card;
+        //public Card card;
         public uint position;
     }
 }
