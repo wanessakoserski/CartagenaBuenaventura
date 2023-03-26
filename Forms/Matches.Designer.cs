@@ -31,7 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.btnCreateMatch = new System.Windows.Forms.Button();
             this.matchBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.grdMatches = new System.Windows.Forms.DataGridView();
+            this.btnRefreshListMatches = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdMatches)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCreateMatch
@@ -48,15 +51,36 @@
             // 
             this.matchBindingSource.DataSource = typeof(CartagenaBuenaventura.Classes.Match);
             // 
+            // grdMatches
+            // 
+            this.grdMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdMatches.Location = new System.Drawing.Point(40, 30);
+            this.grdMatches.Name = "grdMatches";
+            this.grdMatches.Size = new System.Drawing.Size(554, 209);
+            this.grdMatches.TabIndex = 1;
+            // 
+            // btnRefreshListMatches
+            // 
+            this.btnRefreshListMatches.Location = new System.Drawing.Point(244, 267);
+            this.btnRefreshListMatches.Name = "btnRefreshListMatches";
+            this.btnRefreshListMatches.Size = new System.Drawing.Size(150, 23);
+            this.btnRefreshListMatches.TabIndex = 2;
+            this.btnRefreshListMatches.Text = "Atualizar Lista de Partidas";
+            this.btnRefreshListMatches.UseVisualStyleBackColor = true;
+            this.btnRefreshListMatches.Click += new System.EventHandler(this.btnRefreshListMatches_Click);
+            // 
             // Matches
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1198, 581);
+            this.ClientSize = new System.Drawing.Size(1362, 739);
+            this.Controls.Add(this.btnRefreshListMatches);
+            this.Controls.Add(this.grdMatches);
             this.Controls.Add(this.btnCreateMatch);
             this.Name = "Matches";
             this.Text = "Matches";
             ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdMatches)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -64,5 +88,7 @@
         #endregion
         private System.Windows.Forms.BindingSource matchBindingSource;
         private System.Windows.Forms.Button btnCreateMatch;
+        private System.Windows.Forms.DataGridView grdMatches;
+        private System.Windows.Forms.Button btnRefreshListMatches;
     }
 }
