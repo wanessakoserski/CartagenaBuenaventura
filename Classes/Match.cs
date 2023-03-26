@@ -23,5 +23,6 @@ namespace CartagenaBuenaventura.Classes
             this.creationDate = creationDate;
             this.status = status;
         }
+        public Match() { }
     }
 }

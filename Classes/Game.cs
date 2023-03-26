@@ -40,13 +40,14 @@ namespace CartagenaBuenaventura.Classes
         // new match and return it
         public Match CreateMatch(string name, string password) 
         {
-            Match match = new Match();
-            match.name = name;
-            match.password = password;
-            match.status = enums.MatchStatus.Open;
-
-            match.id = Convert.ToUInt32(Jogo.CriarPartida(name, password));
-
+            Match match = new Match
+            {
+                id = Convert.ToUInt32(Jogo.CriarPartida(name, password)),
+                name = name,
+                password = password,
+                status = enums.MatchStatus.Open
+            };
+            
             return match;
         }
     }
