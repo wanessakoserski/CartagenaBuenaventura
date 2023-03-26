@@ -68,7 +68,7 @@ namespace CartagenaBuenaventura.Classes
         // Receive two strings  name and password as parameters, being name length < 20 and
         // name != from any match name in the server, and password length <= 10. Create a
         // new match and return it
-        public static Match CreateMatch(string name, string password) 
+        public static Match CreateMatch(string name, string password)
         {
             Match match = new Match
             {

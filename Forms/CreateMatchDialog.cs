@@ -22,15 +22,25 @@ namespace CartagenaBuenaventura.Forms
 
         private void btnCreateMatch_Click(object sender, EventArgs e)
         {
-            if (txtMatchName.Text.Length > 0 && txtMatchPassword.Text.Length > 0)
+            try
             {
-                Match match = Game.CreateMatch(txtMatchName.Text, txtMatchPassword.Text);
-                Panel.getInstance().ChangeForm(screen, new MatchLobby(match));
-                this.Close();
-            } 
-            else 
+                if (txtMatchName.Text.Length > 0 && txtMatchPassword.Text.Length > 0)
+                {
+                    Match match = Game.CreateMatch(txtMatchName.Text, txtMatchPassword.Text);
+                    Panel.getInstance().ChangeForm(screen, new MatchLobby(match));
+                    this.Close();
+                }
+                else
+                {
+                    lblWarning.Text = "* preencha os campos acima";
+                }
+            }
+            catch (Exception ex)
             {
-                lblWarning.Text = "* preencha os campos acima";
+                lblWarning.Text = "* nome de partida já utilizada";
+                txtMatchName.Text = "";
+                txtMatchPassword.Text = "";
+                Console.WriteLine(ex.Message);
             }
         }
     }
