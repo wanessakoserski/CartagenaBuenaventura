@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace CartagenaBuenaventura.Classes
 {
-    internal class Game
+    internal static class Game
     {
         // Creates a list of matches, handling the server return string
-        public List<Match> ListMatches(string filter = "T")
+        public static List<Match> ListMatches(string filter = "T")
         {
             List<Match> ListMatches = new List<Match>();
 
@@ -38,7 +38,7 @@ namespace CartagenaBuenaventura.Classes
         // Receive two strings  name and password as parameters, being name length < 20 and
         // name != from any match name in the server, and password length <= 10. Create a
         // new match and return it
-        public Match CreateMatch(string name, string password) 
+        public static Match CreateMatch(string name, string password) 
         {
             Match match = new Match
             {
