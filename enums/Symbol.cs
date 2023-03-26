@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CartagenaBuenaventura.enums
 {
-    internal enum Symbol
+    public enum Symbol
     {
         Dager,
         Bottle,

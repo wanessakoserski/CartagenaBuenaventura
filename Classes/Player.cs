@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CartagenaBuenaventura.Classes
 {
-    internal class Player
+    public class Player
     {
         public uint id;
         public string name;

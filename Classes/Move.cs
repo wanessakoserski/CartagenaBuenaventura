@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CartagenaBuenaventura.Classes
 {
-    internal class Move
+    public class Move
     {
         public uint id;
         public Player player;

@@ -29,14 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.matchBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCreateMatch = new System.Windows.Forms.Button();
+            this.matchBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // matchBindingSource
-            // 
-            this.matchBindingSource.DataSource = typeof(CartagenaBuenaventura.Classes.Match);
             // 
             // btnCreateMatch
             // 
@@ -48,11 +44,15 @@
             this.btnCreateMatch.UseVisualStyleBackColor = true;
             this.btnCreateMatch.Click += new System.EventHandler(this.btnCreateMatch_Click);
             // 
+            // matchBindingSource
+            // 
+            this.matchBindingSource.DataSource = typeof(CartagenaBuenaventura.Classes.Match);
+            // 
             // Matches
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1546, 464);
+            this.ClientSize = new System.Drawing.Size(1198, 581);
             this.Controls.Add(this.btnCreateMatch);
             this.Name = "Matches";
             this.Text = "Matches";

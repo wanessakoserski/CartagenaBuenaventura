@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CartagenaBuenaventura.Classes
 {
-    internal class Match
+    public class Match
     {
         public uint id;
         public string name;
