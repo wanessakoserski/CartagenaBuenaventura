@@ -26,7 +26,7 @@ namespace CartagenaBuenaventura.Forms
         private void btnMatchEnter_Click(object sender, EventArgs e)
         {
             Player player = Game.EnterMatch(match.id, txtPlayerName.Text, txtMatchPassword.Text);
-            Panel.getInstance().ChangeForm(screen, new MatchLobby(match));
+            Panel.getInstance().ChangeForm(screen, new Lobby(match));
             this.Close();
         }
     }

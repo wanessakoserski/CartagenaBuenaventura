@@ -27,7 +27,7 @@ namespace CartagenaBuenaventura.Forms
                 if (txtMatchName.Text.Length > 0 && txtMatchPassword.Text.Length > 0)
                 {
                     Match match = Game.CreateMatch(txtMatchName.Text, txtMatchPassword.Text);
-                    Panel.getInstance().ChangeForm(screen, new MatchLobby(match));
+                    Panel.getInstance().ChangeForm(screen, new Lobby(match));
                     this.Close();
                 }
                 else

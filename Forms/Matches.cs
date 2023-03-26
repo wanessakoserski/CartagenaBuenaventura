@@ -42,10 +42,10 @@ namespace CartagenaBuenaventura.Forms
             ListViewItem item;
             foreach (Match match in ListMatches)
             {
-                item = new ListViewItem(match.id + "");
+                item = new ListViewItem(match.id.ToString());
                 item.SubItems.Add(match.name);
                 item.SubItems.Add(match.creationDate.ToShortDateString());
-                item.SubItems.Add(match.status + "");
+                item.SubItems.Add(match.status.ToString());
                 lstMatches.Items.Add(item);
             }
         }
