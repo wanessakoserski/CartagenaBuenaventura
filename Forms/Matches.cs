@@ -72,5 +72,17 @@ namespace CartagenaBuenaventura.Forms
 
             return match;
         }
+
+        private void btnViewMatch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Panel.getInstance().ChangeForm(this, new Lobby(GetSelectedMatch()));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }

@@ -33,6 +33,7 @@
             this.matchBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnRefreshListMatches = new System.Windows.Forms.Button();
             this.lstMatches = new System.Windows.Forms.ListView();
+            this.btnViewMatch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,11 +70,22 @@
             this.lstMatches.TabIndex = 3;
             this.lstMatches.UseCompatibleStateImageBehavior = false;
             // 
+            // btnViewMatch
+            // 
+            this.btnViewMatch.Location = new System.Drawing.Point(154, 343);
+            this.btnViewMatch.Name = "btnViewMatch";
+            this.btnViewMatch.Size = new System.Drawing.Size(138, 23);
+            this.btnViewMatch.TabIndex = 4;
+            this.btnViewMatch.Text = "Visualizar Partida";
+            this.btnViewMatch.UseVisualStyleBackColor = true;
+            this.btnViewMatch.Click += new System.EventHandler(this.btnViewMatch_Click);
+            // 
             // Matches
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1362, 739);
+            this.Controls.Add(this.btnViewMatch);
             this.Controls.Add(this.lstMatches);
             this.Controls.Add(this.btnRefreshListMatches);
             this.Controls.Add(this.btnCreateMatch);
@@ -89,5 +101,6 @@
         private System.Windows.Forms.Button btnCreateMatch;
         private System.Windows.Forms.Button btnRefreshListMatches;
         private System.Windows.Forms.ListView lstMatches;
+        private System.Windows.Forms.Button btnViewMatch;
     }
 }
