@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Match.cs" />
+    <Compile Include="Classes\Move.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Forms\Home.cs">
       <SubType>Form</SubType>
