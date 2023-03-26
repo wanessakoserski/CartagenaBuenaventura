@@ -24,17 +24,17 @@ namespace CartagenaBuenaventura.Classes
                 .ToList();
             matches.RemoveAt(matches.Count() - 1);
             
-            string[] info = new string[5];
+            string[] aux = new string[5];
             foreach (string match in matches)
             {
-                info = match.Split(',');
-                ListMatches.Add(new Match(
-                    Convert.ToUInt32(info[0]), 
-                    info[1],
-                    // Convert.ToDateTime(info[2]),
-                    DateTime.ParseExact(info[2], "d/M/yyyy", CultureInfo.InvariantCulture),
-                    info[3] == "A" ? enums.MatchStatus.Open : info[3] == "J" ? enums.MatchStatus.InProgress : enums.MatchStatus.Close
-                    ));
+                aux = match.Split(',');
+                ListMatches.Add(new Match
+                {
+                    id = Convert.ToUInt32(aux[0]),
+                    name = aux[1],
+                    creationDate = DateTime.ParseExact(aux[2], "d/M/yyyy", CultureInfo.InvariantCulture),
+                    status = aux[3] == "A" ? enums.MatchStatus.Open : aux[3] == "J" ? enums.MatchStatus.InProgress : enums.MatchStatus.Close
+                });                   
             }
 
             return ListMatches;        
