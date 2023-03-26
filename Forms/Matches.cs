@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.ListView;
 
 namespace CartagenaBuenaventura.Forms
 {
@@ -24,6 +25,7 @@ namespace CartagenaBuenaventura.Forms
             lstMatches.GridLines = true;
             lstMatches.View = View.Details;
             lstMatches.FullRowSelect = true;
+            lstMatches.MultiSelect = false;
 
             lstMatches.Columns.Add("Id", 50, HorizontalAlignment.Center);
             lstMatches.Columns.Add("Nome", 100, HorizontalAlignment.Center);
@@ -46,6 +48,7 @@ namespace CartagenaBuenaventura.Forms
                 item.SubItems.Add(match.name);
                 item.SubItems.Add(match.creationDate.ToShortDateString());
                 item.SubItems.Add(match.status.ToString());
+                item.Tag = match;
                 lstMatches.Items.Add(item);
             }
         }
@@ -62,11 +65,33 @@ namespace CartagenaBuenaventura.Forms
             ShowListMatches();
         }
 
+
         private void btnEnterMatch_Click(object sender, EventArgs e)
         {
             //EnterMatchDialog enterMatchDialog = new EnterMatchDialog(this,);
             //if (enterMatchDialog.ShowDialog() == DialogResult.OK)
             //    Console.WriteLine("works");
+        }
+
+        private Match GetSelectedMatch()
+        {
+            SelectedListViewItemCollection item = lstMatches.SelectedItems;
+            Match match = (Match)item[0].Tag;
+
+            return match;
+        }
+
+        private void btnViewMatch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Panel.getInstance().ChangeForm(this, new Lobby(GetSelectedMatch()));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
     }
 }
