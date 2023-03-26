@@ -4,6 +4,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,11 +27,12 @@ namespace CartagenaBuenaventura.Classes
             string[] info = new string[5];
             foreach (string match in matches)
             {
-                info = match.Split(',');           
+                info = match.Split(',');
                 ListMatches.Add(new Match(
                     Convert.ToUInt32(info[0]), 
                     info[1],
-                    Convert.ToDateTime(info[2]),
+                    // Convert.ToDateTime(info[2]),
+                    DateTime.ParseExact(info[2], "d/M/yyyy", CultureInfo.InvariantCulture),
                     info[3] == "A" ? enums.MatchStatus.Open : info[3] == "J" ? enums.MatchStatus.InProgress : enums.MatchStatus.Close
                     ));
             }
