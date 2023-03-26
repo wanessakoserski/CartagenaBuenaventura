@@ -17,5 +17,12 @@ namespace CartagenaBuenaventura.Forms
         {
             InitializeComponent();
         }
+
+        private void btnCreateMatch_Click(object sender, EventArgs e)
+        {
+            CreateMatchDialog createMatchDialog = new CreateMatchDialog(this);
+            if (createMatchDialog.ShowDialog() == DialogResult.OK)
+                Console.WriteLine("works");
+        }
     }
 }
