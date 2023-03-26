@@ -11,7 +11,7 @@ namespace CartagenaBuenaventura.Classes
     {
         public void ListMatches()
         {
-            string[] matches = Jogo.ListarPartidas("T").Split('\n');
+            string[] matches = Jogo.ListarPartidas("T").Replace("\r", "").Split('\n');
             /*
             foreach (string match in matches)
             {
