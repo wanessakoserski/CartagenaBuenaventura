@@ -38,7 +38,7 @@
             // 
             // btnCreateMatch
             // 
-            this.btnCreateMatch.Location = new System.Drawing.Point(620, 338);
+            this.btnCreateMatch.Location = new System.Drawing.Point(541, 343);
             this.btnCreateMatch.Name = "btnCreateMatch";
             this.btnCreateMatch.Size = new System.Drawing.Size(75, 23);
             this.btnCreateMatch.TabIndex = 0;
