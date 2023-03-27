@@ -30,6 +30,7 @@
         {
             this.lstPlayers = new System.Windows.Forms.ListView();
             this.btnRefreshListPlayers = new System.Windows.Forms.Button();
+            this.btnGoBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstPlayers
@@ -51,11 +52,22 @@
             this.btnRefreshListPlayers.UseVisualStyleBackColor = true;
             this.btnRefreshListPlayers.Click += new System.EventHandler(this.btnRefreshListPlayers_Click);
             // 
+            // btnGoBack
+            // 
+            this.btnGoBack.Location = new System.Drawing.Point(127, 323);
+            this.btnGoBack.Name = "btnGoBack";
+            this.btnGoBack.Size = new System.Drawing.Size(75, 23);
+            this.btnGoBack.TabIndex = 2;
+            this.btnGoBack.Text = "Voltar";
+            this.btnGoBack.UseVisualStyleBackColor = true;
+            this.btnGoBack.Click += new System.EventHandler(this.btnGoBack_Click);
+            // 
             // Lobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 822);
+            this.ClientSize = new System.Drawing.Size(1198, 684);
+            this.Controls.Add(this.btnGoBack);
             this.Controls.Add(this.btnRefreshListPlayers);
             this.Controls.Add(this.lstPlayers);
             this.Name = "Lobby";
@@ -68,5 +80,6 @@
 
         private System.Windows.Forms.ListView lstPlayers;
         private System.Windows.Forms.Button btnRefreshListPlayers;
+        private System.Windows.Forms.Button btnGoBack;
     }
 }
