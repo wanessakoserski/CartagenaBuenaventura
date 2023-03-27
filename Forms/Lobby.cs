@@ -14,15 +14,19 @@ namespace CartagenaBuenaventura.Forms
     public partial class Lobby : Screen
     {
         Match match;
-        public Lobby(Match match)
+        Player player;
+        public Lobby(Match match, Player player = null)
         {
             InitializeComponent();
             this.match = match;
+            this.player = player;
 
             if (this.match.players == null)
                 this.match.players = Game.ListPlayers(this.match.id);
 
             SetListPlayers();
+
+            if (player == null) { btnStartMatch.Enabled = false;  }
         }
 
         private void SetListPlayers()
@@ -60,6 +64,11 @@ namespace CartagenaBuenaventura.Forms
         private void btnGoBack_Click(object sender, EventArgs e)
         {
             Panel.getInstance().ChangeForm(this, new Matches());
+        }
+
+        private void btnStartMatch_Click(object sender, EventArgs e)
+        {
+            //Game.StartMatch(player.id, player.password);
         }
     }
 }

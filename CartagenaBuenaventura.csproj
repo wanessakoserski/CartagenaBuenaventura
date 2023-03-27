@@ -56,6 +56,12 @@
     <Compile Include="Classes\Tile.cs" />
     <Compile Include="Enums\MatchStatus.cs" />
     <Compile Include="Enums\Symbol.cs" />
+    <Compile Include="Forms\Board.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Board.Designer.cs">
+      <DependentUpon>Board.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CreateMatchDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     <Compile Include="Forms\Screen.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="Forms\Board.resx">
+      <DependentUpon>Board.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateMatchDialog.resx">
       <DependentUpon>CreateMatchDialog.cs</DependentUpon>
     </EmbeddedResource>
