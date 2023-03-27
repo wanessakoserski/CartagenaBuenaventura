@@ -38,8 +38,8 @@ namespace CartagenaBuenaventura.Forms
             catch (Exception ex)
             {
                 lblWarning.Text = "* nome de partida já utilizada";
-                txtMatchName.Text = "";
-                txtMatchPassword.Text = "";
+                txtMatchName.Text = string.Empty;
+                txtMatchPassword.Text = string.Empty;
                 Console.WriteLine(ex.Message);
             }
         }
