@@ -1,4 +1,5 @@
-﻿using CartagenaServer;
+﻿using CartagenaBuenaventura.enums;
+using CartagenaServer;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CartagenaBuenaventura.Classes
 {
@@ -120,6 +122,33 @@ namespace CartagenaBuenaventura.Classes
                 color = TranslateColor(aux[2]),
             };
             return player;
+        }
+
+        public static void ShowBoard(uint matchId)
+        {
+            string board = Jogo.ExibirTabuleiro(Convert.ToInt32(matchId));
+            
+        }
+
+        public static Symbol? TranslateSymbol(string symbol)
+        {
+            switch (symbol)
+            {
+                case "F":
+                    return Symbol.Dager;
+                case "G":
+                    return Symbol.Bottle;
+                case "C":
+                    return Symbol.Key;
+                case "P":
+                    return Symbol.Pistol;
+                case "T":
+                    return Symbol.Tricorn;
+                case "E":
+                    return Symbol.Skull;
+                default:
+                    return null;
+            }
         }
     }
 }

@@ -34,27 +34,7 @@ namespace CartagenaBuenaventura.Classes
                 string[] aux = card.Split(',');
                 enums.Symbol? symbol = null;
 
-                switch (aux[0])
-                {
-                    case "adaga":
-                        symbol = enums.Symbol.Dager;
-                        break;
-                    case "tricornio":
-                        symbol = enums.Symbol.Tricorn;
-                        break;
-                    case "garrafa":
-                        symbol = enums.Symbol.Bottle;
-                        break;
-                    case "esqueleto":
-                        symbol = enums.Symbol.Skull;
-                        break;
-                    case "pistola":
-                        symbol = enums.Symbol.Pistol;
-                        break;
-                    case "chave":
-                        symbol = enums.Symbol.Key;
-                        break;
-                }
+                Game.TranslateSymbol(aux[0]);
 
                 for (int i = 0; i < Convert.ToInt32(aux[1]); i++) { hand.Add(symbol); }
             }
