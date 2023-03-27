@@ -63,6 +63,8 @@ namespace CartagenaBuenaventura.Forms
         private void btnRefreshListMatches_Click(object sender, EventArgs e)
         {
             ShowListMatches();
+            btnViewMatch.Enabled = false;
+            btnEnterMatch.Enabled = false;
         }
 
 
@@ -97,6 +99,7 @@ namespace CartagenaBuenaventura.Forms
         private void lstMatches_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnEnterMatch.Enabled = true;
+            btnViewMatch.Enabled = true;
         }
     }
 }
