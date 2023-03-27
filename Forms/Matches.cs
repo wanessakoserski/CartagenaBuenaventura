@@ -68,9 +68,9 @@ namespace CartagenaBuenaventura.Forms
 
         private void btnEnterMatch_Click(object sender, EventArgs e)
         {
-            //EnterMatchDialog enterMatchDialog = new EnterMatchDialog(this,);
-            //if (enterMatchDialog.ShowDialog() == DialogResult.OK)
-            //    Console.WriteLine("works");
+            EnterMatchDialog enterMatchDialog = new EnterMatchDialog(this, GetSelectedMatch());
+            if (enterMatchDialog.ShowDialog() == DialogResult.OK)
+                Console.WriteLine("works");
         }
 
         private Match GetSelectedMatch()
@@ -92,6 +92,11 @@ namespace CartagenaBuenaventura.Forms
                 Console.WriteLine(ex.Message);
             }
 
+        }
+
+        private void lstMatches_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnEnterMatch.Enabled = true;
         }
     }
 }

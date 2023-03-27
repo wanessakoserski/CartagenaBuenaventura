@@ -33,7 +33,7 @@
             this.lblMatchPassword = new System.Windows.Forms.Label();
             this.txtMatchPassword = new System.Windows.Forms.TextBox();
             this.btnMatchEnter = new System.Windows.Forms.Button();
-            this.lblTest = new System.Windows.Forms.Label();
+            this.lblWarnig = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblPlayerName
@@ -79,21 +79,21 @@
             this.btnMatchEnter.UseVisualStyleBackColor = true;
             this.btnMatchEnter.Click += new System.EventHandler(this.btnMatchEnter_Click);
             // 
-            // lblTest
+            // lblWarnig
             // 
-            this.lblTest.AutoSize = true;
-            this.lblTest.Location = new System.Drawing.Point(19, 140);
-            this.lblTest.Name = "lblTest";
-            this.lblTest.Size = new System.Drawing.Size(35, 13);
-            this.lblTest.TabIndex = 5;
-            this.lblTest.Text = "label1";
+            this.lblWarnig.AutoSize = true;
+            this.lblWarnig.ForeColor = System.Drawing.Color.Red;
+            this.lblWarnig.Location = new System.Drawing.Point(19, 161);
+            this.lblWarnig.Name = "lblWarnig";
+            this.lblWarnig.Size = new System.Drawing.Size(0, 13);
+            this.lblWarnig.TabIndex = 5;
             // 
             // EnterMatchDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(394, 317);
-            this.Controls.Add(this.lblTest);
+            this.Controls.Add(this.lblWarnig);
             this.Controls.Add(this.btnMatchEnter);
             this.Controls.Add(this.txtMatchPassword);
             this.Controls.Add(this.lblMatchPassword);
@@ -113,6 +113,6 @@
         private System.Windows.Forms.Label lblMatchPassword;
         private System.Windows.Forms.TextBox txtMatchPassword;
         private System.Windows.Forms.Button btnMatchEnter;
-        private System.Windows.Forms.Label lblTest;
+        private System.Windows.Forms.Label lblWarnig;
     }
 }

@@ -18,16 +18,32 @@ namespace CartagenaBuenaventura.Forms
         public EnterMatchDialog(Screen screen, Match match)
         {
             InitializeComponent();
-            //this.match = match;
             this.screen = screen;
             this.match = match;
         }
 
         private void btnMatchEnter_Click(object sender, EventArgs e)
         {
-            Player player = Game.EnterMatch(match.id, txtPlayerName.Text, txtMatchPassword.Text);
-            Panel.getInstance().ChangeForm(screen, new Lobby(match));
-            this.Close();
+            try
+            {
+                if (txtPlayerName.Text.Length > 0 && txtMatchPassword.Text.Length > 0) 
+                {
+                    Player player = Game.EnterMatch(match.id, txtPlayerName.Text, txtMatchPassword.Text);
+                    Panel.getInstance().ChangeForm(screen, new Lobby(match));
+                    this.Close();
+                }
+                else 
+                {
+                    lblWarnig.Text = "* Preencha os campos";
+                }
+            }
+            catch (Exception ex) 
+            {
+                lblWarnig.Text = "Senha Invalida";
+                txtPlayerName.Text = string.Empty;
+                txtMatchPassword.Text = string.Empty;
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

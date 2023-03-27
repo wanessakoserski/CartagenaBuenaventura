@@ -71,9 +71,11 @@
             this.lstMatches.Size = new System.Drawing.Size(620, 196);
             this.lstMatches.TabIndex = 3;
             this.lstMatches.UseCompatibleStateImageBehavior = false;
+            this.lstMatches.SelectedIndexChanged += new System.EventHandler(this.lstMatches_SelectedIndexChanged);
             // 
             // btnEnterMatch
             // 
+            this.btnEnterMatch.Enabled = false;
             this.btnEnterMatch.Location = new System.Drawing.Point(576, 304);
             this.btnEnterMatch.Name = "btnEnterMatch";
             this.btnEnterMatch.Size = new System.Drawing.Size(104, 23);
@@ -81,7 +83,7 @@
             this.btnEnterMatch.Text = "Entrar na Partida";
             this.btnEnterMatch.UseVisualStyleBackColor = true;
             this.btnEnterMatch.Click += new System.EventHandler(this.btnEnterMatch_Click);
-            //
+            // 
             // btnViewMatch
             // 
             this.btnViewMatch.Location = new System.Drawing.Point(154, 343);
@@ -98,7 +100,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1198, 601);
             this.Controls.Add(this.btnEnterMatch);
-            this.ClientSize = new System.Drawing.Size(1362, 739);
             this.Controls.Add(this.btnViewMatch);
             this.Controls.Add(this.lstMatches);
             this.Controls.Add(this.btnRefreshListMatches);
