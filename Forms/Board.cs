@@ -17,6 +17,20 @@ namespace CartagenaBuenaventura.Forms
         public Board(Match match)
         {
             InitializeComponent();
+            SetListTiles();
+        }
+
+        private void SetListTiles()
+        {
+            lstTiles.GridLines = true;
+            lstTiles.View = View.Details;
+            lstTiles.FullRowSelect = true;
+            lstTiles.MultiSelect = false;
+
+            lstTiles.Columns.Add("Posição", 80, HorizontalAlignment.Center);
+            lstTiles.Columns.Add("Simbolo", 100, HorizontalAlignment.Center);
+
+            ShowListTiles();
         }
 
         private void ShowListTiles()
