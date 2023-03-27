@@ -121,5 +121,12 @@ namespace CartagenaBuenaventura.Classes
             };
             return player;
         }
+
+        // receive the id and password of the player Starting the game and
+        // return the Id of which one of the players is going to start playing
+        public static uint StartMatch(uint playerId, string playerPassword) 
+        {
+            return Convert.ToUInt32(Jogo.IniciarPartida(Convert.ToInt32(playerId), playerPassword));
+        }
     }
 }
