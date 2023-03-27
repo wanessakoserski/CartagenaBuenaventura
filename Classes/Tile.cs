@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CartagenaBuenaventura.Classes
 {
-    class _
+    public class Tile
     {
+        public enums.Symbol? symbol;
+        public int position;
     }
 }

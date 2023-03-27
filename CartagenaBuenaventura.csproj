@@ -49,11 +49,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Game.cs" />
+    <Compile Include="Classes\Match.cs" />
+    <Compile Include="Classes\Move.cs" />
+    <Compile Include="Classes\Player.cs" />
+    <Compile Include="Classes\Tile.cs" />
+    <Compile Include="Enums\MatchStatus.cs" />
+    <Compile Include="Enums\Symbol.cs" />
+    <Compile Include="Forms\Board.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Board.Designer.cs">
+      <DependentUpon>Board.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreateMatchDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateMatchDialog.Designer.cs">
+      <DependentUpon>CreateMatchDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EnterMatchDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EnterMatchDialog.Designer.cs">
+      <DependentUpon>EnterMatchDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Home.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Matches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Matches.Designer.cs">
+      <DependentUpon>Matches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Lobby.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Lobby.Designer.cs">
+      <DependentUpon>Lobby.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Panel.cs">
       <SubType>Form</SubType>
@@ -66,8 +103,23 @@
     <Compile Include="Forms\Screen.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="Forms\Board.resx">
+      <DependentUpon>Board.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateMatchDialog.resx">
+      <DependentUpon>CreateMatchDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EnterMatchDialog.resx">
+      <DependentUpon>EnterMatchDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Matches.resx">
+      <DependentUpon>Matches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Lobby.resx">
+      <DependentUpon>Lobby.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -78,7 +130,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Classes\.gitkeep" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
