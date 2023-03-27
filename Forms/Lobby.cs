@@ -56,5 +56,10 @@ namespace CartagenaBuenaventura.Forms
         {
             ShowListPlayers();
         }
+
+        private void btnGoBack_Click(object sender, EventArgs e)
+        {
+            Panel.getInstance().ChangeForm(this, new Matches());
+        }
     }
 }
