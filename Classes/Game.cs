@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -124,12 +125,7 @@ namespace CartagenaBuenaventura.Classes
             return player;
         }
 
-        public static void ShowBoard(uint matchId)
-        {
-            string board = Jogo.ExibirTabuleiro(Convert.ToInt32(matchId));
-            
-        }
-
+        // Receive a symbol as a string in Pt-Br and return it as argb enum symbol
         public static Symbol? TranslateSymbol(string symbol)
         {
             switch (symbol)
@@ -149,6 +145,31 @@ namespace CartagenaBuenaventura.Classes
                 default:
                     return null;
             }
+        }
+
+        // Creates a list of tiles where it can be seen the board, handling the server return string
+        public static List<Tile> ShowBoard(uint matchId)
+        {
+            List<Tile> ListTiles = new List<Tile>();
+
+            List<string> tiles = Jogo.ExibirTabuleiro(Convert.ToInt32(matchId))
+                .Replace("\r", "")
+                .Split('\n')
+                .ToList();
+            tiles.RemoveAt(tiles.Count() - 1);
+
+            string[] aux = new string[2];
+            foreach (string tile in tiles)
+            {
+                aux = tile.Split(',');
+                ListTiles.Add(new Tile
+                {
+                    position = Convert.ToInt32(aux[0]),
+                    symbol = Game.TranslateSymbol(aux[1])
+                }) ;
+            }
+
+            return ListTiles;
         }
     }
 }
