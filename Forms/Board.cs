@@ -16,6 +16,7 @@ namespace CartagenaBuenaventura.Forms
         Match match;
         public Board(Match match)
         {
+            this.match = match;
             InitializeComponent();
             SetListTiles();
         }
