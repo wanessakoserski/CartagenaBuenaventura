@@ -27,6 +27,9 @@ namespace CartagenaBuenaventura.Forms
             SetListPlayers();
 
             if (player == null) { btnStartMatch.Enabled = false; }
+
+            if (this.match.status == enums.MatchStatus.InProgress) { btnGoToBoard.Enabled = true; }
+            else { btnGoToBoard.Enabled = false;  }
         }
 
         private void SetListPlayers()
@@ -69,7 +72,12 @@ namespace CartagenaBuenaventura.Forms
         private void btnStartMatch_Click(object sender, EventArgs e)
         {
             //Game.StartMatch(player.id, player.password);
-            Panel.getInstance().ChangeForm(this, new Board(match));
+            Panel.getInstance().ChangeForm(this, new Board(match, player));
+        }
+
+        private void btnGoToBoard_Click(object sender, EventArgs e)
+        {
+            Panel.getInstance().ChangeForm(this, new Board(match, player));
         }
     }
 }

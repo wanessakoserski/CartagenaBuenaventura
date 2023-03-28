@@ -14,9 +14,11 @@ namespace CartagenaBuenaventura.Forms
     public partial class Board : Screen
     {
         Match match;
-        public Board(Match match)
+        Player player;
+        public Board(Match match, Player player)
         {
             this.match = match;
+            this.player = player;
             InitializeComponent();
             SetListTiles();
         }

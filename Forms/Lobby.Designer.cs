@@ -32,6 +32,7 @@
             this.btnRefreshListPlayers = new System.Windows.Forms.Button();
             this.btnGoBack = new System.Windows.Forms.Button();
             this.btnStartMatch = new System.Windows.Forms.Button();
+            this.btnGoToBoard = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstPlayers
@@ -73,11 +74,22 @@
             this.btnStartMatch.UseVisualStyleBackColor = true;
             this.btnStartMatch.Click += new System.EventHandler(this.btnStartMatch_Click);
             // 
+            // btnGoToBoard
+            // 
+            this.btnGoToBoard.Location = new System.Drawing.Point(277, 312);
+            this.btnGoToBoard.Name = "btnGoToBoard";
+            this.btnGoToBoard.Size = new System.Drawing.Size(121, 23);
+            this.btnGoToBoard.TabIndex = 4;
+            this.btnGoToBoard.Text = "Ir para o Tabuleiro";
+            this.btnGoToBoard.UseVisualStyleBackColor = true;
+            this.btnGoToBoard.Click += new System.EventHandler(this.btnGoToBoard_Click);
+            // 
             // Lobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1571, 684);
+            this.ClientSize = new System.Drawing.Size(1223, 684);
+            this.Controls.Add(this.btnGoToBoard);
             this.Controls.Add(this.btnGoBack);
             this.Controls.Add(this.btnStartMatch);
             this.Controls.Add(this.btnRefreshListPlayers);
@@ -94,5 +106,6 @@
         private System.Windows.Forms.Button btnRefreshListPlayers;
         private System.Windows.Forms.Button btnGoBack;
         private System.Windows.Forms.Button btnStartMatch;
+        private System.Windows.Forms.Button btnGoToBoard;
     }
 }
