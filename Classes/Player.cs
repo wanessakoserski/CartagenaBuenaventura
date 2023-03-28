@@ -40,5 +40,25 @@ namespace CartagenaBuenaventura.Classes
             }
             return hand;
         }
+
+        // Receive one pawn position and the symbol of what card should be played and
+        // move the pawn to the next open tile with this symbol
+        public void GoFoward(int pawnPosition, enums.Symbol symbol) 
+        {
+            Jogo.Jogar(Convert.ToInt32(this.id), this.password, pawnPosition, Game.TranslateSymbol(symbol));
+        }
+
+        // Receive one pawn position and move it back to the closes tile with at least
+        // one pawn and less than three of them
+        public void GoBack(int pawnPosition) 
+        {
+            Jogo.Jogar(Convert.ToInt32(this.id), this.password, pawnPosition);
+        }
+
+        // Skip one of the players moves
+        public void Skip() 
+        {
+            Jogo.Jogar(Convert.ToInt32(this.id), this.password);
+        }
     }
 }
