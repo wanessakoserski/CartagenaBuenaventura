@@ -147,6 +147,28 @@ namespace CartagenaBuenaventura.Classes
             }
         }
 
+        // Receive a symbol as enums.Symbol and return it as a string
+        public static string TranslateSymbol(enums.Symbol symbol) 
+        {
+            switch (symbol)
+            {
+                case Symbol.Dager:
+                    return "F";
+                case Symbol.Bottle:
+                    return "G";
+                case Symbol.Key:
+                    return "C";
+                case Symbol.Pistol:
+                    return "P";
+                case Symbol.Tricorn:
+                    return "T";
+                case Symbol.Skull:
+                    return "E";
+                default:
+                    return null;
+            }
+        }
+
         // Creates a list of tiles where it can be seen the board, handling the server return string
         public static List<Tile> ShowBoard(uint matchId)
         {
