@@ -80,6 +80,11 @@ namespace CartagenaBuenaventura.Forms
 
         private void ShowListHistory()
         {
+            Console.Clear();
+            Console.WriteLine("\nVerificar vez\n");
+            string vez = Jogo.VerificarVez(1);
+            Console.WriteLine(vez);
+            Console.WriteLine("\nHistórico\n");
             string history = Jogo.ExibirHistorico(Convert.ToInt32(match.id));
             Console.Write(history);
         }

@@ -18,8 +18,6 @@ namespace CartagenaBuenaventura
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            string a = Jogo.VerificarVez(1);
-            Console.WriteLine(a);
             Application.Run(Panel.getInstance());
         }
     }
