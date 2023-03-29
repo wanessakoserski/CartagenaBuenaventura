@@ -64,24 +64,27 @@
             this.btnSkip.TabIndex = 2;
             this.btnSkip.Text = "Pular vez";
             this.btnSkip.UseVisualStyleBackColor = true;
+            this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
             // 
             // btnMoveBack
             // 
-            this.btnMoveBack.Location = new System.Drawing.Point(208, 328);
+            this.btnMoveBack.Location = new System.Drawing.Point(208, 299);
             this.btnMoveBack.Name = "btnMoveBack";
             this.btnMoveBack.Size = new System.Drawing.Size(112, 23);
             this.btnMoveBack.TabIndex = 3;
             this.btnMoveBack.Text = "Mover para trás";
             this.btnMoveBack.UseVisualStyleBackColor = true;
+            this.btnMoveBack.Click += new System.EventHandler(this.btnMoveBack_Click);
             // 
             // btnMoveForward
             // 
-            this.btnMoveForward.Location = new System.Drawing.Point(208, 299);
+            this.btnMoveForward.Location = new System.Drawing.Point(208, 328);
             this.btnMoveForward.Name = "btnMoveForward";
             this.btnMoveForward.Size = new System.Drawing.Size(112, 23);
             this.btnMoveForward.TabIndex = 4;
             this.btnMoveForward.Text = "Mover para frente";
             this.btnMoveForward.UseVisualStyleBackColor = true;
+            this.btnMoveForward.Click += new System.EventHandler(this.btnMoveForward_Click);
             // 
             // numChoosePawn
             // 
