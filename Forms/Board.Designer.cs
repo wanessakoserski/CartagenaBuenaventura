@@ -98,7 +98,7 @@
             this.lstHandCards.HideSelection = false;
             this.lstHandCards.Location = new System.Drawing.Point(12, 270);
             this.lstHandCards.Name = "lstHandCards";
-            this.lstHandCards.Size = new System.Drawing.Size(142, 91);
+            this.lstHandCards.Size = new System.Drawing.Size(190, 107);
             this.lstHandCards.TabIndex = 8;
             this.lstHandCards.UseCompatibleStateImageBehavior = false;
             // 
@@ -106,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(773, 342);
+            this.ClientSize = new System.Drawing.Size(773, 422);
             this.Controls.Add(this.lstHandCards);
             this.Controls.Add(this.numChoosePawn);
             this.Controls.Add(this.btnMoveForward);

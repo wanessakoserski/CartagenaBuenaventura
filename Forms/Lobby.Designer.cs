@@ -88,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(836, 386);
+            this.ClientSize = new System.Drawing.Size(773, 443);
             this.Controls.Add(this.btnGoToBoard);
             this.Controls.Add(this.btnGoBack);
             this.Controls.Add(this.btnStartMatch);

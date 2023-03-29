@@ -22,13 +22,15 @@ namespace CartagenaBuenaventura.Forms
             this.match = match;
             this.player = this.match.user;
             InitializeComponent();
+            SetListTiles();
             RefreshList();
         }
 
         private void RefreshList()
         {
-            SetListTiles();
-            ShowListHandCards();
+            ShowListTiles();
+            if (this.player != null)
+                ShowListHandCards();
             ShowListHistory();
         }
 
@@ -63,8 +65,9 @@ namespace CartagenaBuenaventura.Forms
 
         private void ShowListHandCards()
         {
+            lstHandCards.Clear();
             lstHandCards.MultiSelect = false;
-            lstTiles.FullRowSelect = true;
+            lstHandCards.FullRowSelect = true;
 
             List<enums.Symbol?> listHandCards = player.ShowHand(player.id, player.password);
 
@@ -80,9 +83,9 @@ namespace CartagenaBuenaventura.Forms
 
         private void ShowListHistory()
         {
-            Console.Clear();
+            Console.WriteLine("--------------------------------");
             Console.WriteLine("\nVerificar vez\n");
-            string vez = Jogo.VerificarVez(1);
+            string vez = Jogo.VerificarVez(Convert.ToInt32(match.id));
             Console.WriteLine(vez);
             Console.WriteLine("\nHistórico\n");
             string history = Jogo.ExibirHistorico(Convert.ToInt32(match.id));
