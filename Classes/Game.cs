@@ -120,8 +120,9 @@ namespace CartagenaBuenaventura.Classes
                 id = Convert.ToUInt32(aux[0]),
                 name = playerName,
                 password = aux[1],
-                color = TranslateColor(aux[2]),
+                color = TranslateColor(aux[2])
             };
+
             return player;
         }
 

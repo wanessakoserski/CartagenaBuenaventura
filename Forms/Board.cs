@@ -1,4 +1,5 @@
 ﻿using CartagenaBuenaventura.Classes;
+using CartagenaServer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,12 +16,13 @@ namespace CartagenaBuenaventura.Forms
     {
         Match match;
         Player player;
-        public Board(Match match, Player player)
+        public Board(Match match)
         {
             this.match = match;
-            this.player = player;
+            this.player = this.match.user;
             InitializeComponent();
             SetListTiles();
+            ShowListHandCards();
         }
 
         private void SetListTiles()
@@ -49,6 +51,18 @@ namespace CartagenaBuenaventura.Forms
                 item.SubItems.Add(tile.symbol.ToString());
 
                 lstTiles.Items.Add(item);
+            }
+        }
+
+        private void ShowListHandCards()
+        {
+            lstHandCards.MultiSelect = false;
+            lstTiles.FullRowSelect = true;
+
+            List<enums.Symbol?> listHandCards = player.ShowHand(player.id, player.password);
+            foreach (enums.Symbol? card in listHandCards)
+            {
+                lstHandCards.Items.Add(card.ToString());
             }
         }
     }

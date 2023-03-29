@@ -1,4 +1,5 @@
 ﻿using CartagenaBuenaventura.Classes;
+using CartagenaServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace CartagenaBuenaventura
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            string a = Jogo.VerificarVez(1);
+            Console.WriteLine(a);
             Application.Run(Panel.getInstance());
         }
     }

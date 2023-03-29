@@ -33,9 +33,8 @@ namespace CartagenaBuenaventura.Classes
             foreach (string card in cards) 
             {
                 string[] aux = card.Split(',');
-                enums.Symbol? symbol = null;
-
-                Game.TranslateSymbol(aux[0]);
+                enums.Symbol? symbol = Game.TranslateSymbol(aux[0]);
+                Console.WriteLine(symbol.ToString());
 
                 for (int i = 0; i < Convert.ToInt32(aux[1]); i++) { hand.Add(symbol); }
             }
