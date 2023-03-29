@@ -29,6 +29,7 @@ namespace CartagenaBuenaventura.Forms
         {
             SetListTiles();
             ShowListHandCards();
+            ShowListHistory();
         }
 
         private void SetListTiles()
@@ -73,9 +74,14 @@ namespace CartagenaBuenaventura.Forms
                 item = new ListViewItem(card.ToString());
                 item.Tag = card;
                 item.SubItems.Add(card.ToString());
-                lstHandCards.Items.Add(item);
-                
+                lstHandCards.Items.Add(item);          
             }
+        }
+
+        private void ShowListHistory()
+        {
+            string history = Jogo.ExibirHistorico(Convert.ToInt32(match.id));
+            Console.Write(history);
         }
 
         private int getPawnPosition()

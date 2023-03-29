@@ -106,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(773, 386);
+            this.ClientSize = new System.Drawing.Size(773, 342);
             this.Controls.Add(this.lstHandCards);
             this.Controls.Add(this.numChoosePawn);
             this.Controls.Add(this.btnMoveForward);
