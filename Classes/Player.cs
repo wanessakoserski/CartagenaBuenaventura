@@ -22,12 +22,13 @@ namespace CartagenaBuenaventura.Classes
         // from the server, then return a list of them
         public List<enums.Symbol?> ShowHand(uint id, string password) 
         {
+            hand = new List<enums.Symbol?>();
+
             List<string> cards = Jogo.ConsultarMao(Convert.ToInt32(id), password)
                 .Replace("\r", "")
                 .Split('\n')
                 .ToList<string>();
-
-            cards.RemoveAt(hand.Count - 1);
+            cards.RemoveAt(cards.Count() - 1);
 
             foreach (string card in cards) 
             {
@@ -38,6 +39,7 @@ namespace CartagenaBuenaventura.Classes
 
                 for (int i = 0; i < Convert.ToInt32(aux[1]); i++) { hand.Add(symbol); }
             }
+
             return hand;
         }
 
