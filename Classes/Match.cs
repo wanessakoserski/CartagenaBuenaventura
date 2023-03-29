@@ -15,5 +15,6 @@ namespace CartagenaBuenaventura.Classes
         public enums.MatchStatus status;
         public string password;
         public List<Player> players;
+        public Player user;
     }
 }

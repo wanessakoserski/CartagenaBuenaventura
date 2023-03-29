@@ -14,19 +14,22 @@ namespace CartagenaBuenaventura.Forms
     public partial class Lobby : Screen
     {
         Match match;
-        Player player;
         public Lobby(Match match, Player player = null)
         {
             InitializeComponent();
-            this.match = match;
-            this.player = player;
-
             SetListPlayers();
 
-            if (player == null) { btnStartMatch.Enabled = false; }
+            this.match = match;
 
-            if (this.match.status == enums.MatchStatus.InProgress) { btnGoToBoard.Enabled = true; }
-            else { btnGoToBoard.Enabled = false;  }
+            if(player != null)
+                this.match.user = player;
+            
+            if (this.match.user == null) { btnStartMatch.Enabled = false; }
+
+            if (this.match.status == enums.MatchStatus.InProgress) 
+                btnGoToBoard.Enabled = true; 
+            else 
+                btnGoToBoard.Enabled = false;
         }
 
         private void SetListPlayers()
