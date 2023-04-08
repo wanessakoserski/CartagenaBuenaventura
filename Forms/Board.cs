@@ -33,13 +33,12 @@ namespace CartagenaBuenaventura.Forms
         // If there is a player, it is also load hand cards
         private void RefreshList()
         {
-            ShowListTiles();
             if (this.player != null)
                 ShowListHandCards();
-            ShowListHistory();
         }
 
         // Sets the information to create the tiles list on the screen
+        // Call at the same time ShowListTiles
         private void SetListTiles()
         {
             lstTiles.GridLines = true;
@@ -49,15 +48,17 @@ namespace CartagenaBuenaventura.Forms
 
             lstTiles.Columns.Add("Posição", 80, HorizontalAlignment.Center);
             lstTiles.Columns.Add("Simbolo", 100, HorizontalAlignment.Center);
+
+            ShowListTiles();
         }
 
         // Clean the current data in list
         // Fill the list tiles with current data from server
         private void ShowListTiles()
         {
-            lstTiles.Items.Clear(); 
-
             List<Tile> ListTiles = Game.ShowBoard(match.id);
+
+            lstTiles.Items.Clear();
 
             ListViewItem item;
             foreach (Tile tile in ListTiles)
@@ -87,17 +88,6 @@ namespace CartagenaBuenaventura.Forms
                 item.SubItems.Add(Game.TranslateSymbol(card));
                 lstHandCards.Items.Add(item);          
             }
-        }
-
-        private void ShowListHistory()
-        {
-            Console.WriteLine("--------------------------------");
-            Console.WriteLine("\nVerificar vez\n");
-            string vez = Jogo.VerificarVez(Convert.ToInt32(match.id));
-            Console.WriteLine(vez);
-            Console.WriteLine("\nHistórico\n");
-            string history = Jogo.ExibirHistorico(Convert.ToInt32(match.id));
-            Console.Write(history);
         }
 
         // Get current number on numChoosePawn
