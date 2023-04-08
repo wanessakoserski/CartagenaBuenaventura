@@ -179,5 +179,31 @@ namespace CartagenaBuenaventura.Classes
         {
             return Convert.ToUInt32(Jogo.IniciarPartida(Convert.ToInt32(playerId), playerPassword));
         }
+
+        public static List<Move> History(uint matchId)
+        {
+            List<Move> history = new List<Move>();
+
+            List<string> moves = Jogo.ExibirHistorico(Convert.ToInt32(matchId))
+                .Replace("\r", "")
+                .Split('\n')
+                .ToList();
+            moves.RemoveAt(moves.Count() - 1);
+
+            string[] aux = new string[5];
+            uint count = 0;
+            foreach(string move in moves)
+            {
+                history.Add(new Move
+                {
+                    id = count++,
+                    turn = Convert.ToUInt32(aux[1]),
+                    card = aux[2],
+                    position = Convert.ToUInt32(aux[4])
+                });
+            }
+
+            return history;
+        }
     }
 }
