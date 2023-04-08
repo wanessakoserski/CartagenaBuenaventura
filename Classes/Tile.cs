@@ -8,7 +8,7 @@ namespace CartagenaBuenaventura.Classes
 {
     public class Tile
     {
-        public enums.Symbol? symbol;
+        public string symbol;
         public int position;
     }
 }

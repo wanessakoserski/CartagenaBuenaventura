@@ -55,7 +55,6 @@
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Tile.cs" />
     <Compile Include="Enums\MatchStatus.cs" />
-    <Compile Include="Enums\Symbol.cs" />
     <Compile Include="Forms\Board.cs">
       <SubType>Form</SubType>
     </Compile>

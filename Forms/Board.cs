@@ -57,7 +57,7 @@ namespace CartagenaBuenaventura.Forms
             foreach (Tile tile in ListTiles)
             {
                 item = new ListViewItem(tile.position.ToString());
-                item.SubItems.Add(tile.symbol.ToString());
+                item.SubItems.Add(Game.TranslateSymbol(tile.symbol));
 
                 lstTiles.Items.Add(item);
             }
@@ -69,14 +69,14 @@ namespace CartagenaBuenaventura.Forms
             lstHandCards.MultiSelect = false;
             lstHandCards.FullRowSelect = true;
 
-            List<enums.Symbol?> listHandCards = player.ShowHand(player.id, player.password);
+            List<string> listHandCards = player.ShowHand(player.id, player.password);
 
             ListViewItem item;
-            foreach (enums.Symbol card in listHandCards)
+            foreach (string card in listHandCards)
             {
                 item = new ListViewItem(card.ToString());
                 item.Tag = card;
-                item.SubItems.Add(card.ToString());
+                item.SubItems.Add(Game.TranslateSymbol(card));
                 lstHandCards.Items.Add(item);          
             }
         }
@@ -97,10 +97,10 @@ namespace CartagenaBuenaventura.Forms
             return Convert.ToInt32(numChoosePawn.Value);
         }
 
-        private enums.Symbol getCardSelected()
+        private string getCardSelected()
         {
             SelectedListViewItemCollection item = lstHandCards.SelectedItems;
-            enums.Symbol symbol = (enums.Symbol) item[0].Tag;
+                string symbol = (string) item[0].Tag;
 
             return symbol;
         }

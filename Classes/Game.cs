@@ -126,47 +126,25 @@ namespace CartagenaBuenaventura.Classes
             return player;
         }
 
-        // Receive a symbol as a string in Pt-Br and return it as argb enum symbol
-        public static Symbol? TranslateSymbol(string symbol)
+        // Receive the letter of a symbol and return the whole name
+        public static string TranslateSymbol(string symbol)
         {
             switch (symbol)
             {
                 case "F":
-                    return Symbol.Dager;
+                    return "Adaga";
                 case "G":
-                    return Symbol.Bottle;
+                    return "Garrafa";
                 case "C":
-                    return Symbol.Key;
+                    return "Chave";
                 case "P":
-                    return Symbol.Pistol;
+                    return "Pistola";
                 case "T":
-                    return Symbol.Tricorn;
+                    return "Tricornio";
                 case "E":
-                    return Symbol.Skull;
+                    return "Caveira";
                 default:
-                    return null;
-            }
-        }
-
-        // Receive a symbol as enums.Symbol and return it as a string
-        public static string TranslateSymbol(enums.Symbol symbol) 
-        {
-            switch (symbol)
-            {
-                case Symbol.Dager:
-                    return "F";
-                case Symbol.Bottle:
-                    return "G";
-                case Symbol.Key:
-                    return "C";
-                case Symbol.Pistol:
-                    return "P";
-                case Symbol.Tricorn:
-                    return "T";
-                case Symbol.Skull:
-                    return "E";
-                default:
-                    return null;
+                    return "";
             }
         }
 
@@ -188,8 +166,8 @@ namespace CartagenaBuenaventura.Classes
                 ListTiles.Add(new Tile
                 {
                     position = Convert.ToInt32(aux[0]),
-                    symbol = Game.TranslateSymbol(aux[1])
-                }) ;
+                    symbol = aux[1]
+                });
             }
 
             return ListTiles;
