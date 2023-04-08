@@ -14,6 +14,10 @@ namespace CartagenaBuenaventura.Forms
     public partial class Lobby : Screen
     {
         Match match;
+
+        // Initialize match and if there is a player declares in match.player
+        // Enable proper buttons: if you are a player, you can start the match
+        // and if the matche already began, it can be shown the board
         public Lobby(Match match, Player player = null)
         {
             InitializeComponent();
@@ -32,6 +36,7 @@ namespace CartagenaBuenaventura.Forms
             SetListPlayers();
         }
 
+        // Sets the information to create the players list on the screen
         private void SetListPlayers()
         {
             lstPlayers.GridLines = true;
@@ -45,6 +50,8 @@ namespace CartagenaBuenaventura.Forms
             ShowListPlayers();
         }
 
+        // Clean the current data in list
+        // Fill the players list with current data from server
         private void ShowListPlayers()
         {
             this.match.players = Game.ListPlayers(this.match.id);
@@ -61,22 +68,27 @@ namespace CartagenaBuenaventura.Forms
             }
         }
 
+        // Refill the players list with current data from server
         private void btnRefreshListPlayers_Click(object sender, EventArgs e)
         {
             ShowListPlayers();
         }
 
+        // Return
         private void btnGoBack_Click(object sender, EventArgs e)
         {
             Panel.getInstance().ChangeForm(this, new Matches());
         }
 
+        // Start match
+        // Redirect to board
         private void btnStartMatch_Click(object sender, EventArgs e)
         {
             Game.StartMatch(this.match.user.id, this.match.user.password);
             Panel.getInstance().ChangeForm(this, new Board(this.match));
         }
 
+        // Go to board
         private void btnGoToBoard_Click(object sender, EventArgs e)
         {
             Panel.getInstance().ChangeForm(this, new Board(this.match));

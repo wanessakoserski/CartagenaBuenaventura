@@ -17,6 +17,9 @@ namespace CartagenaBuenaventura.Forms
     {
         Match match;
         Player player;
+
+        // Sets match and current player used 
+        // Sets tiles and load tiles and hand if there is user
         public Board(Match match)
         {
             this.match = match;
@@ -26,6 +29,8 @@ namespace CartagenaBuenaventura.Forms
             RefreshList();
         }
 
+        // Display information on board
+        // If there is a player, it is also load hand cards
         private void RefreshList()
         {
             ShowListTiles();
@@ -34,6 +39,7 @@ namespace CartagenaBuenaventura.Forms
             ShowListHistory();
         }
 
+        // Sets the information to create the tiles list on the screen
         private void SetListTiles()
         {
             lstTiles.GridLines = true;
@@ -43,13 +49,13 @@ namespace CartagenaBuenaventura.Forms
 
             lstTiles.Columns.Add("Posição", 80, HorizontalAlignment.Center);
             lstTiles.Columns.Add("Simbolo", 100, HorizontalAlignment.Center);
-
-            ShowListTiles();
         }
 
+        // Clean the current data in list
+        // Fill the list tiles with current data from server
         private void ShowListTiles()
         {
-            lstTiles.Items.Clear();
+            lstTiles.Items.Clear(); 
 
             List<Tile> ListTiles = Game.ShowBoard(match.id);
 
@@ -63,6 +69,8 @@ namespace CartagenaBuenaventura.Forms
             }
         }
 
+        // Clean the current data in list
+        // Fill the list hand cards with current data from server
         private void ShowListHandCards()
         {
             lstHandCards.Clear();
@@ -92,11 +100,13 @@ namespace CartagenaBuenaventura.Forms
             Console.Write(history);
         }
 
+        // Get current number on numChoosePawn
         private int getPawnPosition()
         {
             return Convert.ToInt32(numChoosePawn.Value);
         }
 
+        // Get current clicked card on hand cards list
         private string getCardSelected()
         {
             SelectedListViewItemCollection item = lstHandCards.SelectedItems;
@@ -105,18 +115,21 @@ namespace CartagenaBuenaventura.Forms
             return symbol;
         }
 
+        // Use skip function and renew lists
         private void btnSkip_Click(object sender, EventArgs e)
         {
             player.Skip();
             RefreshList();
         }
 
+        // Use go back function and renew lists
         private void btnMoveBack_Click(object sender, EventArgs e)
         {
             player.GoBack(getPawnPosition());
             RefreshList();
         }
 
+        // Use move forward function and renew lists
         private void btnMoveForward_Click(object sender, EventArgs e)
         {
             player.GoFoward(getPawnPosition(), getCardSelected());
