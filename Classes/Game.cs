@@ -180,6 +180,7 @@ namespace CartagenaBuenaventura.Classes
             return Convert.ToUInt32(Jogo.IniciarPartida(Convert.ToInt32(playerId), playerPassword));
         }
 
+        // Creates a list of moves where it can be seen the game history, handling the server return string
         public static List<Move> History(uint matchId)
         {
             List<Move> history = new List<Move>();
@@ -204,6 +205,19 @@ namespace CartagenaBuenaventura.Classes
             }
 
             return history;
+        }
+
+        // Receive a list of players and a player id
+        // Search for a player with the same id as received and if it is found, it is returned
+        public static Player searchPlayer(List<Player> listPlayers, uint playerId)
+        {
+            foreach (Player player in listPlayers)
+            {
+                if (player.id == playerId)
+                    return player;
+            }
+
+            return null;
         }
     }
 }
