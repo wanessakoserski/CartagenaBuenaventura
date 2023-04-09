@@ -181,15 +181,18 @@ namespace CartagenaBuenaventura.Classes
         }
 
         // Creates a list of moves where it can be seen the game history, handling the server return string
-        public static List<Move> History(uint matchId)
+        public static List<Move> History(Match match)
         {
             List<Move> history = new List<Move>();
 
-            List<string> moves = Jogo.ExibirHistorico(Convert.ToInt32(matchId))
+            List<string> moves = Jogo.ExibirHistorico(Convert.ToInt32(match.id))
                 .Replace("\r", "")
                 .Split('\n')
                 .ToList();
             moves.RemoveAt(moves.Count() - 1);
+
+            if (match.players == null)
+                match.players = ListPlayers(Convert.ToUInt32(match.id));
 
             string[] aux = new string[5];
             uint count = 0;
@@ -199,6 +202,7 @@ namespace CartagenaBuenaventura.Classes
                 {
                     id = count++,
                     turn = Convert.ToUInt32(aux[1]),
+                    player = SearchPlayer(match.players, Convert.ToUInt32(aux[0])),
                     card = aux[2],
                     position = Convert.ToUInt32(aux[4])
                 });
@@ -209,7 +213,7 @@ namespace CartagenaBuenaventura.Classes
 
         // Receive a list of players and a player id
         // Search for a player with the same id as received and if it is found, it is returned
-        public static Player searchPlayer(List<Player> listPlayers, uint playerId)
+        public static Player SearchPlayer(List<Player> listPlayers, uint playerId)
         {
             foreach (Player player in listPlayers)
             {
