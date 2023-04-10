@@ -144,24 +144,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tile_horizontal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tile_vertical.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tile_corner_4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tile_corner_1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tile_corner_2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tile_corner_3.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\tricorn.png" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +163,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\boat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tile_horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tile_corner.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
