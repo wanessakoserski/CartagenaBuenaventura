@@ -35,6 +35,7 @@
             this.btnMoveForward = new System.Windows.Forms.Button();
             this.numChoosePawn = new System.Windows.Forms.NumericUpDown();
             this.lstHandCards = new System.Windows.Forms.ListView();
+            this.pnlBoard = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numChoosePawn)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,11 +103,20 @@
             this.lstHandCards.TabIndex = 8;
             this.lstHandCards.UseCompatibleStateImageBehavior = false;
             // 
+            // pnlBoard
+            // 
+            this.pnlBoard.Location = new System.Drawing.Point(351, 12);
+            this.pnlBoard.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlBoard.Name = "pnlBoard";
+            this.pnlBoard.Size = new System.Drawing.Size(250, 400);
+            this.pnlBoard.TabIndex = 9;
+            // 
             // Board
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1327, 736);
+            this.ClientSize = new System.Drawing.Size(1571, 638);
+            this.Controls.Add(this.pnlBoard);
             this.Controls.Add(this.lstHandCards);
             this.Controls.Add(this.numChoosePawn);
             this.Controls.Add(this.btnMoveForward);
@@ -130,5 +140,6 @@
         private System.Windows.Forms.Button btnMoveForward;
         private System.Windows.Forms.NumericUpDown numChoosePawn;
         private System.Windows.Forms.ListView lstHandCards;
+        private System.Windows.Forms.Panel pnlBoard;
     }
 }

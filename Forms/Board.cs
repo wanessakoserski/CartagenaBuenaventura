@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,6 +28,120 @@ namespace CartagenaBuenaventura.Forms
             InitializeComponent();
             SetListTiles();
             RefreshList();
+            DrawBoard();
+        }
+
+        // Draw the board on screen, place all tiles and their corresponding symbols and indexes
+        private void DrawBoard()
+        {
+            List<Tile> listTiles = Game.ShowBoard(match.id);
+
+            Point tileLocation = new Point(0, pnlBoard.Size.Height - 50);
+            int drawDirection = 0; // 0: Right and 1: Left
+
+            for (int i = 0; i < listTiles.Count; i++)
+            {
+                PictureBox picBox = new PictureBox();
+
+                picBox.BackgroundImageLayout = ImageLayout.Stretch;
+                picBox.Margin = new Padding(0);
+                picBox.SizeMode = PictureBoxSizeMode.CenterImage;
+                picBox.Location = tileLocation;
+                picBox.Size = (i == 0 || i == listTiles.Count - 1) ? new Size(100, 50) : new Size(50, 50);
+
+                Label tilePosition = new Label();
+
+                tilePosition.Text = $"{i}";
+                tilePosition.Location = new Point(0);
+                tilePosition.BackColor = System.Drawing.Color.Transparent;
+                tilePosition.ForeColor = Color.White;
+
+                picBox.Controls.Add(tilePosition);
+
+                switch (listTiles[i].symbol)
+                {
+                    case "F":
+                        picBox.Image = Properties.Resources.dager;
+                        break;
+                    case "G":
+                        picBox.Image = Properties.Resources.bottle;
+                        break;
+                    case "C":
+                        picBox.Image = Properties.Resources.key;
+                        break;
+                    case "P":
+                        picBox.Image = Properties.Resources.pistol;
+                        break;
+                    case "T":
+                        picBox.Image = Properties.Resources.tricorn;
+                        break;
+                    case "E":
+                        picBox.Image = Properties.Resources.skull;
+                        break;
+                    default:
+                        break;
+
+                }
+
+                Image imgTileCorner = Properties.Resources.tile_corner;
+
+                if ((i - 3) % 5 == 0)
+                {
+                    if (tileLocation.X == 0)
+                    {
+                        imgTileCorner.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                        picBox.BackgroundImage = imgTileCorner;
+                    }
+
+                    picBox.BackgroundImage = imgTileCorner;
+                    tileLocation.Y -= 50;
+                }
+                else if ((i - 4) % 5 == 0)
+                {
+                    if (tileLocation.X == 0)
+                    {
+                        imgTileCorner.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        tileLocation.X += 50;
+                        drawDirection = 0;
+                    }
+                    else
+                    {
+                        imgTileCorner.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        tileLocation.X -= 50;
+                        drawDirection = 1;
+                    }
+
+                    picBox.BackgroundImage = imgTileCorner;
+                }
+                else
+                {
+                    if (i == 0)
+                    {
+                        tileLocation.X = 50;
+                    }
+                    else if (i == listTiles.Count - 1)
+                    {
+                        tileLocation.X -= 50;
+                        picBox.Location = tileLocation;
+                        picBox.Image = Properties.Resources.boat;
+                    }
+                    else 
+                    {
+                        picBox.BackgroundImage = Properties.Resources.tile_horizontal;
+                    }
+
+                    if (drawDirection == 0)
+                    {
+                        tileLocation.X += 50;
+                    }
+                    else 
+                    {
+                        tileLocation.X -= 50;
+                    }
+                }
+
+                pnlBoard.Controls.Add(picBox);
+            }    
         }
 
         // Display information on board
