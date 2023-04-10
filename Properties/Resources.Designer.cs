@@ -63,6 +63,16 @@ namespace CartagenaBuenaventura.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap boat {
+            get {
+                object obj = ResourceManager.GetObject("boat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bottle {
             get {
                 object obj = ResourceManager.GetObject("bottle", resourceCulture);
@@ -113,39 +123,9 @@ namespace CartagenaBuenaventura.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tile_corner_1 {
+        internal static System.Drawing.Bitmap tile_corner {
             get {
-                object obj = ResourceManager.GetObject("tile_corner_1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap tile_corner_2 {
-            get {
-                object obj = ResourceManager.GetObject("tile_corner_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap tile_corner_3 {
-            get {
-                object obj = ResourceManager.GetObject("tile_corner_3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap tile_corner_4 {
-            get {
-                object obj = ResourceManager.GetObject("tile_corner_4", resourceCulture);
+                object obj = ResourceManager.GetObject("tile_corner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -156,16 +136,6 @@ namespace CartagenaBuenaventura.Properties {
         internal static System.Drawing.Bitmap tile_horizontal {
             get {
                 object obj = ResourceManager.GetObject("tile_horizontal", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap tile_vertical {
-            get {
-                object obj = ResourceManager.GetObject("tile_vertical", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
