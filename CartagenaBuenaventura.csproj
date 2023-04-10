@@ -147,24 +147,6 @@
     <None Include="Resources\tile_horizontal.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tricorn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\skull.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pistol.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\key.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bottle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\dager.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\tile_vertical.png" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +160,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tile_corner_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tricorn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pistol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dager.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
