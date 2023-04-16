@@ -21,9 +21,9 @@ namespace CartagenaBuenaventura.Forms
         public Lobby(Match match, Player player = null)
         {
             InitializeComponent();
-            this.match = match;          
+            this.match = match;
 
-            if(player != null)
+            if(this.match.user == null && player != null)
                 this.match.user = player;
             
             if (this.match.user == null) { btnStartMatch.Enabled = false; }
@@ -80,11 +80,13 @@ namespace CartagenaBuenaventura.Forms
             Panel.getInstance().ChangeForm(this, new Matches());
         }
 
-        // Start match
+        // Start match if it is still opened
         // Redirect to board
         private void btnStartMatch_Click(object sender, EventArgs e)
         {
-            Game.StartMatch(this.match.user.id, this.match.user.password);
+            if (this.match.status == enums.MatchStatus.Open)
+                Game.StartMatch(this.match.user.id, this.match.user.password);
+
             Panel.getInstance().ChangeForm(this, new Board(this.match));
         }
 
