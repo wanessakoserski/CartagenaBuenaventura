@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +19,8 @@ namespace CartagenaBuenaventura.Forms
     {
         Match match;
         Player player;
+        List<Tile> board;
+        List<Pawn> pawns = new List<Pawn>();
 
         // Sets match and current player used 
         // Sets tiles and load tiles and hand if there is user
@@ -25,21 +28,25 @@ namespace CartagenaBuenaventura.Forms
         {
             this.match = match;
             this.player = this.match.user;
+
             InitializeComponent();
+
+            pnlBoard.BackColor = System.Drawing.Color.Transparent;
+
             SetListTiles();
             RefreshList();
-            DrawBoard();
+            InitPawns(6);
         }
 
         // Draw the board on screen, place all tiles and their corresponding symbols and indexes
         private void DrawBoard()
         {
-            List<Tile> listTiles = Game.ShowBoard(match.id);
+            board = Game.ShowBoard(match.id);
 
-            Point tileLocation = new Point(0, pnlBoard.Size.Height - 50);
+            Point tileLocation = new Point(0, pnlBoard.Size.Height - 90);
             int drawDirection = 0; // 0: Right and 1: Left
 
-            foreach (Tile tile in listTiles)
+            foreach (Tile tile in board)
             {
                 PictureBox picBox = new PictureBox();
 
@@ -47,7 +54,7 @@ namespace CartagenaBuenaventura.Forms
                 picBox.Margin = new Padding(0);
                 picBox.SizeMode = PictureBoxSizeMode.CenterImage;
                 picBox.Location = tileLocation;
-                picBox.Size = (tile.position == 0 || tile.position == listTiles.Count - 1) ? new Size(100, 50) : new Size(50, 50);
+                picBox.Size = (tile.position == 0 || tile.position == board.Count - 1) ? new Size(100, 50) : new Size(50, 50);
 
                 Label tilePosition = new Label();
 
@@ -119,7 +126,7 @@ namespace CartagenaBuenaventura.Forms
                     {
                         tileLocation.X = 50;
                     }
-                    else if (tile.position == listTiles.Count - 1)
+                    else if (tile.position == board.Count - 1)
                     {
                         tileLocation.X -= 50;
                         picBox.Location = tileLocation;
@@ -142,6 +149,39 @@ namespace CartagenaBuenaventura.Forms
 
                 pnlBoard.Controls.Add(picBox);
             }
+        }
+
+        // Receive the number of pawns assigned to each player. Initialize all 'Pawn' objects
+        // and draw them in the 0th tile position, then call DrawBoard()
+        private void InitPawns(uint pawnsPerPlayer) 
+        {
+            pnlBoard.Controls.Clear();
+            Point pawnLocation = new Point(0, pnlBoard.Size.Height - 90);
+
+            for (int i = 0; i < match.players.Count; i++)
+            {
+                for (int j = 0; j < pawnsPerPlayer; j++)
+                {
+                    pawns.Add(new Pawn(match.players[i]));
+                    pawns[pawns.Count - 1].img.Location = pawnLocation;
+                    pnlBoard.Controls.Add(pawns[pawns.Count - 1].img);
+
+                    pawnLocation.X += 15;
+                    if ((j + 1) % 2 == 0) 
+                    {
+                        pawnLocation.X -= 30;
+                        pawnLocation.Y += 15; 
+                    }
+                }
+                pawnLocation.X += 30;
+                if (i < 2) { pawnLocation.Y = pnlBoard.Size.Height - 90; }
+                else
+                {
+                    if (i == 2) { pawnLocation.X = 0; }
+                    pawnLocation.Y = pnlBoard.Size.Height - 45;
+                }
+            }
+            DrawBoard();
         }
 
         // Display information on board
