@@ -12,6 +12,7 @@ namespace CartagenaBuenaventura.Classes
         public uint turn;
         public Player player;
         public string card;
-        public uint position; 
+        public uint origin;
+        public uint destination;
     }
 }

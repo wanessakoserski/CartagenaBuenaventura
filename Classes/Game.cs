@@ -204,7 +204,8 @@ namespace CartagenaBuenaventura.Classes
                     turn = Convert.ToUInt32(aux[1]),
                     player = SearchPlayer(match.players, Convert.ToUInt32(aux[0])),
                     card = aux[2],
-                    position = Convert.ToUInt32(aux[4])
+                    origin = Convert.ToUInt32(aux[3]),
+                    destination = Convert.ToUInt32(aux[4])
                 });
             }
 
