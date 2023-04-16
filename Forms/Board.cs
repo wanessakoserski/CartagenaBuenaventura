@@ -39,7 +39,7 @@ namespace CartagenaBuenaventura.Forms
             Point tileLocation = new Point(0, pnlBoard.Size.Height - 50);
             int drawDirection = 0; // 0: Right and 1: Left
 
-            for (int i = 0; i < listTiles.Count; i++)
+            foreach (Tile tile in listTiles)
             {
                 PictureBox picBox = new PictureBox();
 
@@ -47,18 +47,18 @@ namespace CartagenaBuenaventura.Forms
                 picBox.Margin = new Padding(0);
                 picBox.SizeMode = PictureBoxSizeMode.CenterImage;
                 picBox.Location = tileLocation;
-                picBox.Size = (i == 0 || i == listTiles.Count - 1) ? new Size(100, 50) : new Size(50, 50);
+                picBox.Size = (tile.position == 0 || tile.position == listTiles.Count - 1) ? new Size(100, 50) : new Size(50, 50);
 
                 Label tilePosition = new Label();
 
-                tilePosition.Text = $"{i}";
+                tilePosition.Text = $"{tile.position}";
                 tilePosition.Location = new Point(0);
                 tilePosition.BackColor = System.Drawing.Color.Transparent;
                 tilePosition.ForeColor = Color.White;
 
                 picBox.Controls.Add(tilePosition);
 
-                switch (listTiles[i].symbol)
+                switch (tile.symbol)
                 {
                     case "F":
                         picBox.Image = Properties.Resources.dager;
@@ -85,7 +85,7 @@ namespace CartagenaBuenaventura.Forms
 
                 Image imgTileCorner = Properties.Resources.tile_corner;
 
-                if ((i - 3) % 5 == 0)
+                if ((tile.position - 3) % 5 == 0)
                 {
                     if (tileLocation.X == 0)
                     {
@@ -96,7 +96,7 @@ namespace CartagenaBuenaventura.Forms
                     picBox.BackgroundImage = imgTileCorner;
                     tileLocation.Y -= 50;
                 }
-                else if ((i - 4) % 5 == 0)
+                else if ((tile.position - 4) % 5 == 0)
                 {
                     if (tileLocation.X == 0)
                     {
@@ -115,11 +115,11 @@ namespace CartagenaBuenaventura.Forms
                 }
                 else
                 {
-                    if (i == 0)
+                    if (tile.position == 0)
                     {
                         tileLocation.X = 50;
                     }
-                    else if (i == listTiles.Count - 1)
+                    else if (tile.position == listTiles.Count - 1)
                     {
                         tileLocation.X -= 50;
                         picBox.Location = tileLocation;
@@ -141,7 +141,7 @@ namespace CartagenaBuenaventura.Forms
                 }
 
                 pnlBoard.Controls.Add(picBox);
-            }    
+            }
         }
 
         // Display information on board
