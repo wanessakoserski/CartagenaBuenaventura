@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Board));
             this.lstTiles = new System.Windows.Forms.ListView();
             this.btnRefreshBoard = new System.Windows.Forms.Button();
             this.btnSkip = new System.Windows.Forms.Button();
@@ -108,14 +109,15 @@
             this.pnlBoard.Location = new System.Drawing.Point(351, 12);
             this.pnlBoard.Margin = new System.Windows.Forms.Padding(0);
             this.pnlBoard.Name = "pnlBoard";
-            this.pnlBoard.Size = new System.Drawing.Size(250, 400);
+            this.pnlBoard.Size = new System.Drawing.Size(250, 440);
             this.pnlBoard.TabIndex = 9;
             // 
             // Board
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1571, 638);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(1571, 649);
             this.Controls.Add(this.pnlBoard);
             this.Controls.Add(this.lstHandCards);
             this.Controls.Add(this.numChoosePawn);
