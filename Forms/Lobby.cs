@@ -93,5 +93,13 @@ namespace CartagenaBuenaventura.Forms
         {
             Panel.getInstance().ChangeForm(this, new Board(this.match));
         }
+
+        // Open enter match dialog
+        private void btnEnterTheMatch_Click(object sender, EventArgs e)
+        {
+            EnterMatchDialog enterMatchDialog = new EnterMatchDialog(this, match);
+            if (enterMatchDialog.ShowDialog() == DialogResult.OK)
+                Console.WriteLine("works");
+        }
     }
 }
