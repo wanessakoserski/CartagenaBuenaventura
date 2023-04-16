@@ -38,6 +38,28 @@ namespace CartagenaBuenaventura.Forms
             InitPawns(6);
         }
 
+        // Receives a letter from an object and returns an image of the respective object
+        private Image getImage(string symbol)
+        {
+            switch (symbol)
+            {
+                case "F":
+                    return Properties.Resources.dager;
+                case "G":
+                    return Properties.Resources.bottle;
+                case "C":
+                    return Properties.Resources.key;
+                case "P":
+                    return Properties.Resources.pistol;
+                case "T":
+                    return Properties.Resources.tricorn;           
+                case "E":
+                    return Properties.Resources.skull;     
+                default:
+                    return null;
+            }
+        }
+
         // Draw the board on screen, place all tiles and their corresponding symbols and indexes
         private void DrawBoard()
         {
@@ -64,31 +86,7 @@ namespace CartagenaBuenaventura.Forms
                 tilePosition.ForeColor = Color.White;
 
                 picBox.Controls.Add(tilePosition);
-
-                switch (tile.symbol)
-                {
-                    case "F":
-                        picBox.Image = Properties.Resources.dager;
-                        break;
-                    case "G":
-                        picBox.Image = Properties.Resources.bottle;
-                        break;
-                    case "C":
-                        picBox.Image = Properties.Resources.key;
-                        break;
-                    case "P":
-                        picBox.Image = Properties.Resources.pistol;
-                        break;
-                    case "T":
-                        picBox.Image = Properties.Resources.tricorn;
-                        break;
-                    case "E":
-                        picBox.Image = Properties.Resources.skull;
-                        break;
-                    default:
-                        break;
-
-                }
+                picBox.Image = getImage(tile.symbol);
 
                 Image imgTileCorner = Properties.Resources.tile_corner;
 
