@@ -198,6 +198,9 @@ namespace CartagenaBuenaventura.Classes
             uint count = 0;
             foreach(string move in moves)
             {
+                aux = move.Split(',');
+                // (bug)in somme matches, the last move origin (aux[3]) and destination (aux[4]) are null
+
                 history.Add(new Move
                 {
                     id = count++,
