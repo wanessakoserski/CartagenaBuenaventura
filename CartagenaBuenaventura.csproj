@@ -172,7 +172,7 @@
     <None Include="Resources\tile_corner.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\brown.png" />
+    <None Include="Resources\red.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\blue.png" />
@@ -181,7 +181,7 @@
     <None Include="Resources\yellow.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\red.png" />
+    <None Include="Resources\brown.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\green.png" />
