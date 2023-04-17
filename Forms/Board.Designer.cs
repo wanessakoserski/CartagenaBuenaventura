@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Board));
             this.lstTiles = new System.Windows.Forms.ListView();
             this.btnRefreshBoard = new System.Windows.Forms.Button();
@@ -37,6 +38,7 @@
             this.numChoosePawn = new System.Windows.Forms.NumericUpDown();
             this.lstHandCards = new System.Windows.Forms.ListView();
             this.pnlBoard = new System.Windows.Forms.Panel();
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numChoosePawn)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,10 +99,11 @@
             // 
             // lstHandCards
             // 
+            this.lstHandCards.BackColor = System.Drawing.SystemColors.Control;
             this.lstHandCards.HideSelection = false;
-            this.lstHandCards.Location = new System.Drawing.Point(12, 270);
+            this.lstHandCards.Location = new System.Drawing.Point(632, 21);
             this.lstHandCards.Name = "lstHandCards";
-            this.lstHandCards.Size = new System.Drawing.Size(190, 107);
+            this.lstHandCards.Size = new System.Drawing.Size(384, 456);
             this.lstHandCards.TabIndex = 8;
             this.lstHandCards.UseCompatibleStateImageBehavior = false;
             // 
@@ -109,15 +112,21 @@
             this.pnlBoard.Location = new System.Drawing.Point(351, 12);
             this.pnlBoard.Margin = new System.Windows.Forms.Padding(0);
             this.pnlBoard.Name = "pnlBoard";
-            this.pnlBoard.Size = new System.Drawing.Size(250, 440);
+            this.pnlBoard.Size = new System.Drawing.Size(266, 465);
             this.pnlBoard.TabIndex = 9;
+            // 
+            // imageList
+            // 
+            this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // Board
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1327, 630);
+            this.ClientSize = new System.Drawing.Size(1255, 666);
             this.Controls.Add(this.pnlBoard);
             this.Controls.Add(this.lstHandCards);
             this.Controls.Add(this.numChoosePawn);
@@ -143,5 +152,6 @@
         private System.Windows.Forms.NumericUpDown numChoosePawn;
         private System.Windows.Forms.ListView lstHandCards;
         private System.Windows.Forms.Panel pnlBoard;
+        private System.Windows.Forms.ImageList imageList;
     }
 }
