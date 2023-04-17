@@ -341,8 +341,15 @@ namespace CartagenaBuenaventura.Forms
         // Use move forward function and renew lists
         private void btnMoveForward_Click(object sender, EventArgs e)
         {
-            player.GoFoward(getPawnPosition(), getCardSelected());
-            RefreshList();
+            try
+            {
+                player.GoFoward(getPawnPosition(), getCardSelected());
+                RefreshList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
