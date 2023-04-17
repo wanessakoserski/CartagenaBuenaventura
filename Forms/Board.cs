@@ -147,6 +147,7 @@ namespace CartagenaBuenaventura.Forms
                     }
                 }
 
+                tile.location = tileLocation;
                 pnlBoard.Controls.Add(picBox);
             }
         }
@@ -184,10 +185,30 @@ namespace CartagenaBuenaventura.Forms
             DrawBoard();
         }
 
+        //  Every time this method is called, the board is updated with all of the players moves
+        private void RefreshBoard()
+        {
+            List<Move> moves = Game.History(match);
+
+            foreach (Move move in moves) 
+            {
+                Console.WriteLine($"id: {move.id}");
+                Console.WriteLine($"player id: {move.player.id}");
+                Console.WriteLine($"origin: {move.origin}");
+                Console.WriteLine($"card: {move.card}");
+                Pawn auxPawn = pawns.Find(p => p.player == move.player && p.position == move.origin);
+                if (auxPawn != null) { Console.WriteLine("Not null"); }
+                auxPawn.Move(move, board);
+            }
+
+            DrawBoard();
+        }
+
         // Display information on board
         // If there is a player, it is also load hand cards
         private void RefreshList()
         {
+            RefreshBoard();
             if (this.player != null)
                 ShowListHandCards();
         }
