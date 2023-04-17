@@ -176,7 +176,7 @@
     <None Include="Resources\tile_corner.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\red.png" />
+    <Resource Include="Resources\red.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\blue.png" />
@@ -189,6 +189,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pistol_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tricorn_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skull_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dager_card.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

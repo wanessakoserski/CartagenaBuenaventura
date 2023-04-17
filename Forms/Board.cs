@@ -34,8 +34,36 @@ namespace CartagenaBuenaventura.Forms
             pnlBoard.BackColor = System.Drawing.Color.Transparent;
 
             SetListTiles();
-            RefreshList();
+
+            // Show card list only if you are current player of this match
+            if (this.player == null)
+                lstHandCards.Visible = false;
+            else
+                SetListHandCards();
+
             InitPawns(6);
+        }
+
+        // Receives a letter from an object and returns an image of the respective object
+        private Image getSymbolImage(string symbol)
+        {
+            switch (symbol)
+            {
+                case "F":
+                    return Properties.Resources.dager;
+                case "G":
+                    return Properties.Resources.bottle;
+                case "C":
+                    return Properties.Resources.key;
+                case "P":
+                    return Properties.Resources.pistol;
+                case "T":
+                    return Properties.Resources.tricorn;           
+                case "E":
+                    return Properties.Resources.skull;     
+                default:
+                    return null;
+            }
         }
 
         // Draw the board on screen, place all tiles and their corresponding symbols and indexes
@@ -64,31 +92,7 @@ namespace CartagenaBuenaventura.Forms
                 tilePosition.ForeColor = Color.White;
 
                 picBox.Controls.Add(tilePosition);
-
-                switch (tile.symbol)
-                {
-                    case "F":
-                        picBox.Image = Properties.Resources.dager;
-                        break;
-                    case "G":
-                        picBox.Image = Properties.Resources.bottle;
-                        break;
-                    case "C":
-                        picBox.Image = Properties.Resources.key;
-                        break;
-                    case "P":
-                        picBox.Image = Properties.Resources.pistol;
-                        break;
-                    case "T":
-                        picBox.Image = Properties.Resources.tricorn;
-                        break;
-                    case "E":
-                        picBox.Image = Properties.Resources.skull;
-                        break;
-                    default:
-                        break;
-
-                }
+                picBox.Image = getSymbolImage(tile.symbol);
 
                 Image imgTileCorner = Properties.Resources.tile_corner;
 
@@ -190,7 +194,7 @@ namespace CartagenaBuenaventura.Forms
         {
             List<Move> moves = Game.History(match);
 
-            foreach (Move move in moves) 
+            foreach (Move move in moves)
             {
                 Console.WriteLine($"id: {move.id}");
                 Console.WriteLine($"player id: {move.player.id}");
@@ -204,13 +208,72 @@ namespace CartagenaBuenaventura.Forms
             DrawBoard();
         }
 
+        // Receives a letter from an object and returns an image of the respective object
+        private Image getCardImage(string symbol)
+        {
+            switch (symbol)
+            {
+                case "F":
+                    return Properties.Resources.dager_card;
+                case "G":
+                    return Properties.Resources.bottle_card;
+                case "C":
+                    return Properties.Resources.key_card;
+                case "P":
+                    return Properties.Resources.pistol_card;
+                case "T":
+                    return Properties.Resources.tricorn_card;
+                case "E":
+                    return Properties.Resources.skull_card;
+                default:
+                    return null;
+            }
+        }
+
+        // Sets the information to create the cards list on the screen
+        // Call at the same time DrawHandCards
+        private void SetListHandCards()
+        {
+            lstHandCards.MultiSelect = false;
+            lstHandCards.FullRowSelect = true;
+
+            imageList.ImageSize = new Size(105, 165);
+
+            DrawHandCards();
+        }
+
+        // Clean the current data in list
+        // Fill the list hand cards with current data from server and its repective image
+        private void DrawHandCards()
+        {
+            lstHandCards.Clear();
+            
+
+            List<string> cards = player.ShowHand(player.id, player.password);
+
+            int index = 0;
+            foreach (string card in cards)
+            {
+                imageList.Images.Add(getCardImage(card));
+                lstHandCards.Items.Add(new ListViewItem
+                {
+                    ImageIndex = index,
+                    Text = Game.TranslateSymbol(card),
+                    Tag = card
+                });
+                index++;
+            }
+            lstHandCards.LargeImageList = imageList;
+            lstHandCards.View = View.LargeIcon;
+        }
+
         // Display information on board
         // If there is a player, it is also load hand cards
         private void RefreshList()
         {
             RefreshBoard();
             if (this.player != null)
-                ShowListHandCards();
+                DrawHandCards();
         }
 
         // Sets the information to create the tiles list on the screen
@@ -243,26 +306,6 @@ namespace CartagenaBuenaventura.Forms
                 item.SubItems.Add(Game.TranslateSymbol(tile.symbol));
 
                 lstTiles.Items.Add(item);
-            }
-        }
-
-        // Clean the current data in list
-        // Fill the list hand cards with current data from server
-        private void ShowListHandCards()
-        {
-            lstHandCards.Clear();
-            lstHandCards.MultiSelect = false;
-            lstHandCards.FullRowSelect = true;
-
-            List<string> listHandCards = player.ShowHand(player.id, player.password);
-
-            ListViewItem item;
-            foreach (string card in listHandCards)
-            {
-                item = new ListViewItem(card.ToString());
-                item.Tag = card;
-                item.SubItems.Add(Game.TranslateSymbol(card));
-                lstHandCards.Items.Add(item);          
             }
         }
 
