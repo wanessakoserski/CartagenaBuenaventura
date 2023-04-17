@@ -28,7 +28,7 @@ namespace CartagenaBuenaventura.Forms
             
             if (this.match.user == null) { btnStartMatch.Enabled = false; }
 
-            if (this.match.status == enums.MatchStatus.InProgress) 
+            if (this.match.status == enums.MatchStatus.InProgress || this.match.status == enums.MatchStatus.Close) 
                 btnGoToBoard.Enabled = true; 
             else 
                 btnGoToBoard.Enabled = false;
