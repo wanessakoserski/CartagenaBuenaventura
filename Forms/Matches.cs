@@ -20,6 +20,7 @@ namespace CartagenaBuenaventura.Forms
             SetListMatches();
         }
 
+        // Sets the information to create the matches list on the screen
         private void SetListMatches()
         {
             lstMatches.GridLines = true;
@@ -35,6 +36,8 @@ namespace CartagenaBuenaventura.Forms
             ShowListMatches();
         }
 
+        // Clean the current data in list
+        // Fill the matches list with current data from server
         private void ShowListMatches()
         {
             lstMatches.Items.Clear();
@@ -53,6 +56,7 @@ namespace CartagenaBuenaventura.Forms
             }
         }
 
+        // Open create match dialog
         private void btnCreateMatch_Click(object sender, EventArgs e)
         {
             CreateMatchDialog createMatchDialog = new CreateMatchDialog(this);
@@ -60,6 +64,8 @@ namespace CartagenaBuenaventura.Forms
                 Console.WriteLine("works");
         }
 
+        // Refill the matches list with current data from server
+        // Disables the buttons for not having any item selected anymore
         private void btnRefreshListMatches_Click(object sender, EventArgs e)
         {
             ShowListMatches();
@@ -67,7 +73,7 @@ namespace CartagenaBuenaventura.Forms
             btnEnterMatch.Enabled = false;
         }
 
-
+        // Open enter match dialog
         private void btnEnterMatch_Click(object sender, EventArgs e)
         {
             EnterMatchDialog enterMatchDialog = new EnterMatchDialog(this, GetSelectedMatch());
@@ -75,6 +81,7 @@ namespace CartagenaBuenaventura.Forms
                 Console.WriteLine("works");
         }
 
+        // Get current clicked match on matches list
         private Match GetSelectedMatch()
         {
             SelectedListViewItemCollection item = lstMatches.SelectedItems;
@@ -83,6 +90,7 @@ namespace CartagenaBuenaventura.Forms
             return match;
         }
 
+        // Attempt to enter lobby match
         private void btnViewMatch_Click(object sender, EventArgs e)
         {
             try
@@ -96,6 +104,7 @@ namespace CartagenaBuenaventura.Forms
 
         }
 
+        // Ables button when a item is selected
         private void lstMatches_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnEnterMatch.Enabled = true;

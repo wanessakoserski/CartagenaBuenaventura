@@ -9,8 +9,10 @@ namespace CartagenaBuenaventura.Classes
     public class Move
     {
         public uint id;
+        public uint turn;
         public Player player;
-        public enums.Symbol card;
-        public uint position;
+        public string card;
+        public uint origin;
+        public uint destination;
     }
 }

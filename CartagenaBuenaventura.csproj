@@ -52,10 +52,10 @@
     <Compile Include="Classes\Game.cs" />
     <Compile Include="Classes\Match.cs" />
     <Compile Include="Classes\Move.cs" />
+    <Compile Include="Classes\Pawn.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Tile.cs" />
     <Compile Include="Enums\MatchStatus.cs" />
-    <Compile Include="Enums\Symbol.cs" />
     <Compile Include="Forms\Board.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +105,7 @@
     </Compile>
     <EmbeddedResource Include="Forms\Board.resx">
       <DependentUpon>Board.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateMatchDialog.resx">
       <DependentUpon>CreateMatchDialog.cs</DependentUpon>
@@ -121,6 +122,9 @@
     <EmbeddedResource Include="Forms\Lobby.resx">
       <DependentUpon>Lobby.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Panel.resx">
+      <DependentUpon>Panel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -129,6 +133,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -142,6 +147,66 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tricorn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pistol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tile_horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tile_corner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pistol_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tricorn_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skull_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dager_card.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -18,11 +18,13 @@ namespace CartagenaBuenaventura
             InitializeComponent();
         }
 
+        // Go to Matches
         private void btnPlayCartagena_Click(object sender, EventArgs e)
         {
             Panel.getInstance().ChangeForm(this, new Matches());
         }
 
+        // Stop the program
         private void btnExit_Click(object sender, EventArgs e)
         {
             Panel.getInstance().Close();

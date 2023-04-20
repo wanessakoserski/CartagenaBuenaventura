@@ -120,30 +120,31 @@ namespace CartagenaBuenaventura.Classes
                 id = Convert.ToUInt32(aux[0]),
                 name = playerName,
                 password = aux[1],
-                color = TranslateColor(aux[2]),
+                color = TranslateColor(aux[2])
             };
+
             return player;
         }
 
-        // Receive a symbol as a string in Pt-Br and return it as argb enum symbol
-        public static Symbol? TranslateSymbol(string symbol)
+        // Receive the letter of a symbol and return the whole name
+        public static string TranslateSymbol(string symbol)
         {
             switch (symbol)
             {
                 case "F":
-                    return Symbol.Dager;
+                    return "Adaga";
                 case "G":
-                    return Symbol.Bottle;
+                    return "Garrafa";
                 case "C":
-                    return Symbol.Key;
+                    return "Chave";
                 case "P":
-                    return Symbol.Pistol;
+                    return "Pistola";
                 case "T":
-                    return Symbol.Tricorn;
+                    return "Tricornio";
                 case "E":
-                    return Symbol.Skull;
+                    return "Caveira";
                 default:
-                    return null;
+                    return "";
             }
         }
 
@@ -165,8 +166,8 @@ namespace CartagenaBuenaventura.Classes
                 ListTiles.Add(new Tile
                 {
                     position = Convert.ToInt32(aux[0]),
-                    symbol = Game.TranslateSymbol(aux[1])
-                }) ;
+                    symbol = aux[1]
+                });
             }
 
             return ListTiles;
@@ -177,6 +178,54 @@ namespace CartagenaBuenaventura.Classes
         public static uint StartMatch(uint playerId, string playerPassword) 
         {
             return Convert.ToUInt32(Jogo.IniciarPartida(Convert.ToInt32(playerId), playerPassword));
+        }
+
+        // Creates a list of moves where it can be seen the game history, handling the server return string
+        public static List<Move> History(Match match)
+        {
+            List<Move> history = new List<Move>();
+
+            List<string> moves = Jogo.ExibirHistorico(Convert.ToInt32(match.id))
+                .Replace("\r", "")
+                .Split('\n')
+                .ToList();
+            moves.RemoveAt(moves.Count() - 1);
+
+            if (match.players == null)
+                match.players = ListPlayers(Convert.ToUInt32(match.id));
+
+            string[] aux = new string[5];
+            uint count = 0;
+            foreach(string move in moves)
+            {
+                aux = move.Split(',');
+                // (bug)in somme matches, the last move origin (aux[3]) and destination (aux[4]) are null
+
+                history.Add(new Move
+                {
+                    id = count++,
+                    turn = Convert.ToUInt32(aux[1]),
+                    player = SearchPlayer(match.players, Convert.ToUInt32(aux[0])),
+                    card = aux[2],
+                    origin = Convert.ToUInt32(aux[3]),
+                    destination = Convert.ToUInt32(aux[4])
+                });
+            }
+
+            return history;
+        }
+
+        // Receive a list of players and a player id
+        // Search for a player with the same id as received and if it is found, it is returned
+        public static Player SearchPlayer(List<Player> listPlayers, uint playerId)
+        {
+            foreach (Player player in listPlayers)
+            {
+                if (player.id == playerId)
+                    return player;
+            }
+
+            return null;
         }
     }
 }
