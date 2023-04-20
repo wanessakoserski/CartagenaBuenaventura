@@ -21,7 +21,14 @@ namespace CartagenaBuenaventura
         // Go to Matches
         private void btnPlayCartagena_Click(object sender, EventArgs e)
         {
-            Panel.getInstance().ChangeForm(this, new Matches());
+            try
+            {
+                Panel.getInstance().ChangeForm(this, new Matches())
+            } 
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         // Stop the program
