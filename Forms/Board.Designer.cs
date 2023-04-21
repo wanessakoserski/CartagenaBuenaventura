@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Board));
-            this.lstTiles = new System.Windows.Forms.ListView();
-            this.btnRefreshBoard = new System.Windows.Forms.Button();
             this.btnSkip = new System.Windows.Forms.Button();
             this.btnMoveBack = new System.Windows.Forms.Button();
             this.btnMoveForward = new System.Windows.Forms.Button();
@@ -41,24 +39,6 @@
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numChoosePawn)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lstTiles
-            // 
-            this.lstTiles.HideSelection = false;
-            this.lstTiles.Location = new System.Drawing.Point(12, 12);
-            this.lstTiles.Name = "lstTiles";
-            this.lstTiles.Size = new System.Drawing.Size(308, 204);
-            this.lstTiles.TabIndex = 0;
-            this.lstTiles.UseCompatibleStateImageBehavior = false;
-            // 
-            // btnRefreshBoard
-            // 
-            this.btnRefreshBoard.Location = new System.Drawing.Point(74, 222);
-            this.btnRefreshBoard.Name = "btnRefreshBoard";
-            this.btnRefreshBoard.Size = new System.Drawing.Size(149, 23);
-            this.btnRefreshBoard.TabIndex = 1;
-            this.btnRefreshBoard.Text = "Atualizar Tabuleiro";
-            this.btnRefreshBoard.UseVisualStyleBackColor = true;
             // 
             // btnSkip
             // 
@@ -112,7 +92,7 @@
             this.pnlBoard.Location = new System.Drawing.Point(351, 12);
             this.pnlBoard.Margin = new System.Windows.Forms.Padding(0);
             this.pnlBoard.Name = "pnlBoard";
-            this.pnlBoard.Size = new System.Drawing.Size(266, 465);
+            this.pnlBoard.Size = new System.Drawing.Size(250, 440);
             this.pnlBoard.TabIndex = 9;
             // 
             // imageList
@@ -126,15 +106,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1255, 666);
+            this.ClientSize = new System.Drawing.Size(1571, 585);
             this.Controls.Add(this.pnlBoard);
             this.Controls.Add(this.lstHandCards);
             this.Controls.Add(this.numChoosePawn);
             this.Controls.Add(this.btnMoveForward);
             this.Controls.Add(this.btnMoveBack);
             this.Controls.Add(this.btnSkip);
-            this.Controls.Add(this.btnRefreshBoard);
-            this.Controls.Add(this.lstTiles);
             this.Name = "Board";
             this.Text = "Board";
             ((System.ComponentModel.ISupportInitialize)(this.numChoosePawn)).EndInit();
@@ -143,9 +121,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView lstTiles;
-        private System.Windows.Forms.Button btnRefreshBoard;
         private System.Windows.Forms.Button btnSkip;
         private System.Windows.Forms.Button btnMoveBack;
         private System.Windows.Forms.Button btnMoveForward;

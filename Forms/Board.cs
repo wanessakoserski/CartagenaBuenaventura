@@ -33,8 +33,6 @@ namespace CartagenaBuenaventura.Forms
 
             pnlBoard.BackColor = System.Drawing.Color.Transparent;
 
-            //SetListTiles();
-
             // Show card list only if you are current player of this match
             if (this.player == null)
                 lstHandCards.Visible = false;
@@ -275,41 +273,6 @@ namespace CartagenaBuenaventura.Forms
             RefreshBoard();
             if (this.player != null)
                 DrawHandCards();
-        }
-
-        // DEPRECATED
-        // Sets the information to create the tiles list on the screen
-        // Call at the same time ShowListTiles
-        private void SetListTiles()
-        {
-            lstTiles.GridLines = true;
-            lstTiles.View = View.Details;
-            lstTiles.FullRowSelect = true;
-            lstTiles.MultiSelect = false;
-
-            lstTiles.Columns.Add("Posição", 80, HorizontalAlignment.Center);
-            lstTiles.Columns.Add("Simbolo", 100, HorizontalAlignment.Center);
-
-            ShowListTiles();
-        }
-
-        // DEPRECATED
-        // Clean the current data in list
-        // Fill the list tiles with current data from server
-        private void ShowListTiles()
-        {
-            List<Tile> ListTiles = Game.ShowBoard(match.id);
-
-            lstTiles.Items.Clear();
-
-            ListViewItem item;
-            foreach (Tile tile in ListTiles)
-            {
-                item = new ListViewItem(tile.position.ToString());
-                item.SubItems.Add(Game.TranslateSymbol(tile.symbol));
-
-                lstTiles.Items.Add(item);
-            }
         }
 
         // Get current number on numChoosePawn
