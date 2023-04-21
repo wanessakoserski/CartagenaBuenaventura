@@ -23,7 +23,7 @@ namespace CartagenaBuenaventura
         {
             try
             {
-                Panel.getInstance().ChangeForm(this, new Matches())
+                Panel.getInstance().ChangeForm(this, new Matches());
             } 
             catch (Exception ex)
             {
