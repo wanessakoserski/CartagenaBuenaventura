@@ -33,7 +33,7 @@ namespace CartagenaBuenaventura.Forms
 
             pnlBoard.BackColor = System.Drawing.Color.Transparent;
 
-            SetListTiles();
+            //SetListTiles();
 
             // Show card list only if you are current player of this match
             if (this.player == null)
@@ -71,7 +71,7 @@ namespace CartagenaBuenaventura.Forms
         {
             board = Game.ShowBoard(match.id);
 
-            Point tileLocation = new Point(0, pnlBoard.Size.Height - 90);
+            Point tileLocation = new Point(0, 7 * pnlBoard.Size.Height / 9);
             int drawDirection = 0; // 0: Right and 1: Left
 
             foreach (Tile tile in board)
@@ -80,9 +80,10 @@ namespace CartagenaBuenaventura.Forms
 
                 picBox.BackgroundImageLayout = ImageLayout.Stretch;
                 picBox.Margin = new Padding(0);
+                picBox.Padding = new Padding(0);
                 picBox.SizeMode = PictureBoxSizeMode.CenterImage;
                 picBox.Location = tileLocation;
-                picBox.Size = (tile.position == 0 || tile.position == board.Count - 1) ? new Size(100, 50) : new Size(50, 50);
+                picBox.Size = (tile.position == 0 || tile.position == board.Count - 1) ? new Size((pnlBoard.Size.Width / 5) * 2, pnlBoard.Size.Height / 9) : new Size(pnlBoard.Size.Width / 5, pnlBoard.Size.Height / 8);
 
                 Label tilePosition = new Label();
 
@@ -105,20 +106,20 @@ namespace CartagenaBuenaventura.Forms
                     }
 
                     picBox.BackgroundImage = imgTileCorner;
-                    tileLocation.Y -= 50;
+                    tileLocation.Y -= pnlBoard.Size.Height / 9;
                 }
                 else if ((tile.position - 4) % 5 == 0)
                 {
                     if (tileLocation.X == 0)
                     {
                         imgTileCorner.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                        tileLocation.X += 50;
+                        tileLocation.X += pnlBoard.Size.Width / 5;
                         drawDirection = 0;
                     }
                     else
                     {
                         imgTileCorner.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                        tileLocation.X -= 50;
+                        tileLocation.X -= pnlBoard.Size.Width / 5;
                         drawDirection = 1;
                     }
 
@@ -128,11 +129,11 @@ namespace CartagenaBuenaventura.Forms
                 {
                     if (tile.position == 0)
                     {
-                        tileLocation.X = 50;
+                        tileLocation.X = pnlBoard.Size.Width / 5;
                     }
                     else if (tile.position == board.Count - 1)
                     {
-                        tileLocation.X -= 50;
+                        tileLocation.X -= pnlBoard.Size.Width / 5;
                         picBox.Location = tileLocation;
                         picBox.Image = Properties.Resources.boat;
                     }
@@ -143,11 +144,11 @@ namespace CartagenaBuenaventura.Forms
 
                     if (drawDirection == 0)
                     {
-                        tileLocation.X += 50;
+                        tileLocation.X += pnlBoard.Size.Width / 5;
                     }
                     else 
                     {
-                        tileLocation.X -= 50;
+                        tileLocation.X -= pnlBoard.Size.Width / 5;
                     }
                 }
 
@@ -161,7 +162,7 @@ namespace CartagenaBuenaventura.Forms
         private void InitPawns(uint pawnsPerPlayer) 
         {
             pnlBoard.Controls.Clear();
-            Point pawnLocation = new Point(0, pnlBoard.Size.Height - 90);
+            Point pawnLocation = new Point(0, 7 * pnlBoard.Size.Height / 9);
 
             for (int i = 0; i < match.players.Count; i++)
             {
@@ -276,6 +277,7 @@ namespace CartagenaBuenaventura.Forms
                 DrawHandCards();
         }
 
+        // DEPRECATED
         // Sets the information to create the tiles list on the screen
         // Call at the same time ShowListTiles
         private void SetListTiles()
@@ -291,6 +293,7 @@ namespace CartagenaBuenaventura.Forms
             ShowListTiles();
         }
 
+        // DEPRECATED
         // Clean the current data in list
         // Fill the list tiles with current data from server
         private void ShowListTiles()
