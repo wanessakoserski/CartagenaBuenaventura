@@ -27,7 +27,8 @@ namespace CartagenaBuenaventura
             } 
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("Não foi possível carregar a lista de partidas\n\n" + ex.Message, 
+                    "Error Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
