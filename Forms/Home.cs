@@ -37,5 +37,21 @@ namespace CartagenaBuenaventura
         {
             Panel.getInstance().Close();
         }
+
+        /* Appearance */
+
+        private void btn_MouseEnter(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            button.BackColor = Color.FromArgb(173, 202, 255);
+            button.ForeColor = Color.FromArgb(60, 85, 142);
+        }
+
+        private void btnPlayCartagena_MouseLeave(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            button.BackColor = Color.FromArgb(110, 145, 202);
+            button.ForeColor = Color.White;
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace CartagenaBuenaventura
 {
-    public abstract class Screen : Form
+    public class Screen : Form
     {
         public Screen() 
         {
