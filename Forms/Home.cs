@@ -47,7 +47,7 @@ namespace CartagenaBuenaventura
             button.ForeColor = Color.FromArgb(60, 85, 142);
         }
 
-        private void btnPlayCartagena_MouseLeave(object sender, EventArgs e)
+        private void btn_MouseLeave(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             button.BackColor = Color.FromArgb(110, 145, 202);

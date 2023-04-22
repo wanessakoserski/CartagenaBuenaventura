@@ -54,7 +54,7 @@
             this.btnPlayCartagena.UseVisualStyleBackColor = false;
             this.btnPlayCartagena.Click += new System.EventHandler(this.btnPlayCartagena_Click);
             this.btnPlayCartagena.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
-            this.btnPlayCartagena.MouseLeave += new System.EventHandler(this.btnPlayCartagena_MouseLeave);
+            this.btnPlayCartagena.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
             // 
             // btnExit
             // 
@@ -75,7 +75,7 @@
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             this.btnExit.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
-            this.btnExit.MouseLeave += new System.EventHandler(this.btnPlayCartagena_MouseLeave);
+            this.btnExit.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
             // 
             // btnHowToPlay
             // 
@@ -95,7 +95,7 @@
             this.btnHowToPlay.Text = "Como funciona";
             this.btnHowToPlay.UseVisualStyleBackColor = false;
             this.btnHowToPlay.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
-            this.btnHowToPlay.MouseLeave += new System.EventHandler(this.btnPlayCartagena_MouseLeave);
+            this.btnHowToPlay.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
             // 
             // Title
             // 
