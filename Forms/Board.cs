@@ -69,19 +69,19 @@ namespace CartagenaBuenaventura.Forms
         {
             board = Game.ShowBoard(match.id);
 
-            Point tileLocation = new Point(0, 7 * pnlBoard.Size.Height / 9);
-            int drawDirection = 0; // 0: Right and 1: Left
+            Point tileLocation = new Point(0, 0);
+            int drawDirection = 0; // 0: Upward and 1: Down
 
             foreach (Tile tile in board)
             {
                 PictureBox picBox = new PictureBox();
 
-                picBox.BackgroundImageLayout = ImageLayout.Stretch;
                 picBox.Margin = new Padding(0);
                 picBox.Padding = new Padding(0);
                 picBox.SizeMode = PictureBoxSizeMode.CenterImage;
                 picBox.Location = tileLocation;
-                picBox.Size = (tile.position == 0 || tile.position == board.Count - 1) ? new Size((pnlBoard.Size.Width / 5) * 2, pnlBoard.Size.Height / 9) : new Size(pnlBoard.Size.Width / 5, pnlBoard.Size.Height / 8);
+
+                tile.location = tileLocation;
 
                 Label tilePosition = new Label();
 
@@ -91,66 +91,77 @@ namespace CartagenaBuenaventura.Forms
                 tilePosition.ForeColor = Color.White;
 
                 picBox.Controls.Add(tilePosition);
-                picBox.Image = getSymbolImage(tile.symbol);
 
-                Image imgTileCorner = Properties.Resources.tile_corner;
+                Size tileDimensions = new Size(pnlBoard.Size.Width / 10, pnlBoard.Size.Height / 5);
 
-                if ((tile.position - 3) % 5 == 0)
+                if (tile.position == 0)
                 {
-                    if (tileLocation.X == 0)
-                    {
-                        imgTileCorner.RotateFlip(RotateFlipType.RotateNoneFlipX);
-                        picBox.BackgroundImage = imgTileCorner;
-                    }
-
-                    picBox.BackgroundImage = imgTileCorner;
-                    tileLocation.Y -= pnlBoard.Size.Height / 9;
+                    picBox.Size = new Size(tileDimensions.Width * 2, pnlBoard.Height);
+                    tileLocation.X = (pnlBoard.Size.Width / 10) * 2;
+                    tileLocation.Y = 4 * pnlBoard.Size.Height / 5;    // the height of where the first tile should be drawned
                 }
-                else if ((tile.position - 4) % 5 == 0)
+                else if (tile.position == board.Count - 1)
                 {
-                    if (tileLocation.X == 0)
-                    {
-                        imgTileCorner.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                        tileLocation.X += pnlBoard.Size.Width / 5;
-                        drawDirection = 0;
-                    }
-                    else
-                    {
-                        imgTileCorner.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                        tileLocation.X -= pnlBoard.Size.Width / 5;
-                        drawDirection = 1;
-                    }
+                    picBox.Size = new Size(tileDimensions.Width, tileDimensions.Height * 2);
 
-                    picBox.BackgroundImage = imgTileCorner;
+                    Image imgBoat = Properties.Resources.boat;
+                    imgBoat.RotateFlip(RotateFlipType.Rotate270FlipNone);
+
+                    picBox.Image = imgBoat;
                 }
                 else
                 {
-                    if (tile.position == 0)
-                    {
-                        tileLocation.X = pnlBoard.Size.Width / 5;
-                    }
-                    else if (tile.position == board.Count - 1)
-                    {
-                        tileLocation.X -= pnlBoard.Size.Width / 5;
-                        picBox.Location = tileLocation;
-                        picBox.Image = Properties.Resources.boat;
-                    }
-                    else 
-                    {
-                        picBox.BackgroundImage = Properties.Resources.tile_horizontal;
-                    }
+                    picBox.BackgroundImageLayout = ImageLayout.Stretch;
+                    picBox.Size = tileDimensions;
+                    picBox.Image = getSymbolImage(tile.symbol);
 
-                    if (drawDirection == 0)
+                    Image imgTileCorner = Properties.Resources.tile_corner;
+
+                    if ((tile.position) % 5 == 0)
                     {
-                        tileLocation.X += pnlBoard.Size.Width / 5;
+                        if (tileLocation.Y == 0)
+                        {
+                            imgTileCorner.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        }
+                        else 
+                        {
+                            imgTileCorner.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        }
+
+                        picBox.BackgroundImage = imgTileCorner;
+                        tileLocation.X += pnlBoard.Size.Width / 10;
                     }
-                    else 
+                    else if ((tile.position - 1) % 5 == 0 && tile.position != 1)
                     {
-                        tileLocation.X -= pnlBoard.Size.Width / 5;
+                        if (tileLocation.Y == 0)
+                        {
+                            imgTileCorner.RotateFlip(RotateFlipType.Rotate180FlipX);
+                            tileLocation.Y += pnlBoard.Size.Height / 5;
+                            drawDirection = 1;
+                        }
+                        else
+                        {
+                            tileLocation.Y -= pnlBoard.Size.Height / 5;
+                            drawDirection = 0;
+                        }
+
+                        picBox.BackgroundImage = imgTileCorner;
+                    }
+                    else
+                    {
+                        picBox.BackgroundImage = Properties.Resources.tile_vertical;
+
+                        if (drawDirection == 0)
+                        {
+                            tileLocation.Y -= pnlBoard.Size.Height / 5;
+                        }
+                        else
+                        {
+                            tileLocation.Y += pnlBoard.Size.Height / 5;
+                        }
                     }
                 }
 
-                tile.location = tileLocation;
                 pnlBoard.Controls.Add(picBox);
             }
         }
@@ -160,7 +171,7 @@ namespace CartagenaBuenaventura.Forms
         private void InitPawns(uint pawnsPerPlayer) 
         {
             pnlBoard.Controls.Clear();
-            Point pawnLocation = new Point(0, 7 * pnlBoard.Size.Height / 9);
+            Point pawnLocation = new Point(0, 15);
 
             for (int i = 0; i < match.players.Count; i++)
             {
@@ -177,13 +188,11 @@ namespace CartagenaBuenaventura.Forms
                         pawnLocation.Y += 15; 
                     }
                 }
-                pawnLocation.X += 30;
-                if (i < 2) { pawnLocation.Y = pnlBoard.Size.Height - 90; }
-                else
-                {
-                    if (i == 2) { pawnLocation.X = 0; }
-                    pawnLocation.Y = pnlBoard.Size.Height - 45;
-                }
+
+                pawnLocation.X += 35;
+                pawnLocation.Y = (((i + 1) / 2) * 45) + 15;
+
+                if ((i + 1) % 2 == 0) { pawnLocation.X = 0; }
             }
             DrawBoard();
         }

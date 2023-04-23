@@ -42,7 +42,7 @@
             // 
             // btnSkip
             // 
-            this.btnSkip.Location = new System.Drawing.Point(208, 270);
+            this.btnSkip.Location = new System.Drawing.Point(488, 296);
             this.btnSkip.Name = "btnSkip";
             this.btnSkip.Size = new System.Drawing.Size(112, 23);
             this.btnSkip.TabIndex = 2;
@@ -52,7 +52,7 @@
             // 
             // btnMoveBack
             // 
-            this.btnMoveBack.Location = new System.Drawing.Point(208, 299);
+            this.btnMoveBack.Location = new System.Drawing.Point(488, 325);
             this.btnMoveBack.Name = "btnMoveBack";
             this.btnMoveBack.Size = new System.Drawing.Size(112, 23);
             this.btnMoveBack.TabIndex = 3;
@@ -62,7 +62,7 @@
             // 
             // btnMoveForward
             // 
-            this.btnMoveForward.Location = new System.Drawing.Point(208, 328);
+            this.btnMoveForward.Location = new System.Drawing.Point(488, 354);
             this.btnMoveForward.Name = "btnMoveForward";
             this.btnMoveForward.Size = new System.Drawing.Size(112, 23);
             this.btnMoveForward.TabIndex = 4;
@@ -72,7 +72,7 @@
             // 
             // numChoosePawn
             // 
-            this.numChoosePawn.Location = new System.Drawing.Point(208, 357);
+            this.numChoosePawn.Location = new System.Drawing.Point(488, 383);
             this.numChoosePawn.Name = "numChoosePawn";
             this.numChoosePawn.Size = new System.Drawing.Size(112, 20);
             this.numChoosePawn.TabIndex = 5;
@@ -81,18 +81,18 @@
             // 
             this.lstHandCards.BackColor = System.Drawing.SystemColors.Control;
             this.lstHandCards.HideSelection = false;
-            this.lstHandCards.Location = new System.Drawing.Point(632, 21);
+            this.lstHandCards.Location = new System.Drawing.Point(1, 271);
             this.lstHandCards.Name = "lstHandCards";
-            this.lstHandCards.Size = new System.Drawing.Size(384, 456);
+            this.lstHandCards.Size = new System.Drawing.Size(408, 247);
             this.lstHandCards.TabIndex = 8;
             this.lstHandCards.UseCompatibleStateImageBehavior = false;
             // 
             // pnlBoard
             // 
-            this.pnlBoard.Location = new System.Drawing.Point(351, 12);
+            this.pnlBoard.Location = new System.Drawing.Point(9, 9);
             this.pnlBoard.Margin = new System.Windows.Forms.Padding(0);
             this.pnlBoard.Name = "pnlBoard";
-            this.pnlBoard.Size = new System.Drawing.Size(250, 440);
+            this.pnlBoard.Size = new System.Drawing.Size(400, 250);
             this.pnlBoard.TabIndex = 9;
             // 
             // imageList
@@ -106,7 +106,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1571, 585);
+            this.ClientSize = new System.Drawing.Size(1571, 807);
             this.Controls.Add(this.pnlBoard);
             this.Controls.Add(this.lstHandCards);
             this.Controls.Add(this.numChoosePawn);
