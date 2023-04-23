@@ -21,12 +21,12 @@ namespace CartagenaBuenaventura.Classes
         {
             List<Match> ListMatches = new List<Match>();
 
-            List<string> matches = Jogo.ListarPartidas(filter)
-                .Replace("\r", "")
-                .Split('\n')
-                .ToList();
-            matches.RemoveAt(matches.Count() - 1);
-            
+                List<string> matches = Jogo.ListarPartidas(filter)
+                    .Replace("\r", "")
+                    .Split('\n')
+                    .ToList();
+                matches.RemoveAt(matches.Count() - 1);
+
             string[] aux = new string[5];
             foreach (string match in matches)
             {
