@@ -208,5 +208,8 @@
   <ItemGroup>
     <None Include="Resources\dager_card.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tile_vertical.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
