@@ -183,6 +183,12 @@ namespace CartagenaBuenaventura.Classes
         // Creates a list of moves where it can be seen the game history, handling the server return string
         public static List<Move> History(Match match)
         {
+            uint? validateValue(string arg)
+            {
+                if (arg == String.Empty) return null;
+                return Convert.ToUInt32(arg);
+            }
+
             List<Move> history = new List<Move>();
 
             List<string> moves = Jogo.ExibirHistorico(Convert.ToInt32(match.id))
@@ -194,11 +200,10 @@ namespace CartagenaBuenaventura.Classes
             if (match.players == null)
                 match.players = ListPlayers(Convert.ToUInt32(match.id));
 
-            string[] aux = new string[5];
             uint count = 0;
             foreach(string move in moves)
             {
-                aux = move.Split(',');
+                string[] aux = move.Split(',');
                 // (bug)in somme matches, the last move origin (aux[3]) and destination (aux[4]) are null
 
                 history.Add(new Move
@@ -207,8 +212,8 @@ namespace CartagenaBuenaventura.Classes
                     turn = Convert.ToUInt32(aux[1]),
                     player = SearchPlayer(match.players, Convert.ToUInt32(aux[0])),
                     card = aux[2],
-                    origin = Convert.ToUInt32(aux[3]),
-                    destination = Convert.ToUInt32(aux[4])
+                    origin = validateValue(aux[3]),
+                    destination = validateValue(aux[4])
                 });
             }
 
