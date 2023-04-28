@@ -232,5 +232,29 @@ namespace CartagenaBuenaventura.Classes
 
             return null;
         }
+
+        // delegate type for callbacks on StatusBoard method
+        public delegate List<string> StatusBoardCallBack(List<string> statusBoard);
+
+        // receive a match id, and request the board status to the server, then return
+        // the first line of the returned value of VerificarVez method, or if an callback
+        // function is provided, returns a processed list<string> of the board status
+        public static List<string> StatusBoard(uint matchId, StatusBoardCallBack CallBack)
+        {
+            // statusBoard get:
+            // first line: status match, player id, current move
+            // other lines: tile index, player id, number of pawns inside this tile
+            List<string> statusBoard = Jogo.VerificarVez(Convert.ToInt32(matchId))
+                .Replace("\r", "")
+                .Split('\n')
+                .ToList();
+
+            if (CallBack != null) { return CallBack(statusBoard); }
+
+            List<string> aux = new List<string>();
+            aux.Add(statusBoard[0]);
+
+            return aux;
+        }
     }
 }
