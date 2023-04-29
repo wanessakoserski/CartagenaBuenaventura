@@ -258,5 +258,12 @@ namespace CartagenaBuenaventura.Classes
             if ( match.user != null && Convert.ToUInt32(aux[1]) == match.user.id) { return true; }
             else { return false; }
         }
+
+        // Check if it is the user turn and return true if so
+        public static async Task<bool> VerifyTurn(Match match)
+        {
+            while (!StatusBoard(match)) { await Task.Delay(2000); }
+            return true;
+        }
     }
 }
