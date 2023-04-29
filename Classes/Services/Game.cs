@@ -234,27 +234,29 @@ namespace CartagenaBuenaventura.Classes
         }
 
         // delegate type for callbacks on StatusBoard method
-        public delegate List<string> StatusBoardCallBack(List<string> statusBoard);
+        public delegate List<Tile> StatusBoardCallBack(List<string> statusBoard, List<Tile> board);
 
-        // receive a match id, and request the board status to the server, then return
-        // the first line of the returned value of VerificarVez method, or if an callback
-        // function is provided, returns a processed list<string> of the board status
-        public static List<string> StatusBoard(uint matchId, StatusBoardCallBack CallBack)
+        // Receive a match id, and request the board status to the server, then if a callback
+        // function is provided, process list<Move> of the board status and in any case, return
+        // a boolean value corresponding to if it is the user turn.
+        public static bool StatusBoard(Match match,  List<Tile> board = null, StatusBoardCallBack CallBack = null)
         {
             // statusBoard get:
             // first line: status match, player id, current move
             // other lines: tile index, player id, number of pawns inside this tile
-            List<string> statusBoard = Jogo.VerificarVez(Convert.ToInt32(matchId))
+            List<string> statusBoard = Jogo.VerificarVez(Convert.ToInt32(match.id))
                 .Replace("\r", "")
                 .Split('\n')
                 .ToList();
 
-            if (CallBack != null) { return CallBack(statusBoard); }
+            // manipulate List<Tile> board with pawns new positions or not if they stay the same
+            if (CallBack != null && board != null) { CallBack(statusBoard, board); }
 
-            List<string> aux = new List<string>();
-            aux.Add(statusBoard[0]);
+            string[] aux = statusBoard[0].Split(',');
 
-            return aux;
+            //check if its the user turn
+            if ( match.user != null && Convert.ToUInt32(aux[1]) == match.user.id) { return true; }
+            else { return false; }
         }
     }
 }
