@@ -47,7 +47,7 @@ namespace CartagenaBuenaventura.Classes
         // placed in the available position inside the destination tile
         public void Move(Move move, List<Tile> board) 
         {
-            this.position = move.destination;
+            this.position = Convert.ToUInt32(move.destination);
 
             Tile origin = board[Convert.ToInt32(move.origin)];
             Tile destination = board[Convert.ToInt32(move.destination)];
