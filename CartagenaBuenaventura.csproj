@@ -217,5 +217,17 @@
   <ItemGroup>
     <None Include="Resources\tile_vertical.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fleet-fo-ships.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\go-back-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sea-of-thieves-helm.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
