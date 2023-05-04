@@ -47,7 +47,7 @@ namespace CartagenaBuenaventura.Classes
         // placed in the available position inside the destination tile
         public void Move(Move move, List<Tile> board) 
         {
-            this.position = move.destination;
+            this.position = (uint)move.destination;
 
             Tile origin = board[Convert.ToInt32(move.origin)];
             Tile destination = board[Convert.ToInt32(move.destination)];
@@ -69,7 +69,7 @@ namespace CartagenaBuenaventura.Classes
                 destination.spotAvailable[1] = false;
                 this.spotIndex = 1;
             }
-            else 
+            else
             {
                 Point auxLocation = destination.location;
                 auxLocation.Y += 15;
