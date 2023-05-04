@@ -39,7 +39,7 @@ namespace CartagenaBuenaventura.Forms
             else
                 SetListHandCards();
 
-            InitPawns(6);
+            InitPawns(6);  
         }
 
         // Receives a letter from an object and returns an image of the respective object
@@ -114,6 +114,8 @@ namespace CartagenaBuenaventura.Forms
                     picBox.BackgroundImageLayout = ImageLayout.Stretch;
                     picBox.Size = tileDimensions;
                     picBox.Image = getSymbolImage(tile.symbol);
+
+                    Console.WriteLine($"tile: {tile.position} symbol: {tile.symbol}");
 
                     Image imgTileCorner = Properties.Resources.tile_corner;
 
@@ -197,23 +199,19 @@ namespace CartagenaBuenaventura.Forms
             DrawBoard();
         }
 
-        //  Every time this method is called, the board is updated with all of the players moves
-        private void RefreshBoard()
+        //  draw the pawn movement in the last move made by one of the players
+        private void PawnMovement()
         {
             List<Move> moves = Game.History(match);
-
-            foreach (Move move in moves)
+            if (moves.Last().card != "") 
             {
-                Console.WriteLine($"id: {move.id}");
-                Console.WriteLine($"player id: {move.player.id}");
-                Console.WriteLine($"origin: {move.origin}");
-                Console.WriteLine($"card: {move.card}");
-                Pawn auxPawn = pawns.Find(p => p.player == move.player && p.position == move.origin);
+                // if the move was not "SKIP" 
+                Pawn auxPawn = pawns.Find(p => { return p.player == moves.Last().player && p.position == moves.Last().origin; });
                 if (auxPawn != null) { Console.WriteLine("Not null"); }
-                auxPawn.Move(move, board);
-            }
+                auxPawn.Move(moves.Last(), board);
 
-            DrawBoard();
+                DrawBoard();
+            }
         }
 
         // Receives a letter from an object and returns an image of the respective object
@@ -279,7 +277,6 @@ namespace CartagenaBuenaventura.Forms
         // If there is a player, it is also load hand cards
         private void RefreshList()
         {
-            RefreshBoard();
             if (this.player != null)
                 DrawHandCards();
         }
