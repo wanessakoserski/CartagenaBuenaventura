@@ -100,9 +100,8 @@ namespace CartagenaBuenaventura.Forms
                     ShowListPlayers();
                     pnlStartMatch.Enabled = true;
                     pnlStartMatch.Visible = true;
+                    this.match.user = enterMatchDialog.getPlayer();
                 }
-
-                this.match.user = enterMatchDialog.getPlayer();
             }  
         }
 
