@@ -229,5 +229,20 @@
   <ItemGroup>
     <None Include="Resources\sea-of-thieves-helm.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ships-duel.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

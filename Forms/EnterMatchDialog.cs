@@ -15,6 +15,7 @@ namespace CartagenaBuenaventura.Forms
     {
         Match match;
         Screen screen;
+        Player player;
         public EnterMatchDialog(Screen screen, Match match)
         {
             InitializeComponent();
@@ -28,9 +29,8 @@ namespace CartagenaBuenaventura.Forms
             {
                 if (txtPlayerName.Text.Length > 0 && txtMatchPassword.Text.Length > 0) 
                 {
-                    Player player = Game.EnterMatch(match.id, txtPlayerName.Text, txtMatchPassword.Text);
-                    Panel.getInstance().ChangeForm(screen, new Lobby(match, player));
-                    this.Close();
+                    this.player = Game.EnterMatch(match.id, txtPlayerName.Text, txtMatchPassword.Text);
+                    this.DialogResult = DialogResult.OK;
                 }
                 else 
                 {
@@ -44,6 +44,11 @@ namespace CartagenaBuenaventura.Forms
                 txtMatchPassword.Text = string.Empty;
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        public Player getPlayer()
+        {
+            return this.player;
         }
     }
 }

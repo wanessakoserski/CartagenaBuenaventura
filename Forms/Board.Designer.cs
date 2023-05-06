@@ -106,7 +106,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(984, 684);
+            this.ClientSize = new System.Drawing.Size(1233, 491);
             this.Controls.Add(this.pnlBoard);
             this.Controls.Add(this.lstHandCards);
             this.Controls.Add(this.numChoosePawn);
