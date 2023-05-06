@@ -244,5 +244,14 @@
   <ItemGroup>
     <None Include="Resources\play.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\captain-frame.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\captain-frame1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\battle-of-ships.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -73,6 +73,16 @@ namespace CartagenaBuenaventura.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap battle_of_ships {
+            get {
+                object obj = ResourceManager.GetObject("battle-of-ships", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blue {
             get {
                 object obj = ResourceManager.GetObject("blue", resourceCulture);
@@ -116,6 +126,16 @@ namespace CartagenaBuenaventura.Properties {
         internal static System.Drawing.Bitmap brown {
             get {
                 object obj = ResourceManager.GetObject("brown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap captain_frame {
+            get {
+                object obj = ResourceManager.GetObject("captain_frame", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
