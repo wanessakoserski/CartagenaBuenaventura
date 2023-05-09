@@ -67,7 +67,7 @@ namespace CartagenaBuenaventura.Forms
         // Draw the board on screen, place all tiles and their corresponding symbols and indexes
         private void DrawBoard()
         {
-            board = Game.ShowBoard(match.id);
+            if (board == null) { board = Game.ShowBoard(match.id); }
 
             Point tileLocation = new Point(0, 0);
             int drawDirection = 0; // 0: Upward and 1: Down
@@ -115,7 +115,7 @@ namespace CartagenaBuenaventura.Forms
                     picBox.Size = tileDimensions;
                     picBox.Image = getSymbolImage(tile.symbol);
 
-                    Console.WriteLine($"tile: {tile.position} symbol: {tile.symbol}");
+                    //Console.WriteLine($"tile: {tile.position} symbol: {tile.symbol}");
 
                     Image imgTileCorner = Properties.Resources.tile_corner;
 
@@ -196,6 +196,7 @@ namespace CartagenaBuenaventura.Forms
 
                 if ((i + 1) % 2 == 0) { pawnLocation.X = 0; }
             }
+
             DrawBoard();
         }
 
@@ -203,12 +204,11 @@ namespace CartagenaBuenaventura.Forms
         private void PawnMovement()
         {
             List<Move> moves = Game.History(match);
-            if (moves.Last().card != "") 
+            if (moves.Last().origin != null) 
             {
                 // if the move was not "SKIP" 
                 Pawn auxPawn = pawns.Find(p => { return p.player == moves.Last().player && p.position == moves.Last().origin; });
-                if (auxPawn != null) { Console.WriteLine("Not null"); }
-                auxPawn.Move(moves.Last(), board);
+                if (auxPawn != null) { auxPawn.Move(moves.Last(), board); }
 
                 DrawBoard();
             }
@@ -279,6 +279,7 @@ namespace CartagenaBuenaventura.Forms
         {
             if (this.player != null)
                 DrawHandCards();
+            PawnMovement();
         }
 
         // Get current number on numChoosePawn
