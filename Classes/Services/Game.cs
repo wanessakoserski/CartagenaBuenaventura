@@ -259,6 +259,10 @@ namespace CartagenaBuenaventura.Classes
             else { return false; }
         }
 
+        // Delegate type for callbacks responsible for procesing the data of the activity obtained on
+        // CheckActivity method
+        public delegate List<Tile> ProcessActivity(Move move);
+
         // Check if it is the user turn and return true if so
         public static async Task<bool> VerifyTurn(Match match)
         {
