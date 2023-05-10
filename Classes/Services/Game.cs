@@ -265,5 +265,19 @@ namespace CartagenaBuenaventura.Classes
             while (!StatusBoard(match)) { await Task.Delay(2000); }
             return true;
         }
+
+        // Take as parameters the match and a list of moves done till this moment, then check
+        // if there is any activity (moves) done by the other players. If any activity is
+        // detected return it (i.e. the list of moves done) else return null
+        public static List<Move> CheckActivity(Match match, List<Move> moves)
+        {
+            List<Move> auxMoves = Game.History(match);
+            if (moves.Count < auxMoves.Count)
+            {
+                int movesRecorded = auxMoves.Count - moves.Count;
+                return (List<Move>)auxMoves.Skip(auxMoves.Count - movesRecorded);
+            }
+            return null;
+        }
     }
 }
