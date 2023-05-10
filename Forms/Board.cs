@@ -21,6 +21,7 @@ namespace CartagenaBuenaventura.Forms
         Player player;
         List<Tile> board;
         List<Pawn> pawns = new List<Pawn>();
+        List<Move> moves = new List<Move>();
 
         // Sets match and current player used 
         // Sets tiles and load tiles and hand if there is user
@@ -200,15 +201,20 @@ namespace CartagenaBuenaventura.Forms
             DrawBoard();
         }
 
-        //  draw the pawn movement in the last move made by one of the players
-        private void PawnMovement()
+        // Draw the pawn movement of the move passed as parameter or the last move received from Game.History() method
+        public void PawnMovement(Move move = null)
         {
-            List<Move> moves = Game.History(match);
-            if (moves.Last().origin != null) 
+            if (move == null) 
+            { 
+                moves = Game.History(match);
+                move = moves.Last();
+            }
+
+            if (move.origin != null) 
             {
                 // if the move was not "SKIP" 
-                Pawn auxPawn = pawns.Find(p => { return p.player == moves.Last().player && p.position == moves.Last().origin; });
-                if (auxPawn != null) { auxPawn.Move(moves.Last(), board); }
+                Pawn auxPawn = pawns.Find(p => { return p.player == move.player && p.position == move.origin; });
+                if (auxPawn != null) { auxPawn.Move(move, board); }
 
                 DrawBoard();
             }
