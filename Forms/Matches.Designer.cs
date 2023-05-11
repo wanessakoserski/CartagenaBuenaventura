@@ -59,7 +59,7 @@
             this.btnEnterMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnterMatch.Font = new System.Drawing.Font("Sitka Subheading", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnterMatch.ForeColor = System.Drawing.Color.LightBlue;
-            this.btnEnterMatch.Location = new System.Drawing.Point(406, 307);
+            this.btnEnterMatch.Location = new System.Drawing.Point(536, 464);
             this.btnEnterMatch.Name = "btnEnterMatch";
             this.btnEnterMatch.Size = new System.Drawing.Size(156, 57);
             this.btnEnterMatch.TabIndex = 4;
@@ -78,7 +78,7 @@
             this.btnViewMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewMatch.Font = new System.Drawing.Font("Sitka Subheading", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewMatch.ForeColor = System.Drawing.Color.LightBlue;
-            this.btnViewMatch.Location = new System.Drawing.Point(304, 307);
+            this.btnViewMatch.Location = new System.Drawing.Point(304, 464);
             this.btnViewMatch.Name = "btnViewMatch";
             this.btnViewMatch.Size = new System.Drawing.Size(156, 57);
             this.btnViewMatch.TabIndex = 4;
@@ -96,7 +96,7 @@
             this.btnRefreshListMatches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefreshListMatches.Font = new System.Drawing.Font("Sitka Subheading", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefreshListMatches.ForeColor = System.Drawing.Color.LightBlue;
-            this.btnRefreshListMatches.Location = new System.Drawing.Point(119, 307);
+            this.btnRefreshListMatches.Location = new System.Drawing.Point(119, 464);
             this.btnRefreshListMatches.Name = "btnRefreshListMatches";
             this.btnRefreshListMatches.Size = new System.Drawing.Size(156, 57);
             this.btnRefreshListMatches.TabIndex = 2;
@@ -114,7 +114,7 @@
             this.btnCreateMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreateMatch.Font = new System.Drawing.Font("Sitka Subheading", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateMatch.ForeColor = System.Drawing.Color.LightBlue;
-            this.btnCreateMatch.Location = new System.Drawing.Point(220, 307);
+            this.btnCreateMatch.Location = new System.Drawing.Point(350, 464);
             this.btnCreateMatch.Name = "btnCreateMatch";
             this.btnCreateMatch.Size = new System.Drawing.Size(156, 57);
             this.btnCreateMatch.TabIndex = 0;
@@ -133,7 +133,7 @@
             this.gbxListMatches.ForeColor = System.Drawing.Color.White;
             this.gbxListMatches.Location = new System.Drawing.Point(119, 54);
             this.gbxListMatches.Name = "gbxListMatches";
-            this.gbxListMatches.Size = new System.Drawing.Size(443, 247);
+            this.gbxListMatches.Size = new System.Drawing.Size(573, 247);
             this.gbxListMatches.TabIndex = 6;
             this.gbxListMatches.TabStop = false;
             this.gbxListMatches.Text = "Lista de Partidas";
@@ -189,7 +189,7 @@
             this.dgdMatches.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgdMatches.RowHeadersVisible = false;
             this.dgdMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgdMatches.Size = new System.Drawing.Size(431, 222);
+            this.dgdMatches.Size = new System.Drawing.Size(561, 222);
             this.dgdMatches.TabIndex = 7;
             this.dgdMatches.SelectionChanged += new System.EventHandler(this.dgdMatches_SelectionChanged);
             // 
@@ -250,7 +250,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.fleet_fo_ships;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(679, 397);
+            this.ClientSize = new System.Drawing.Size(809, 554);
             this.Controls.Add(this.pnlGoBackHome);
             this.Controls.Add(this.gbxListMatches);
             this.Controls.Add(this.btnEnterMatch);

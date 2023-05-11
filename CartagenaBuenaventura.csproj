@@ -173,12 +173,6 @@
     <None Include="Resources\boat.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tile_horizontal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tile_corner.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pistol_card.png" />
   </ItemGroup>
   <ItemGroup>
@@ -198,9 +192,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\desert-anchor.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tile_vertical.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fleet-fo-ships.jpg" />
@@ -252,6 +243,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wood.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wood1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tile_horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tile_corner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tile_vertical.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

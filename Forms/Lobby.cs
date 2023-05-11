@@ -26,16 +26,16 @@ namespace CartagenaBuenaventura.Forms
 
             if(this.match.user == null && player != null)
                 this.match.user = player;
-            
-            if (this.match.user == null)  
-                pnlStartMatch.Enabled = false;
+
+            if (this.match.user == null)
+                pnlStartMatch.Visible = false;
+            else 
+                btnEnterTheMatch.Visible = false;
 
             if (this.match.status == enums.MatchStatus.InProgress || this.match.status == enums.MatchStatus.Close)
                 pnlGoToBoard.Enabled = true; 
             else
-                pnlGoToBoard.Enabled = false;
-
-            pnlStartMatch.Visible = false;
+                pnlGoToBoard.Enabled = false;      
 
             ShowListPlayers();
         }
