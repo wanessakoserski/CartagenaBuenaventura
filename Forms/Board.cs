@@ -21,6 +21,7 @@ namespace CartagenaBuenaventura.Forms
         Player player;
         List<Tile> board;
         List<Pawn> pawns = new List<Pawn>();
+        List<Move> moves = new List<Move>();
 
         // Sets match and current player used 
         // Sets tiles and load tiles and hand if there is user
@@ -67,7 +68,7 @@ namespace CartagenaBuenaventura.Forms
         // Draw the board on screen, place all tiles and their corresponding symbols and indexes
         private void DrawBoard()
         {
-            board = Game.ShowBoard(match.id);
+            if (board == null) { board = Game.ShowBoard(match.id); }
 
             Point tileLocation = new Point(0, 0);
             int drawDirection = 0; // 0: Upward and 1: Down
@@ -115,7 +116,7 @@ namespace CartagenaBuenaventura.Forms
                     picBox.Size = tileDimensions;
                     picBox.Image = getSymbolImage(tile.symbol);
 
-                    Console.WriteLine($"tile: {tile.position} symbol: {tile.symbol}");
+                    //Console.WriteLine($"tile: {tile.position} symbol: {tile.symbol}");
 
                     Image imgTileCorner = Properties.Resources.tile_corner;
 
@@ -196,19 +197,24 @@ namespace CartagenaBuenaventura.Forms
 
                 if ((i + 1) % 2 == 0) { pawnLocation.X = 0; }
             }
+
             DrawBoard();
         }
 
-        //  draw the pawn movement in the last move made by one of the players
-        private void PawnMovement()
+        // Draw the pawn movement of the move passed as parameter or the last move received from Game.History() method
+        public void PawnMovement(Move move = null)
         {
-            List<Move> moves = Game.History(match);
-            if (moves.Last().card != "") 
+            if (move == null) 
+            { 
+                moves = Game.History(match);
+                move = moves.Last();
+            }
+
+            if (move.origin != null) 
             {
                 // if the move was not "SKIP" 
-                Pawn auxPawn = pawns.Find(p => { return p.player == moves.Last().player && p.position == moves.Last().origin; });
-                if (auxPawn != null) { Console.WriteLine("Not null"); }
-                auxPawn.Move(moves.Last(), board);
+                Pawn auxPawn = pawns.Find(p => { return p.player == move.player && p.position == move.origin; });
+                if (auxPawn != null) { auxPawn.Move(move, board); }
 
                 DrawBoard();
             }
@@ -275,10 +281,12 @@ namespace CartagenaBuenaventura.Forms
 
         // Display information on board
         // If there is a player, it is also load hand cards
-        private void RefreshList()
+        private async void RefreshList()
         {
-            if (this.player != null)
-                DrawHandCards();
+            if (this.player != null) { DrawHandCards(); }
+
+            PawnMovement();
+            await Game.VerifyTurn(match, moves, PawnMovement);
         }
 
         // Get current number on numChoosePawn

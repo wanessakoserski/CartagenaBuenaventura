@@ -259,11 +259,43 @@ namespace CartagenaBuenaventura.Classes
             else { return false; }
         }
 
+        // Delegate type for callbacks responsible for procesing the data of the activity obtained on
+        // CheckActivity method
+        public delegate void ProcessActivity(Move move);
+
         // Check if it is the user turn and return true if so
-        public static async Task<bool> VerifyTurn(Match match)
+        public static async Task<bool> VerifyTurn(Match match, List<Move> moves = null, ProcessActivity CallBack = null)
         {
-            while (!StatusBoard(match)) { await Task.Delay(2000); }
+            while (!StatusBoard(match))
+            {
+                // colocar um timer entre as chamadas de statusboard e check activity
+                List<Move> activity = CheckActivity(match, moves);
+                if (activity != null)
+                {
+                    // iterate through every move made by other players in the interval of time of 2000 milliseconds 
+                    for (int i = 0; i < activity.Count; i++)
+                    {
+                        CallBack(activity[i]);
+                    }
+                }
+
+                await Task.Delay(5000);
+            }
             return true;
+        }
+
+        // Take as parameters the match and a list of moves done till this moment, then check
+        // if there is any activity (moves) done by the other players. If any activity is
+        // detected return it (i.e. the list of moves done) else return null
+        public static List<Move> CheckActivity(Match match, List<Move> moves)
+        {
+            List<Move> auxMoves = Game.History(match);
+            if (moves.Count < auxMoves.Count)
+            {
+                int movesRecorded = auxMoves.Count - moves.Count;
+                return (List<Move>)auxMoves.Skip(auxMoves.Count - movesRecorded);
+            }
+            return null;
         }
     }
 }
