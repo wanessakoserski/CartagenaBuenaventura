@@ -261,13 +261,14 @@ namespace CartagenaBuenaventura.Classes
 
         // Delegate type for callbacks responsible for procesing the data of the activity obtained on
         // CheckActivity method
-        public delegate List<Tile> ProcessActivity(Move move);
+        public delegate void ProcessActivity(Move move);
 
         // Check if it is the user turn and return true if so
         public static async Task<bool> VerifyTurn(Match match, List<Move> moves = null, ProcessActivity CallBack = null)
         {
             while (!StatusBoard(match))
             {
+                // colocar um timer entre as chamadas de statusboard e check activity
                 List<Move> activity = CheckActivity(match, moves);
                 if (activity != null)
                 {
@@ -278,7 +279,7 @@ namespace CartagenaBuenaventura.Classes
                     }
                 }
 
-                await Task.Delay(2000);
+                await Task.Delay(5000);
             }
             return true;
         }
