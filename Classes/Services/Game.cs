@@ -264,9 +264,22 @@ namespace CartagenaBuenaventura.Classes
         public delegate List<Tile> ProcessActivity(Move move);
 
         // Check if it is the user turn and return true if so
-        public static async Task<bool> VerifyTurn(Match match)
+        public static async Task<bool> VerifyTurn(Match match, List<Move> moves = null, ProcessActivity CallBack = null)
         {
-            while (!StatusBoard(match)) { await Task.Delay(2000); }
+            while (!StatusBoard(match))
+            {
+                List<Move> activity = CheckActivity(match, moves);
+                if (activity != null)
+                {
+                    // iterate through every move made by other players in the interval of time of 2000 milliseconds 
+                    for (int i = 0; i < activity.Count; i++)
+                    {
+                        CallBack(activity[i]);
+                    }
+                }
+
+                await Task.Delay(2000);
+            }
             return true;
         }
 
