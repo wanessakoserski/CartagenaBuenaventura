@@ -39,7 +39,7 @@ namespace CartagenaBuenaventura.Forms
             else
                 SetListHandCards();
 
-            InitPawns(6);  
+            InitPawns(6);
         }
 
         // Receives a letter from an object and returns an image of the respective object
@@ -264,7 +264,7 @@ namespace CartagenaBuenaventura.Forms
                 lstHandCards.Items.Add(new ListViewItem
                 {
                     ImageIndex = index,
-                    Text = Game.TranslateSymbol(card),
+                    //Text = Game.TranslateSymbol(card),
                     Tag = card
                 });
                 index++;
