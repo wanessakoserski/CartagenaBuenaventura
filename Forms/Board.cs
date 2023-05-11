@@ -281,11 +281,12 @@ namespace CartagenaBuenaventura.Forms
 
         // Display information on board
         // If there is a player, it is also load hand cards
-        private void RefreshList()
+        private async void RefreshList()
         {
-            if (this.player != null)
-                DrawHandCards();
+            if (this.player != null) { DrawHandCards(); }
+
             PawnMovement();
+            await Game.VerifyTurn(match, moves, PawnMovement);
         }
 
         // Get current number on numChoosePawn
