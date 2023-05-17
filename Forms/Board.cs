@@ -270,7 +270,7 @@ namespace CartagenaBuenaventura.Forms
                 lstHandCards.Items.Add(new ListViewItem
                 {
                     ImageIndex = index,
-                    //Text = Game.TranslateSymbol(card),
+                    Text = Game.TranslateSymbol(card),
                     Tag = card
                 });
                 index++;
