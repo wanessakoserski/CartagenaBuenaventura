@@ -96,6 +96,8 @@
             // 
             // pnlBoard
             // 
+            this.pnlBoard.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.background;
+            this.pnlBoard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlBoard.Location = new System.Drawing.Point(21, 24);
             this.pnlBoard.Margin = new System.Windows.Forms.Padding(0);
             this.pnlBoard.Name = "pnlBoard";
@@ -123,7 +125,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(726, 479);
+            this.ClientSize = new System.Drawing.Size(903, 526);
             this.Controls.Add(this.pnlBackgroundListHandCards);
             this.Controls.Add(this.btnSkip);
             this.Controls.Add(this.pnlBoard);

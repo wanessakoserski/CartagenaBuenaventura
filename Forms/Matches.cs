@@ -82,16 +82,7 @@ namespace CartagenaBuenaventura.Forms
                 if (enterMatchDialog.ShowDialog() == DialogResult.OK)
                 {
                     Console.WriteLine("works");
-                    /*
-                    btnEnterTheMatch.Visible = false;
-                    ShowListPlayers();
-                    pnlStartMatch.Enabled = true;
-                    pnlStartMatch.Visible = true;
-                    this.match.user = enterMatchDialog.getPlayer();
-                    */
                     player = enterMatchDialog.getPlayer();
-
-
                 }
             }
             Panel.getInstance().ChangeForm(this, new Lobby(GetSelectedMatch(), player));
