@@ -272,7 +272,7 @@ namespace CartagenaBuenaventura.Forms
         private void DrawHandCards()
         {
             lstHandCards.Clear();
-            
+            imageList.Images.Clear();
 
             List<string> cards = player.ShowHand(player.id, player.password);
 
