@@ -19,6 +19,7 @@ namespace CartagenaBuenaventura.Forms
     {
         Match match;
         Player player;
+        Robot robot;
         List<Tile> board;
         List<Pawn> pawns = new List<Pawn>();
         List<Move> moves = new List<Move>();
@@ -31,14 +32,20 @@ namespace CartagenaBuenaventura.Forms
             this.player = this.match.user;
 
             InitializeComponent();
+            
 
             pnlBoard.BackColor = System.Drawing.Color.Transparent;
 
             // Show card list only if you are current player of this match
             if (this.player == null)
-                lstHandCards.Visible = false;
+                pnlBackgroundListHandCards.Visible = false;
             else
+            {
                 SetListHandCards();
+                this.robot = new Robot(this.match);
+                this.robot.Verifying();
+            }
+
 
             InitPawns(6);
         }

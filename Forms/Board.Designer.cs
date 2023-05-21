@@ -84,19 +84,19 @@
             this.lstHandCards.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstHandCards.BackColor = System.Drawing.SystemColors.Control;
-            this.lstHandCards.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.wood1;
+            this.lstHandCards.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lstHandCards.BackgroundImage")));
             this.lstHandCards.BackgroundImageTiled = true;
             this.lstHandCards.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstHandCards.HideSelection = false;
             this.lstHandCards.Location = new System.Drawing.Point(0, 10);
             this.lstHandCards.Name = "lstHandCards";
-            this.lstHandCards.Size = new System.Drawing.Size(282, 416);
+            this.lstHandCards.Size = new System.Drawing.Size(282, 324);
             this.lstHandCards.TabIndex = 8;
             this.lstHandCards.UseCompatibleStateImageBehavior = false;
             // 
             // pnlBoard
             // 
-            this.pnlBoard.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.background;
+            this.pnlBoard.BackColor = System.Drawing.Color.Transparent;
             this.pnlBoard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlBoard.Location = new System.Drawing.Point(21, 24);
             this.pnlBoard.Margin = new System.Windows.Forms.Padding(0);
@@ -112,11 +112,11 @@
             // 
             // pnlBackgroundListHandCards
             // 
-            this.pnlBackgroundListHandCards.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.wood1;
+            this.pnlBackgroundListHandCards.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlBackgroundListHandCards.BackgroundImage")));
             this.pnlBackgroundListHandCards.Controls.Add(this.lstHandCards);
-            this.pnlBackgroundListHandCards.Location = new System.Drawing.Point(643, 14);
+            this.pnlBackgroundListHandCards.Location = new System.Drawing.Point(672, 106);
             this.pnlBackgroundListHandCards.Name = "pnlBackgroundListHandCards";
-            this.pnlBackgroundListHandCards.Size = new System.Drawing.Size(282, 426);
+            this.pnlBackgroundListHandCards.Size = new System.Drawing.Size(282, 334);
             this.pnlBackgroundListHandCards.TabIndex = 10;
             // 
             // Board
@@ -125,7 +125,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(903, 526);
+            this.ClientSize = new System.Drawing.Size(1222, 648);
             this.Controls.Add(this.pnlBackgroundListHandCards);
             this.Controls.Add(this.btnSkip);
             this.Controls.Add(this.pnlBoard);
