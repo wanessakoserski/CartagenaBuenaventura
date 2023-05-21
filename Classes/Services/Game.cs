@@ -297,5 +297,32 @@ namespace CartagenaBuenaventura.Classes
             }
             return null;
         }
+
+        public static List<Locus> BoardSituation(Match match)
+        {
+            List<Locus> status = new List<Locus>();
+
+            List<string> statusBoard = Jogo.VerificarVez(Convert.ToInt32(match.id))
+                .Replace("\r", "")
+                .Split('\n')
+                .ToList();
+
+            statusBoard.RemoveAt(0);
+            statusBoard.RemoveAt(status.Count() - 1);
+
+            foreach (string line in statusBoard)
+            {
+                string[] aux = line.Split(',');
+
+                status.Add(new Locus
+                {
+                    position = Convert.ToInt32(aux[0]),
+                    player = SearchPlayer(match.players, Convert.ToUInt32(aux[1])),
+                    amount = Convert.ToInt32(aux[2])
+                }) ;
+            }
+
+            return status;
+        }
     }
 }
