@@ -125,7 +125,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1222, 648);
+            this.ClientSize = new System.Drawing.Size(1222, 889);
             this.Controls.Add(this.pnlBackgroundListHandCards);
             this.Controls.Add(this.btnSkip);
             this.Controls.Add(this.pnlBoard);

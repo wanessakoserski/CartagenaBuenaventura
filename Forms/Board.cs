@@ -17,12 +17,13 @@ namespace CartagenaBuenaventura.Forms
 {
     public partial class Board : Screen
     {
-        Match match;
-        Player player;
-        Robot robot;
-        List<Tile> board;
-        List<Pawn> pawns = new List<Pawn>();
-        List<Move> moves = new List<Move>();
+        private Match match;
+        private Player player;
+        private Robot robot;
+        private Timer timer;
+        private List<Tile> board;
+        private List<Pawn> pawns = new List<Pawn>();
+        private List<Move> moves = new List<Move>();
 
         // Sets match and current player used 
         // Sets tiles and load tiles and hand if there is user
@@ -33,21 +34,26 @@ namespace CartagenaBuenaventura.Forms
 
             InitializeComponent();
             
-
             pnlBoard.BackColor = System.Drawing.Color.Transparent;
 
+            InitPawns(6);
+
+            timer = new Timer();
+            timer.Interval = 1 * 1000;
+
             // Show card list only if you are current player of this match
+            // Set also the automation
             if (this.player == null)
                 pnlBackgroundListHandCards.Visible = false;
             else
             {
                 SetListHandCards();
                 this.robot = new Robot(this.match);
-                this.robot.Verifying();
+                timer.Tick += RefreshList;                
             }
 
-
-            InitPawns(6);
+            timer.Tick += RefreshBoard;
+            timer.Start();
         }
 
         // Receives a letter from an object and returns an image of the respective object
@@ -273,7 +279,8 @@ namespace CartagenaBuenaventura.Forms
             int index = 0;
             foreach (string card in cards)
             {
-                imageList.Images.Add(getCardImage(card));
+                Console.WriteLine("Card: " + card);
+                imageList.Images.Add(Game.getCardImage(card));
                 lstHandCards.Items.Add(new ListViewItem
                 {
                     ImageIndex = index,
@@ -286,14 +293,30 @@ namespace CartagenaBuenaventura.Forms
             lstHandCards.View = View.LargeIcon;
         }
 
-        // Display information on board
-        // If there is a player, it is also load hand cards
-        private async void RefreshList()
+        // Display information on board during a game
+        private async void RefreshBoard(object sender, EventArgs e)
         {
-            if (this.player != null) { DrawHandCards(); }
+            // TODO: Implement here the code to refresh the board
 
-            PawnMovement();
-            await Game.VerifyTurn(match, moves, PawnMovement);
+            //if (this.player != null) { DrawHandCards(); }
+
+            //PawnMovement();
+            //await Game.VerifyTurn(match, moves, PawnMovement);
+            await Task.Delay(500);
+            Console.WriteLine("board");
+        }
+
+        // Display information on board during a game
+        private async void RefreshList(object sender, EventArgs e)
+        {
+            bool turnFinish = await robot.Verifying();
+
+            if (turnFinish)
+            {
+                DrawHandCards();
+            }
+
+            await Task.Delay(500);
         }
 
         // Get current number on numChoosePawn
@@ -315,14 +338,14 @@ namespace CartagenaBuenaventura.Forms
         private void btnSkip_Click(object sender, EventArgs e)
         {
             player.Skip();
-            RefreshList();
+            //RefreshList();
         }
 
         // Use go back function and renew lists
         private void btnMoveBack_Click(object sender, EventArgs e)
         {
             player.GoBack(getPawnPosition());
-            RefreshList();
+            //RefreshList();
         }
 
         // Use move forward function and renew lists
@@ -331,7 +354,7 @@ namespace CartagenaBuenaventura.Forms
             try
             {
                 player.GoFoward(getPawnPosition(), getCardSelected());
-                RefreshList();
+               // RefreshList();
             }
             catch (Exception ex)
             {

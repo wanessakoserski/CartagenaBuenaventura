@@ -148,6 +148,27 @@ namespace CartagenaBuenaventura.Classes
             }
         }
 
+        public static Image getCardImage(string symbol)
+        {
+            switch (symbol)
+            {
+                case "F":
+                    return Properties.Resources.dager_card;
+                case "G":
+                    return Properties.Resources.bottle_card;
+                case "C":
+                    return Properties.Resources.key_card;
+                case "P":
+                    return Properties.Resources.pistol_card;
+                case "T":
+                    return Properties.Resources.tricorn_card;
+                case "E":
+                    return Properties.Resources.skull_card;
+                default:
+                    return null;
+            }
+        }
+
         // Creates a list of tiles where it can be seen the board, handling the server return string
         public static List<Tile> ShowBoard(uint matchId)
         {
@@ -308,7 +329,7 @@ namespace CartagenaBuenaventura.Classes
                 .ToList();
 
             statusBoard.RemoveAt(0);
-            statusBoard.RemoveAt(status.Count() - 1);
+            statusBoard.RemoveAt(statusBoard.Count() - 1);
 
             foreach (string line in statusBoard)
             {
