@@ -319,6 +319,29 @@ namespace CartagenaBuenaventura.Classes
             return null;
         }
 
+        // Verifying my own turn
+        public static async Task<bool> VerifyUserTurn(Match match)
+        {
+            bool myTurn = false;
+            List<string> statusBoard;
+
+            while (!myTurn)
+            {
+                statusBoard = Jogo.VerificarVez(Convert.ToInt32(match.id))
+                .Replace("\r", "")
+                .Split('\n')
+                .ToList();
+
+                string[] aux = statusBoard[0].Split(',');
+
+                if (match.user != null && Convert.ToUInt32(aux[1]) == match.user.id) { myTurn = true; }
+
+                await Task.Delay(5000);
+            }
+
+            return myTurn;
+        }
+
         public static List<Locus> BoardSituation(Match match)
         {
             List<Locus> status = new List<Locus>();

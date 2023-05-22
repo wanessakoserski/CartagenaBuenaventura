@@ -21,7 +21,7 @@ namespace CartagenaBuenaventura.Classes
 
         public async Task<bool> Verifying()
         {
-            bool isUserTurn = await Game.VerifyTurn(this.match);
+            bool isUserTurn = await Game.VerifyUserTurn(this.match);
 
             if (isUserTurn) 
             {
