@@ -342,6 +342,25 @@ namespace CartagenaBuenaventura.Classes
             return myTurn;
         }
 
+        // Return whose turn it is 
+        public static Player VerifyWhoseTurn(Match match)
+        {
+            Player player;
+
+            List<string> statusBoard = Jogo.VerificarVez(Convert.ToInt32(match.id))
+                .Replace("\r", "")
+                .Split('\n')
+                .ToList();
+
+            string[] aux = statusBoard[0].Split(',');
+
+            player = SearchPlayer(match.players, Convert.ToUInt16(aux[1]));
+
+            return player;
+        }
+
+        // Return board situation 
+        // position of the pawns, who they belong to, how many pawns are there in that position
         public static List<Locus> BoardSituation(Match match)
         {
             List<Locus> status = new List<Locus>();

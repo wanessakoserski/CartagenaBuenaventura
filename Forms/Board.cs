@@ -39,7 +39,7 @@ namespace CartagenaBuenaventura.Forms
             InitPawns(6);
 
             timer = new Timer();
-            timer.Interval = 1 * 1000;
+            timer.Interval = 10 * 1000;
 
             // Show card list only if you are current player of this match
             // Set also the automation
@@ -54,6 +54,7 @@ namespace CartagenaBuenaventura.Forms
 
             timer.Tick += RefreshBoard;
             timer.Start();
+            RefeshPirateTurn();
         }
 
         // Receives a letter from an object and returns an image of the respective object
@@ -302,7 +303,7 @@ namespace CartagenaBuenaventura.Forms
 
             //PawnMovement();
             //await Game.VerifyTurn(match, moves, PawnMovement);
-            await Task.Delay(500);
+            await Task.Delay(5 * 1000);
             Console.WriteLine("board");
         }
 
@@ -314,10 +315,39 @@ namespace CartagenaBuenaventura.Forms
             if (turnFinish)
             {
                 DrawHandCards();
+                Console.WriteLine("mão impressa");
             }
 
-            await Task.Delay(500);
+            await Task.Delay(5 * 1000);
         }
+
+        // Get information to show whose turn it is
+        private void RefeshPirateTurn()
+        {
+            Player playerTurn = Game.VerifyWhoseTurn(this.match);
+            lblPirateName.Text = playerTurn.name;
+
+            Color color = (Color) playerTurn.color;
+            switch (color.Name)
+            {
+                case "Red":
+                    pnlPirateImage.BackgroundImage = Properties.Resources.PirateRed;
+                    break;
+                case "Green":
+                    pnlPirateImage.BackgroundImage = Properties.Resources.PirateGreen;
+                    break;
+                case "Yellow":
+                    pnlPirateImage.BackgroundImage = Properties.Resources.PirateYellow;
+                    break;
+                case "Blue":
+                    pnlPirateImage.BackgroundImage = Properties.Resources.PirateBlue;
+                    break;
+                case "Brown":
+                    pnlPirateImage.BackgroundImage = Properties.Resources.PirateBrown;
+                    break;
+            }
+        }
+
 
         // Get current number on numChoosePawn
         private int getPawnPosition()
@@ -360,6 +390,11 @@ namespace CartagenaBuenaventura.Forms
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private void pnlGoBackHome_Click(object sender, EventArgs e)
+        {
+            Panel.getInstance().ChangeForm(this, new Home());
         }
     }
 }

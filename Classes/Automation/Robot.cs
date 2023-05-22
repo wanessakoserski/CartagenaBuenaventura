@@ -58,6 +58,7 @@ namespace CartagenaBuenaventura.Classes
                     Console.WriteLine($"{move.player.id}, {move.origin}, {move.destination}, {move.card}");
                 }
                 //
+
             }
 
             return true;

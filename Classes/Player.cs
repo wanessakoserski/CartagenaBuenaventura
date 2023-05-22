@@ -35,7 +35,7 @@ namespace CartagenaBuenaventura.Classes
                 string[] aux = card.Split(',');
                 string symbol = aux[0];
 
-                for (int i = 0; i < Convert.ToInt32(aux[1]); i++) { hand.Add(symbol); Console.WriteLine(symbol); }
+                for (int i = 0; i < Convert.ToInt32(aux[1]); i++) { hand.Add(symbol); }
             }
 
             return hand;

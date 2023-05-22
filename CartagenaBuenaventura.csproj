@@ -277,5 +277,26 @@
   <ItemGroup>
     <None Include="Resources\woodFloor.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Teste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PirateRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PirateBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PirateBrown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PirateYellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PirateGreen.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
