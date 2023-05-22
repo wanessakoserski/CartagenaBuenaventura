@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Locus.cs" />
-    <Compile Include="Classes\Robot.cs" />
+    <Compile Include="Classes\Automation\Robot.cs" />
     <Compile Include="Classes\Services\Game.cs" />
     <Compile Include="Classes\Match.cs" />
     <Compile Include="Classes\Move.cs" />
