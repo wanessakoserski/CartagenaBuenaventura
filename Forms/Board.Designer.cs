@@ -163,7 +163,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1260, 889);
+            this.ClientSize = new System.Drawing.Size(967, 577);
             this.Controls.Add(this.pnlPirateImage);
             this.Controls.Add(this.pnlGoBackHome);
             this.Controls.Add(this.lblPirateName);

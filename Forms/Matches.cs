@@ -91,10 +91,16 @@ namespace CartagenaBuenaventura.Forms
         // Get current clicked match on matches list
         private Match GetSelectedMatch()
         {
-            DataGridViewSelectedRowCollection selected = dgdMatches.SelectedRows;
-            Match match = (Match) selected[0].Tag;
+            try
+            {
+                DataGridViewSelectedRowCollection selected = dgdMatches.SelectedRows;
+                Match match = (Match)selected[0].Tag;
+                return match;
+            } catch (Exception ex)
+            {
+                return null;
+            }
 
-            return match;
         }
 
         // Attempt to enter lobby match
@@ -114,11 +120,19 @@ namespace CartagenaBuenaventura.Forms
 
         // Ables button when a item is selected
         private void dgdMatches_SelectionChanged(object sender, EventArgs e)
-        {
-            btnEnterMatch.Enabled = true;
-            btnViewMatch.Enabled = true;
-            btnEnterMatch.BackColor = Color.Teal;
-            btnViewMatch.BackColor = Color.Teal;
+        {  
+            Match match = GetSelectedMatch();
+            if (match != null)
+            {
+                btnViewMatch.Enabled = true;
+                btnViewMatch.BackColor = Color.Teal;
+
+                if (match.status == enums.MatchStatus.Open)
+                {
+                    btnEnterMatch.Enabled = true;
+                    btnEnterMatch.BackColor = Color.Teal;
+                }
+            }
         }
 
         // Come back to Home
