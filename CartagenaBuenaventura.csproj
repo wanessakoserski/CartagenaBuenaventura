@@ -36,8 +36,14 @@
     <Reference Include="CartagenaServer">
       <HintPath>.\CartagenaServer.dll</HintPath>
     </Reference>
+    <Reference Include="MoreLinq, Version=3.4.2.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>packages\morelinq.3.4.2\lib\net462\MoreLinq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Locus.cs" />
+    <Compile Include="Classes\Automation\Robot.cs" />
     <Compile Include="Classes\Services\Game.cs" />
     <Compile Include="Classes\Match.cs" />
     <Compile Include="Classes\Move.cs" />
@@ -133,6 +141,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -258,6 +267,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tile_vertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wood.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\woodFloor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Teste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PirateRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PirateBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PirateBrown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PirateYellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PirateGreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

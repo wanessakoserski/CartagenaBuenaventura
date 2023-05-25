@@ -33,9 +33,15 @@ namespace CartagenaBuenaventura.Forms
                 btnEnterTheMatch.Visible = false;
 
             if (this.match.status == enums.MatchStatus.InProgress || this.match.status == enums.MatchStatus.Close)
-                pnlGoToBoard.Enabled = true; 
+            {
+                pnlGoToBoard.Visible = true;
+                btnEnterTheMatch.Visible = false;
+            }
             else
-                pnlGoToBoard.Enabled = false;      
+            {
+                pnlGoToBoard.Visible = false;
+                btnEnterTheMatch.Visible = true;
+            }
 
             ShowListPlayers();
         }

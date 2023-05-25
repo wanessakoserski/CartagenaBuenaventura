@@ -148,6 +148,27 @@ namespace CartagenaBuenaventura.Classes
             }
         }
 
+        public static Image getCardImage(string symbol)
+        {
+            switch (symbol)
+            {
+                case "F":
+                    return Properties.Resources.dager_card;
+                case "G":
+                    return Properties.Resources.bottle_card;
+                case "C":
+                    return Properties.Resources.key_card;
+                case "P":
+                    return Properties.Resources.pistol_card;
+                case "T":
+                    return Properties.Resources.tricorn_card;
+                case "E":
+                    return Properties.Resources.skull_card;
+                default:
+                    return null;
+            }
+        }
+
         // Creates a list of tiles where it can be seen the board, handling the server return string
         public static List<Tile> ShowBoard(uint matchId)
         {
@@ -297,6 +318,75 @@ namespace CartagenaBuenaventura.Classes
                 return (List<Move>)auxMoves.Skip(auxMoves.Count - movesRecorded);
             }
             return null;
+        }
+
+        // Verifying my own turn
+        public static async Task<bool> VerifyUserTurn(Match match)
+        {
+            bool myTurn = false;
+            List<string> statusBoard;
+
+            while (!myTurn)
+            {
+                statusBoard = Jogo.VerificarVez(Convert.ToInt32(match.id))
+                .Replace("\r", "")
+                .Split('\n')
+                .ToList();
+
+                string[] aux = statusBoard[0].Split(',');
+
+                if (match.user != null && Convert.ToUInt32(aux[1]) == match.user.id) { myTurn = true; }
+
+                await Task.Delay(5000);
+            }
+
+            return myTurn;
+        }
+
+        // Return whose turn it is 
+        public static Player VerifyWhoseTurn(Match match)
+        {
+            Player player;
+
+            List<string> statusBoard = Jogo.VerificarVez(Convert.ToInt32(match.id))
+                .Replace("\r", "")
+                .Split('\n')
+                .ToList();
+
+            string[] aux = statusBoard[0].Split(',');
+
+            player = SearchPlayer(match.players, Convert.ToUInt16(aux[1]));
+
+            return player;
+        }
+
+        // Return board situation 
+        // position of the pawns, who they belong to, how many pawns are there in that position
+        public static List<Locus> BoardSituation(Match match)
+        {
+            List<Locus> status = new List<Locus>();
+
+            List<string> statusBoard = Jogo.VerificarVez(Convert.ToInt32(match.id))
+                .Replace("\r", "")
+                .Split('\n')
+                .ToList();
+
+            statusBoard.RemoveAt(0);
+            statusBoard.RemoveAt(statusBoard.Count() - 1);
+
+            foreach (string line in statusBoard)
+            {
+                string[] aux = line.Split(',');
+
+                status.Add(new Locus
+                {
+                    position = Convert.ToInt32(aux[0]),
+                    player = SearchPlayer(match.players, Convert.ToUInt32(aux[1])),
+                    amount = Convert.ToInt32(aux[2])
+                }) ;
+            }
+
+            return status;
         }
     }
 }

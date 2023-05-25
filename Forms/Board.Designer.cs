@@ -38,15 +38,18 @@
             this.pnlBoard = new System.Windows.Forms.Panel();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.pnlBackgroundListHandCards = new System.Windows.Forms.Panel();
+            this.lblPirateName = new System.Windows.Forms.Label();
+            this.pnlGoBackHome = new System.Windows.Forms.Panel();
+            this.pnlPirateImage = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numChoosePawn)).BeginInit();
             this.pnlBackgroundListHandCards.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSkip
             // 
-            this.btnSkip.Location = new System.Drawing.Point(14, 314);
+            this.btnSkip.Location = new System.Drawing.Point(1197, 251);
             this.btnSkip.Name = "btnSkip";
-            this.btnSkip.Size = new System.Drawing.Size(112, 23);
+            this.btnSkip.Size = new System.Drawing.Size(85, 23);
             this.btnSkip.TabIndex = 2;
             this.btnSkip.Text = "Pular vez";
             this.btnSkip.UseVisualStyleBackColor = true;
@@ -54,7 +57,7 @@
             // 
             // btnMoveBack
             // 
-            this.btnMoveBack.Location = new System.Drawing.Point(194, 417);
+            this.btnMoveBack.Location = new System.Drawing.Point(335, 414);
             this.btnMoveBack.Name = "btnMoveBack";
             this.btnMoveBack.Size = new System.Drawing.Size(112, 23);
             this.btnMoveBack.TabIndex = 3;
@@ -64,7 +67,7 @@
             // 
             // btnMoveForward
             // 
-            this.btnMoveForward.Location = new System.Drawing.Point(343, 417);
+            this.btnMoveForward.Location = new System.Drawing.Point(453, 414);
             this.btnMoveForward.Name = "btnMoveForward";
             this.btnMoveForward.Size = new System.Drawing.Size(112, 23);
             this.btnMoveForward.TabIndex = 4;
@@ -74,9 +77,9 @@
             // 
             // numChoosePawn
             // 
-            this.numChoosePawn.Location = new System.Drawing.Point(487, 417);
+            this.numChoosePawn.Location = new System.Drawing.Point(584, 417);
             this.numChoosePawn.Name = "numChoosePawn";
-            this.numChoosePawn.Size = new System.Drawing.Size(112, 20);
+            this.numChoosePawn.Size = new System.Drawing.Size(37, 20);
             this.numChoosePawn.TabIndex = 5;
             // 
             // lstHandCards
@@ -84,18 +87,20 @@
             this.lstHandCards.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstHandCards.BackColor = System.Drawing.SystemColors.Control;
-            this.lstHandCards.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.wood1;
+            this.lstHandCards.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lstHandCards.BackgroundImage")));
             this.lstHandCards.BackgroundImageTiled = true;
             this.lstHandCards.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstHandCards.HideSelection = false;
             this.lstHandCards.Location = new System.Drawing.Point(0, 10);
             this.lstHandCards.Name = "lstHandCards";
-            this.lstHandCards.Size = new System.Drawing.Size(282, 416);
+            this.lstHandCards.Size = new System.Drawing.Size(282, 324);
             this.lstHandCards.TabIndex = 8;
             this.lstHandCards.UseCompatibleStateImageBehavior = false;
             // 
             // pnlBoard
             // 
+            this.pnlBoard.BackColor = System.Drawing.Color.Transparent;
+            this.pnlBoard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlBoard.Location = new System.Drawing.Point(21, 24);
             this.pnlBoard.Margin = new System.Windows.Forms.Padding(0);
             this.pnlBoard.Name = "pnlBoard";
@@ -110,12 +115,47 @@
             // 
             // pnlBackgroundListHandCards
             // 
-            this.pnlBackgroundListHandCards.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.wood1;
+            this.pnlBackgroundListHandCards.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlBackgroundListHandCards.BackgroundImage")));
             this.pnlBackgroundListHandCards.Controls.Add(this.lstHandCards);
-            this.pnlBackgroundListHandCards.Location = new System.Drawing.Point(643, 14);
+            this.pnlBackgroundListHandCards.Location = new System.Drawing.Point(672, 106);
             this.pnlBackgroundListHandCards.Name = "pnlBackgroundListHandCards";
-            this.pnlBackgroundListHandCards.Size = new System.Drawing.Size(282, 426);
+            this.pnlBackgroundListHandCards.Size = new System.Drawing.Size(282, 334);
             this.pnlBackgroundListHandCards.TabIndex = 10;
+            // 
+            // lblPirateName
+            // 
+            this.lblPirateName.AutoSize = true;
+            this.lblPirateName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblPirateName.Font = new System.Drawing.Font("Harlow Solid Italic", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPirateName.ForeColor = System.Drawing.Color.Silver;
+            this.lblPirateName.Location = new System.Drawing.Point(142, 406);
+            this.lblPirateName.Name = "lblPirateName";
+            this.lblPirateName.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
+            this.lblPirateName.Size = new System.Drawing.Size(107, 49);
+            this.lblPirateName.TabIndex = 0;
+            this.lblPirateName.Text = "Pirate";
+            // 
+            // pnlGoBackHome
+            // 
+            this.pnlGoBackHome.BackColor = System.Drawing.Color.Transparent;
+            this.pnlGoBackHome.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.home_icon;
+            this.pnlGoBackHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlGoBackHome.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnlGoBackHome.Location = new System.Drawing.Point(895, 15);
+            this.pnlGoBackHome.Name = "pnlGoBackHome";
+            this.pnlGoBackHome.Size = new System.Drawing.Size(59, 42);
+            this.pnlGoBackHome.TabIndex = 11;
+            this.pnlGoBackHome.Click += new System.EventHandler(this.pnlGoBackHome_Click);
+            // 
+            // pnlPirateImage
+            // 
+            this.pnlPirateImage.BackColor = System.Drawing.Color.Transparent;
+            this.pnlPirateImage.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.Teste;
+            this.pnlPirateImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlPirateImage.Location = new System.Drawing.Point(21, 364);
+            this.pnlPirateImage.Name = "pnlPirateImage";
+            this.pnlPirateImage.Size = new System.Drawing.Size(106, 84);
+            this.pnlPirateImage.TabIndex = 12;
             // 
             // Board
             // 
@@ -123,7 +163,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(726, 479);
+            this.ClientSize = new System.Drawing.Size(967, 577);
+            this.Controls.Add(this.pnlPirateImage);
+            this.Controls.Add(this.pnlGoBackHome);
+            this.Controls.Add(this.lblPirateName);
             this.Controls.Add(this.pnlBackgroundListHandCards);
             this.Controls.Add(this.btnSkip);
             this.Controls.Add(this.pnlBoard);
@@ -136,6 +179,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numChoosePawn)).EndInit();
             this.pnlBackgroundListHandCards.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -148,5 +192,8 @@
         private System.Windows.Forms.Panel pnlBoard;
         private System.Windows.Forms.ImageList imageList;
         private System.Windows.Forms.Panel pnlBackgroundListHandCards;
+        private System.Windows.Forms.Label lblPirateName;
+        private System.Windows.Forms.Panel pnlGoBackHome;
+        private System.Windows.Forms.Panel pnlPirateImage;
     }
 }
