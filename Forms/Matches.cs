@@ -120,7 +120,13 @@ namespace CartagenaBuenaventura.Forms
 
         // Ables button when a item is selected
         private void dgdMatches_SelectionChanged(object sender, EventArgs e)
-        {  
+        {
+            btnEnterMatch.Enabled = false;
+            btnEnterMatch.BackColor = Color.LightBlue;
+
+            btnViewMatch.Enabled = false;
+            btnViewMatch.BackColor = Color.LightBlue;
+
             Match match = GetSelectedMatch();
             if (match != null)
             {
