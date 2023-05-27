@@ -38,8 +38,8 @@ namespace CartagenaBuenaventura.Forms
 
             InitPawns(6);
 
-            timer = new Timer();
-            timer.Interval = 10 * 1000;
+            //timer = new Timer();
+            //timer.Interval = 10 * 1000;
 
             // Show card list only if you are current player of this match
             // Set also the automation
@@ -48,12 +48,12 @@ namespace CartagenaBuenaventura.Forms
             else
             {
                 SetListHandCards();
-                this.robot = new Robot(this.match);
-                timer.Tick += RefreshList;                
+                //this.robot = new Robot(this.match);
+                //timer.Tick += RefreshList;                
             }
 
-            timer.Tick += RefreshBoard;
-            timer.Start();
+            //timer.Tick += RefreshBoard;
+            //timer.Start();
             RefeshPirateTurn();
         }
 
@@ -233,6 +233,34 @@ namespace CartagenaBuenaventura.Forms
                 DrawBoard();
             }
         }
+        
+        // receive the tile position and the Nth pawn inside the tile, then return the location (cordinates) of this pawn
+        private Point PawnLocation(Point tileLocation, int tilePosition, int nthPawn)
+        {
+            int x, y;
+            if (tilePosition == 0)
+            {
+                x = 0;
+                y = 15;
+            }
+            else
+            {
+                int collum = (tilePosition % 5 == 0) ? (tilePosition / 5) : (tilePosition / 5) + 1;
+                x = pnlBoard.Size.Width / 10 * 2;
+                y = (collum % 2 == 0) ? pnlBoard.Size.Height / 5 * (6 - (tilePosition % 5)) : pnlBoard.Size.Height / 5 * (5 - (tilePosition % 5));
+
+                Console.WriteLine($"collum: {collum}");
+                Console.WriteLine($"board -> x: {tileLocation.X} y: {tileLocation.Y}");
+                Console.WriteLine($"func -> x: {x} y: {y}");
+            }
+
+            Point location = new Point(x, y);
+
+            location.X += (nthPawn % 2 == 0) ? 15 : 0;
+            location.Y += (nthPawn / 2) * 15;
+
+            return location;
+        }
 
         // Receives a letter from an object and returns an image of the respective object
         private Image getCardImage(string symbol)
@@ -375,6 +403,7 @@ namespace CartagenaBuenaventura.Forms
         private void btnMoveBack_Click(object sender, EventArgs e)
         {
             player.GoBack(getPawnPosition());
+            
             //RefreshList();
         }
 
@@ -384,7 +413,10 @@ namespace CartagenaBuenaventura.Forms
             try
             {
                 player.GoFoward(getPawnPosition(), getCardSelected());
-               // RefreshList();
+                //pawns.First().img.Location = new Point(pnlBoard.Size.Width / 10 * 2, pnlBoard.Size.Height / 5 * 4) ;//board[1].location;
+
+                
+                // RefreshList();
             }
             catch (Exception ex)
             {
