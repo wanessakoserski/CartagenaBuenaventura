@@ -262,6 +262,72 @@ namespace CartagenaBuenaventura.Forms
             return location;
         }
 
+        // Drawn all pawns on board using the board status information provided by Game.StatusBoard() method
+        // (is passed as a callback to Game.StatusBoard())
+        public List<Tile> DrawPawns(List<string> statusBoard, List<Tile> board)
+        {
+            List<Pawn> auxPawns = new List<Pawn>(pawns);
+            //List<List<Pawn>> pawnsOnTile = new List<List<Pawn>>(); // implement as a dictionary
+            Dictionary<int, List<Pawn>> pawnsOnTile = new Dictionary<int, List<Pawn>>();
+
+            //foreach (string status in statusBoard)
+            for (int i = 1; i < statusBoard.Count; i++)
+            {
+                /**
+                 * aux[0] -> tile
+                 * aux[1] -> player
+                 * aux[2] -> number of pawns (from the player) on tile
+                 */
+                String[] aux = statusBoard[i].Split(',');
+
+                int tileNum = int.Parse(aux[0]);
+                Point tileLocation = board[tileNum].location;
+
+                if (!pawnsOnTile.ContainsKey(tileNum))
+                {
+                    pawnsOnTile.Add(tileNum, new List<Pawn>());
+                }
+
+                List<Pawn> playerPawns = auxPawns.FindAll(p => p.player.id == uint.Parse(aux[1]));
+                //MessageBox.Show($"{playerPawns.Count}");
+
+                for (int j = 0; j < int.Parse(aux[2]); j++)
+                {
+                    List<Pawn> p = pawnsOnTile[tileNum];
+                    playerPawns.First().img.Location = PawnLocation(tileLocation, tileNum, p.Count);
+                    Console.WriteLine($"X: {playerPawns.First().img.Location.X} Y:{playerPawns.First().img.Location.Y}");
+                    p.Add(playerPawns[j]);
+                    auxPawns.Remove(playerPawns.First());
+                }
+
+            }
+
+            //foreach (KeyValuePair<int, List<Pawn>> p in pawnsOnTile)
+            //{
+            //    Point pawnLocation = board[p.Key].location;
+            //}
+
+
+            //// replace to iterate through statusBoard tiles aux[0] / only the tiles with pawns
+            //for (int i = 0; i < board.Count; i++)
+            //{
+            //    Point pawnLocation = board[i].location;
+            //    for (int j = 0; j < board[i].pawnsOnTile.Count; j++)
+            //    {
+            //        board[i].pawnsOnTile[j].img.Location = pawnLocation;
+            //        pawnLocation.X += 15;
+
+            //        if ((j + 1) % 2 == 0)
+            //        {
+            //            pawnLocation.X -= 30;
+            //            pawnLocation.Y += 15;
+            //        }
+            //    }
+            //}
+
+            return board;
+        }
+
         // Receives a letter from an object and returns an image of the respective object
         private Image getCardImage(string symbol)
         {
