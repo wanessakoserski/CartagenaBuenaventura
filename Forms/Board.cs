@@ -37,7 +37,6 @@ namespace CartagenaBuenaventura.Forms
             pnlBoard.BackColor = System.Drawing.Color.Transparent;
 
             InitPawns(6);
-
             //timer = new Timer();
             //timer.Interval = 10 * 1000;
 
@@ -54,7 +53,7 @@ namespace CartagenaBuenaventura.Forms
 
             //timer.Tick += RefreshBoard;
             //timer.Start();
-            RefeshPirateTurn();
+            //RefeshPirateTurn();
         }
 
         // Receives a letter from an object and returns an image of the respective object
@@ -234,29 +233,34 @@ namespace CartagenaBuenaventura.Forms
             }
         }
         
-        // receive the tile position and the Nth pawn inside the tile, then return the location (cordinates) of this pawn
-        private Point PawnLocation(Point tileLocation, int tilePosition, int nthPawn)
+        // receive the tile position and the Nth pawn (beging at 0) inside the tile, then return the location (cordinates)
+        // of this pawn
+        private Point PawnLocation(Point tileLocation, int tilePosition, int nthPawn, int pawnsPerPlayer)
         {
             int x, y;
             if (tilePosition == 0)
             {
+                // TODO: missing  the possibility of more than one player
+                // pawns on tile 0 need fix in location (x, y)
+
                 x = 0;
                 y = 15;
             }
             else
             {
                 int collum = (tilePosition % 5 == 0) ? (tilePosition / 5) : (tilePosition / 5) + 1;
-                x = pnlBoard.Size.Width / 10 * 2;
-                y = (collum % 2 == 0) ? pnlBoard.Size.Height / 5 * (6 - (tilePosition % 5)) : pnlBoard.Size.Height / 5 * (5 - (tilePosition % 5));
+                x = (pnlBoard.Size.Width / 10 * 2) + ((collum - 1) * (pnlBoard.Size.Width / 10));
+                y = (collum % 2 == 0) ? pnlBoard.Size.Height / 5 * ((tilePosition % 5 == 0) ? 4 : (tilePosition % 5) - 1) : pnlBoard.Size.Height / 5 * (5 - (tilePosition % 5));
 
-                Console.WriteLine($"collum: {collum}");
+                Console.WriteLine($"\ncollum: {collum}");
                 Console.WriteLine($"board -> x: {tileLocation.X} y: {tileLocation.Y}");
                 Console.WriteLine($"func -> x: {x} y: {y}");
             }
 
             Point location = new Point(x, y);
+            Console.WriteLine($"nthPawn = {nthPawn}\n");
 
-            location.X += (nthPawn % 2 == 0) ? 15 : 0;
+            location.X += (nthPawn % 2 == 0) ? 0 : 15;
             location.Y += (nthPawn / 2) * 15;
 
             return location;
@@ -267,10 +271,8 @@ namespace CartagenaBuenaventura.Forms
         public List<Tile> DrawPawns(List<string> statusBoard, List<Tile> board)
         {
             List<Pawn> auxPawns = new List<Pawn>(pawns);
-            //List<List<Pawn>> pawnsOnTile = new List<List<Pawn>>(); // implement as a dictionary
             Dictionary<int, List<Pawn>> pawnsOnTile = new Dictionary<int, List<Pawn>>();
 
-            //foreach (string status in statusBoard)
             for (int i = 1; i < statusBoard.Count; i++)
             {
                 /**
@@ -281,6 +283,8 @@ namespace CartagenaBuenaventura.Forms
                 String[] aux = statusBoard[i].Split(',');
 
                 int tileNum = int.Parse(aux[0]);
+                int numPawns = int.Parse(aux[2]);
+
                 Point tileLocation = board[tileNum].location;
 
                 if (!pawnsOnTile.ContainsKey(tileNum))
@@ -289,41 +293,14 @@ namespace CartagenaBuenaventura.Forms
                 }
 
                 List<Pawn> playerPawns = auxPawns.FindAll(p => p.player.id == uint.Parse(aux[1]));
-                //MessageBox.Show($"{playerPawns.Count}");
 
-                for (int j = 0; j < int.Parse(aux[2]); j++)
+                for (int j = 0; j < numPawns; j++)
                 {
-                    List<Pawn> p = pawnsOnTile[tileNum];
-                    playerPawns.First().img.Location = PawnLocation(tileLocation, tileNum, p.Count);
+                    playerPawns[j].img.Location = PawnLocation(tileLocation, tileNum, j, 6);
                     Console.WriteLine($"X: {playerPawns.First().img.Location.X} Y:{playerPawns.First().img.Location.Y}");
-                    p.Add(playerPawns[j]);
-                    auxPawns.Remove(playerPawns.First());
                 }
-
+                auxPawns.RemoveRange(0, numPawns);
             }
-
-            //foreach (KeyValuePair<int, List<Pawn>> p in pawnsOnTile)
-            //{
-            //    Point pawnLocation = board[p.Key].location;
-            //}
-
-
-            //// replace to iterate through statusBoard tiles aux[0] / only the tiles with pawns
-            //for (int i = 0; i < board.Count; i++)
-            //{
-            //    Point pawnLocation = board[i].location;
-            //    for (int j = 0; j < board[i].pawnsOnTile.Count; j++)
-            //    {
-            //        board[i].pawnsOnTile[j].img.Location = pawnLocation;
-            //        pawnLocation.X += 15;
-
-            //        if ((j + 1) % 2 == 0)
-            //        {
-            //            pawnLocation.X -= 30;
-            //            pawnLocation.Y += 15;
-            //        }
-            //    }
-            //}
 
             return board;
         }
@@ -469,7 +446,7 @@ namespace CartagenaBuenaventura.Forms
         private void btnMoveBack_Click(object sender, EventArgs e)
         {
             player.GoBack(getPawnPosition());
-            
+            Game.StatusBoard(match, board, DrawPawns);
             //RefreshList();
         }
 
@@ -480,7 +457,7 @@ namespace CartagenaBuenaventura.Forms
             {
                 player.GoFoward(getPawnPosition(), getCardSelected());
                 //pawns.First().img.Location = new Point(pnlBoard.Size.Width / 10 * 2, pnlBoard.Size.Height / 5 * 4) ;//board[1].location;
-
+                Game.StatusBoard(match, board, DrawPawns);
                 
                 // RefreshList();
             }
