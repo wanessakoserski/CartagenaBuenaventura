@@ -150,7 +150,7 @@
             // pnlPirateImage
             // 
             this.pnlPirateImage.BackColor = System.Drawing.Color.Transparent;
-            this.pnlPirateImage.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.Teste;
+            this.pnlPirateImage.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.PirateRed;
             this.pnlPirateImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlPirateImage.Location = new System.Drawing.Point(21, 364);
             this.pnlPirateImage.Name = "pnlPirateImage";

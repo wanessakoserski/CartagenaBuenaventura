@@ -254,6 +254,19 @@ namespace CartagenaBuenaventura.Classes
             return null;
         }
 
+        // Search for a match with the same id as received and if it is found, it is returned
+        public static Match SearchMatch(Match match)
+        {
+            List<Match> matches = Game.ListMatches();
+            foreach (Match eachMatch in matches)
+            {
+                if (eachMatch.id == match.id)
+                    return match;
+            }
+
+            return match;
+        }
+
         // delegate type for callbacks on StatusBoard method
         public delegate List<Tile> StatusBoardCallBack(List<string> statusBoard, List<Tile> board);
 

@@ -394,6 +394,10 @@ namespace CartagenaBuenaventura.Forms
 
         private void pnlGoBackHome_Click(object sender, EventArgs e)
         {
+            this.timer.Stop();
+            this.timer = null;
+            this.robot = null;
+            
             Panel.getInstance().ChangeForm(this, new Home());
         }
     }

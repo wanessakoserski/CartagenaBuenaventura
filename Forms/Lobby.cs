@@ -81,7 +81,8 @@ namespace CartagenaBuenaventura.Forms
         // Start match if it is still opened
         // Redirect to board
         private void pnlStartMatch_Click(object sender, EventArgs e)
-        { 
+        {
+            this.match = Game.SearchMatch(this.match);
             if (this.match.status == enums.MatchStatus.Open)
                 Game.StartMatch(this.match.user.id, this.match.user.password);
 
@@ -91,6 +92,7 @@ namespace CartagenaBuenaventura.Forms
         // Go to board
         private void pnlGoToBoard_Click(object sender, EventArgs e)
         {
+            this.match = Game.SearchMatch(this.match);
             Panel.getInstance().ChangeForm(this, new Board(this.match));
         }
 
