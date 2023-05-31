@@ -37,8 +37,8 @@ namespace CartagenaBuenaventura.Forms
             pnlBoard.BackColor = System.Drawing.Color.Transparent;
 
             InitPawns(6);
-            //timer = new Timer();
-            //timer.Interval = 10 * 1000;
+            timer = new Timer();
+            timer.Interval = 10 * 1000;
 
             // Show card list only if you are current player of this match
             // Set also the automation
@@ -47,13 +47,13 @@ namespace CartagenaBuenaventura.Forms
             else
             {
                 SetListHandCards();
-                //this.robot = new Robot(this.match);
-                //timer.Tick += RefreshList;                
+                this.robot = new Robot(this.match);
+               timer.Tick += RefreshList;                
             }
 
             //timer.Tick += RefreshBoard;
-            //timer.Start();
-            //RefeshPirateTurn();
+            timer.Start();
+            RefeshPirateTurn();
         }
 
         // Receives a letter from an object and returns an image of the respective object
@@ -292,28 +292,6 @@ namespace CartagenaBuenaventura.Forms
             }
 
             return board;
-        }
-
-        // Receives a letter from an object and returns an image of the respective object
-        private Image getCardImage(string symbol)
-        {
-            switch (symbol)
-            {
-                case "F":
-                    return Properties.Resources.dager_card;
-                case "G":
-                    return Properties.Resources.bottle_card;
-                case "C":
-                    return Properties.Resources.key_card;
-                case "P":
-                    return Properties.Resources.pistol_card;
-                case "T":
-                    return Properties.Resources.tricorn_card;
-                case "E":
-                    return Properties.Resources.skull_card;
-                default:
-                    return null;
-            }
         }
 
         // Sets the information to create the cards list on the screen
