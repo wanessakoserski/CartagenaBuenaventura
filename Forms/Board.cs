@@ -240,12 +240,8 @@ namespace CartagenaBuenaventura.Forms
             int x, y;
             if (tilePosition == 0)
             {
-                // TODO: missing  the possibility of more than one player
-                // pawns on tile 0 need fix in location (x, y)
-
-                int aux = (nthPawn / pawnsPerPlayer);
-                x = (nthPawn == 0) ? 0 : (nthPawn % pawnsPerPlayer == 0) ? (aux - 1) * 35 : aux * 35;
-                y = (nthPawn % pawnsPerPlayer == 0) ? (((aux - 1) / 2) * 45) + 15: ((aux / 2) * 45) + 15;
+                x = ((nthPawn / pawnsPerPlayer) % 2 == 0) ? 0 : 35;
+                y = (((nthPawn / pawnsPerPlayer) / 2) * 45) + 15;
             }
             else
             {
@@ -269,10 +265,9 @@ namespace CartagenaBuenaventura.Forms
             }
 
             Point location = new Point(x, y);
-            Console.WriteLine($"nthPawn = {nthPawn}");
 
-            location.X = (nthPawn % 2 == 0) ? location.X : location.X + 15;
-            location.Y = location.Y + (nthPawn / 2) * 15;
+            location.X = ((nthPawn % pawnsPerPlayer) % 2 == 0) ? location.X : location.X + 15;
+            location.Y = location.Y + ((nthPawn % pawnsPerPlayer) / 2) * 15;
 
             return location;
         }
@@ -282,7 +277,6 @@ namespace CartagenaBuenaventura.Forms
         public List<Tile> DrawPawns(List<string> statusBoard, List<Tile> board)
         {
             List<Pawn> auxPawns = new List<Pawn>(pawns);
-            //Dictionary<int, List<Pawn>> pawnsOnTile = new Dictionary<int, List<Pawn>>();
             Dictionary<int, int> pawnsOnTile = new Dictionary<int, int>();
 
             for (int i = 1; i < statusBoard.Count; i++)
@@ -297,7 +291,6 @@ namespace CartagenaBuenaventura.Forms
                 int tileNum = int.Parse(aux[0]);
                 int numPawns = int.Parse(aux[2]);
 
-                Console.WriteLine($"\n i: {i} >>>");
                 if (!pawnsOnTile.ContainsKey(tileNum))
                 {
                     pawnsOnTile.Add(tileNum, 0);
