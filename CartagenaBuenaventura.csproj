@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Automation\SelfishStrategy.cs" />
     <Compile Include="Classes\Locus.cs" />
     <Compile Include="Classes\Automation\Robot.cs" />
     <Compile Include="Classes\Services\Game.cs" />
@@ -161,43 +162,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tricorn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bottle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\skull.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pistol.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\key.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\dager.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\boat.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pistol_card.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\key_card.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tricorn_card.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\skull_card.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bottle_card.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\dager_card.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\desert-anchor.jpg" />
@@ -293,10 +258,46 @@
     <None Include="Resources\PirateBrown.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PirateYellow.png" />
+    <None Include="Resources\skull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tricorn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pistol.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PirateGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PirateYellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dager_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pistol_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tricorn_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skull_card.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
