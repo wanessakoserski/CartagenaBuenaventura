@@ -49,7 +49,6 @@
             this.btnSkip.TabIndex = 2;
             this.btnSkip.Text = "Pular vez";
             this.btnSkip.UseVisualStyleBackColor = true;
-            this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
             // 
             // lstHandCards
             // 
