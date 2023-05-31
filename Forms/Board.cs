@@ -48,10 +48,10 @@ namespace CartagenaBuenaventura.Forms
             {
                 SetListHandCards();
                 this.robot = new Robot(this.match);
-               timer.Tick += RefreshList;                
+                timer.Tick += RefreshList;                
             }
 
-            //timer.Tick += RefreshBoard;
+            timer.Tick += RefreshBoard;
             timer.Start();
             RefeshPirateTurn();
         }
@@ -341,6 +341,7 @@ namespace CartagenaBuenaventura.Forms
 
             //PawnMovement();
             //await Game.VerifyTurn(match, moves, PawnMovement);
+            Game.StatusBoard(match, board, DrawPawns);
             await Task.Delay(5 * 1000);
             Console.WriteLine("board");
         }
@@ -413,7 +414,7 @@ namespace CartagenaBuenaventura.Forms
         private void btnMoveBack_Click(object sender, EventArgs e)
         {
             player.GoBack(getPawnPosition());
-            Game.StatusBoard(match, board, DrawPawns);
+            //Game.StatusBoard(match, board, DrawPawns);
             //RefreshList();
         }
 
@@ -424,9 +425,9 @@ namespace CartagenaBuenaventura.Forms
             {
                 player.GoFoward(getPawnPosition(), getCardSelected());
                 //pawns.First().img.Location = new Point(pnlBoard.Size.Width / 10 * 2, pnlBoard.Size.Height / 5 * 4) ;//board[1].location;
-                Game.StatusBoard(match, board, DrawPawns);
+                //Game.StatusBoard(match, board, DrawPawns);
                 
-                // RefreshList();
+                //RefreshList();
             }
             catch (Exception ex)
             {
