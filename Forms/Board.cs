@@ -240,12 +240,8 @@ namespace CartagenaBuenaventura.Forms
             int x, y;
             if (tilePosition == 0)
             {
-                Console.WriteLine("tile 0");
                 // TODO: missing  the possibility of more than one player
                 // pawns on tile 0 need fix in location (x, y)
-
-                //x = 0;
-                //y = 15;
 
                 int aux = (nthPawn / pawnsPerPlayer);
                 x = (nthPawn == 0) ? 0 : (nthPawn % pawnsPerPlayer == 0) ? (aux - 1) * 35 : aux * 35;
@@ -286,6 +282,8 @@ namespace CartagenaBuenaventura.Forms
         public List<Tile> DrawPawns(List<string> statusBoard, List<Tile> board)
         {
             List<Pawn> auxPawns = new List<Pawn>(pawns);
+            //Dictionary<int, List<Pawn>> pawnsOnTile = new Dictionary<int, List<Pawn>>();
+            Dictionary<int, int> pawnsOnTile = new Dictionary<int, int>();
 
             for (int i = 1; i < statusBoard.Count; i++)
             {
@@ -300,15 +298,18 @@ namespace CartagenaBuenaventura.Forms
                 int numPawns = int.Parse(aux[2]);
 
                 Console.WriteLine($"\n i: {i} >>>");
+                if (!pawnsOnTile.ContainsKey(tileNum))
+                {
+                    pawnsOnTile.Add(tileNum, 0);
+                }
 
                 List<Pawn> playerPawns = auxPawns.FindAll(p => p.player.id == uint.Parse(aux[1]));
 
                 for (int j = 0; j < numPawns; j++)
                 {
-                    playerPawns[j].img.Location = PawnLocation(tileNum, j, 6);
+                    playerPawns[j].img.Location = PawnLocation(tileNum, pawnsOnTile[tileNum]++, 6);
                     auxPawns.Remove(playerPawns[j]);
                 }
-                //auxPawns.RemoveRange(0, numPawns);
             }
 
             return board;
