@@ -269,6 +269,9 @@ namespace CartagenaBuenaventura.Forms
             location.X = ((nthPawn % pawnsPerPlayer) % 2 == 0) ? location.X : location.X + 15;
             location.Y = location.Y + ((nthPawn % pawnsPerPlayer) / 2) * 15;
 
+            // margin
+            location.Offset(12, 12);
+
             return location;
         }
 
