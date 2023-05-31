@@ -37,8 +37,8 @@ namespace CartagenaBuenaventura.Forms
             pnlBoard.BackColor = System.Drawing.Color.Transparent;
 
             InitPawns(6);
-            //timer = new Timer();
-            //timer.Interval = 10 * 1000;
+            timer = new Timer();
+            timer.Interval = 10 * 1000;
 
             // Show card list only if you are current player of this match
             // Set also the automation
@@ -47,13 +47,13 @@ namespace CartagenaBuenaventura.Forms
             else
             {
                 SetListHandCards();
-                //this.robot = new Robot(this.match);
-                //timer.Tick += RefreshList;                
+                this.robot = new Robot(this.match);
+                timer.Tick += RefreshList;                
             }
 
-            //timer.Tick += RefreshBoard;
-            //timer.Start();
-            //RefeshPirateTurn();
+            timer.Tick += RefreshBoard;
+            timer.Start();
+            RefeshPirateTurn();
         }
 
         // Receives a letter from an object and returns an image of the respective object
@@ -363,6 +363,7 @@ namespace CartagenaBuenaventura.Forms
 
             //PawnMovement();
             //await Game.VerifyTurn(match, moves, PawnMovement);
+            Game.StatusBoard(match, board, DrawPawns);
             await Task.Delay(5 * 1000);
             Console.WriteLine("board");
         }
@@ -435,7 +436,7 @@ namespace CartagenaBuenaventura.Forms
         private void btnMoveBack_Click(object sender, EventArgs e)
         {
             player.GoBack(getPawnPosition());
-            Game.StatusBoard(match, board, DrawPawns);
+            //Game.StatusBoard(match, board, DrawPawns);
             //RefreshList();
         }
 
@@ -446,9 +447,9 @@ namespace CartagenaBuenaventura.Forms
             {
                 player.GoFoward(getPawnPosition(), getCardSelected());
                 //pawns.First().img.Location = new Point(pnlBoard.Size.Width / 10 * 2, pnlBoard.Size.Height / 5 * 4) ;//board[1].location;
-                Game.StatusBoard(match, board, DrawPawns);
+                //Game.StatusBoard(match, board, DrawPawns);
                 
-                // RefreshList();
+                //RefreshList();
             }
             catch (Exception ex)
             {
