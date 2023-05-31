@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MoreLinq;
 using System.Threading.Tasks;
+using CartagenaBuenaventura.Classes.Automation;
 
 namespace CartagenaBuenaventura.Classes
 {
@@ -10,13 +11,15 @@ namespace CartagenaBuenaventura.Classes
     {
         private Match match;
         private Player player;
-        private int myTurn;
+        private int turn;
+        private Strategy strategy;
         
         public Robot(Match match) 
         { 
             this.match = match;
             this.player = this.match.user;
-            this.myTurn = 0;
+            this.turn = 0;
+            this.strategy = new SelfishStrategy(this.match);
         }
 
         // check if it is your current turn and if it is, execute the game strategy
@@ -41,25 +44,20 @@ namespace CartagenaBuenaventura.Classes
                 //
 
                 /* Implement Strategy */
-                for (int turn = 1; turn <= 3; turn++)
+                for (int round = 1; round <= 3; round++)
                 {
-                    if(turn == 1 || turn == 2)
-                    {
-                        Locus position = pawns.OrderBy(move => move.position).FirstOrDefault();
+                    (int pawnPosition, string card) = strategy.makeMovement(this.turn, round);
 
-                        this.player.GoFoward(Convert.ToInt32(position.position), 
-                            this.player.ShowHand(this.player.id, this.player.password).FirstOrDefault());
-                    } 
+                    if (pawnPosition >= 0 && card != "")
+                        this.player.GoFoward(pawnPosition, card);
+                    else if (pawnPosition >= 0)
+                        this.player.GoBack(pawnPosition);
                     else
-                    {
-                        pawns = getPawns(this.player);
-                        Locus positions = pawns.OrderByDescending(move => move.position).FirstOrDefault();
-                        this.player.GoBack(Convert.ToInt32(positions.position));
+                        this.player.Skip();
 
-                    }
-
-                    this.myTurn++;
+                    this.turn++;
                 }
+                //
 
                 /* FOR VIEWING ONLY */
                 Console.WriteLine("Historico");
