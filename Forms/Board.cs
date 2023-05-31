@@ -187,31 +187,33 @@ namespace CartagenaBuenaventura.Forms
         private void InitPawns(uint pawnsPerPlayer) 
         {
             pnlBoard.Controls.Clear();
-            Point pawnLocation = new Point(0, 15);
+            //Point pawnLocation = new Point(0, 15);
 
             for (int i = 0; i < match.players.Count; i++)
             {
                 for (int j = 0; j < pawnsPerPlayer; j++)
                 {
                     pawns.Add(new Pawn(match.players[i]));
-                    pawns[pawns.Count - 1].img.Location = pawnLocation;
+                    //pawns[pawns.Count - 1].img.Location = pawnLocation;
+                    pawns[pawns.Count - 1].img.Location = PawnLocation(0, j, (int)pawnsPerPlayer);
                     pnlBoard.Controls.Add(pawns[pawns.Count - 1].img);
 
-                    pawnLocation.X += 15;
-                    if ((j + 1) % 2 == 0) 
-                    {
-                        pawnLocation.X -= 30;
-                        pawnLocation.Y += 15; 
-                    }
+                    //pawnLocation.X += 15;
+                    //if ((j + 1) % 2 == 0) 
+                    //{
+                    //    pawnLocation.X -= 30;
+                    //    pawnLocation.Y += 15; 
+                    //}
                 }
 
-                pawnLocation.X += 35;
-                pawnLocation.Y = (((i + 1) / 2) * 45) + 15;
+                //pawnLocation.X += 35;
+                //pawnLocation.Y = (((i + 1) / 2) * 45) + 15;
 
-                if ((i + 1) % 2 == 0) { pawnLocation.X = 0; }
+                //if ((i + 1) % 2 == 0) { pawnLocation.X = 0; }
             }
 
             DrawBoard();
+            //Game.StatusBoard(match, board, DrawPawns);
         }
 
         // Draw the pawn movement of the move passed as parameter or the last move received from Game.History() method
