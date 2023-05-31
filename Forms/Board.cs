@@ -17,10 +17,13 @@ namespace CartagenaBuenaventura.Forms
 {
     public partial class Board : Screen
     {
-        Match match;
-        Player player;
-        List<Tile> board;
-        List<Pawn> pawns = new List<Pawn>();
+        private Match match;
+        private Player player;
+        private Robot robot;
+        private Timer timer;
+        private List<Tile> board;
+        private List<Pawn> pawns = new List<Pawn>();
+        private List<Move> moves = new List<Move>();
 
         // Sets match and current player used 
         // Sets tiles and load tiles and hand if there is user
@@ -30,18 +33,27 @@ namespace CartagenaBuenaventura.Forms
             this.player = this.match.user;
 
             InitializeComponent();
-
+            
             pnlBoard.BackColor = System.Drawing.Color.Transparent;
 
-            SetListTiles();
+            InitPawns(6);
+            timer = new Timer();
+            timer.Interval = 10 * 1000;
 
             // Show card list only if you are current player of this match
+            // Set also the automation
             if (this.player == null)
-                lstHandCards.Visible = false;
+                pnlBackgroundListHandCards.Visible = false;
             else
+            {
                 SetListHandCards();
+                this.robot = new Robot(this.match);
+                timer.Tick += RefreshList;                
+            }
 
-            InitPawns(6);
+            timer.Tick += RefreshBoard;
+            timer.Start();
+            RefeshPirateTurn();
         }
 
         // Receives a letter from an object and returns an image of the respective object
@@ -69,20 +81,21 @@ namespace CartagenaBuenaventura.Forms
         // Draw the board on screen, place all tiles and their corresponding symbols and indexes
         private void DrawBoard()
         {
-            board = Game.ShowBoard(match.id);
+            if (board == null) { board = Game.ShowBoard(match.id); }
 
-            Point tileLocation = new Point(0, pnlBoard.Size.Height - 90);
-            int drawDirection = 0; // 0: Right and 1: Left
+            Point tileLocation = new Point(0, 0);
+            int drawDirection = 0; // 0: Upward and 1: Down
 
             foreach (Tile tile in board)
             {
                 PictureBox picBox = new PictureBox();
 
-                picBox.BackgroundImageLayout = ImageLayout.Stretch;
                 picBox.Margin = new Padding(0);
+                picBox.Padding = new Padding(0);
                 picBox.SizeMode = PictureBoxSizeMode.CenterImage;
                 picBox.Location = tileLocation;
-                picBox.Size = (tile.position == 0 || tile.position == board.Count - 1) ? new Size(100, 50) : new Size(50, 50);
+
+                tile.location = tileLocation;
 
                 Label tilePosition = new Label();
 
@@ -92,66 +105,79 @@ namespace CartagenaBuenaventura.Forms
                 tilePosition.ForeColor = Color.White;
 
                 picBox.Controls.Add(tilePosition);
-                picBox.Image = getSymbolImage(tile.symbol);
 
-                Image imgTileCorner = Properties.Resources.tile_corner;
+                Size tileDimensions = new Size(pnlBoard.Size.Width / 10, pnlBoard.Size.Height / 5);
 
-                if ((tile.position - 3) % 5 == 0)
+                if (tile.position == 0)
                 {
-                    if (tileLocation.X == 0)
-                    {
-                        imgTileCorner.RotateFlip(RotateFlipType.RotateNoneFlipX);
-                        picBox.BackgroundImage = imgTileCorner;
-                    }
-
-                    picBox.BackgroundImage = imgTileCorner;
-                    tileLocation.Y -= 50;
+                    picBox.Size = new Size(tileDimensions.Width * 2, pnlBoard.Height);
+                    tileLocation.X = (pnlBoard.Size.Width / 10) * 2;
+                    tileLocation.Y = 4 * pnlBoard.Size.Height / 5;    // the height of where the first tile should be drawned
                 }
-                else if ((tile.position - 4) % 5 == 0)
+                else if (tile.position == board.Count - 1)
                 {
-                    if (tileLocation.X == 0)
-                    {
-                        imgTileCorner.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                        tileLocation.X += 50;
-                        drawDirection = 0;
-                    }
-                    else
-                    {
-                        imgTileCorner.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                        tileLocation.X -= 50;
-                        drawDirection = 1;
-                    }
+                    picBox.Size = new Size(tileDimensions.Width, tileDimensions.Height * 2);
 
-                    picBox.BackgroundImage = imgTileCorner;
+                    Image imgBoat = Properties.Resources.boat;
+                    imgBoat.RotateFlip(RotateFlipType.Rotate270FlipNone);
+
+                    picBox.Image = imgBoat;
                 }
                 else
                 {
-                    if (tile.position == 0)
-                    {
-                        tileLocation.X = 50;
-                    }
-                    else if (tile.position == board.Count - 1)
-                    {
-                        tileLocation.X -= 50;
-                        picBox.Location = tileLocation;
-                        picBox.Image = Properties.Resources.boat;
-                    }
-                    else 
-                    {
-                        picBox.BackgroundImage = Properties.Resources.tile_horizontal;
-                    }
+                    picBox.BackgroundImageLayout = ImageLayout.Stretch;
+                    picBox.Size = tileDimensions;
+                    picBox.Image = getSymbolImage(tile.symbol);
 
-                    if (drawDirection == 0)
+                    //Console.WriteLine($"tile: {tile.position} symbol: {tile.symbol}");
+
+                    Image imgTileCorner = Properties.Resources.tile_corner;
+
+                    if ((tile.position) % 5 == 0)
                     {
-                        tileLocation.X += 50;
+                        if (tileLocation.Y == 0)
+                        {
+                            imgTileCorner.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        }
+                        else 
+                        {
+                            imgTileCorner.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        }
+
+                        picBox.BackgroundImage = imgTileCorner;
+                        tileLocation.X += pnlBoard.Size.Width / 10;
                     }
-                    else 
+                    else if ((tile.position - 1) % 5 == 0 && tile.position != 1)
                     {
-                        tileLocation.X -= 50;
+                        if (tileLocation.Y == 0)
+                        {
+                            imgTileCorner.RotateFlip(RotateFlipType.Rotate180FlipX);
+                            tileLocation.Y += pnlBoard.Size.Height / 5;
+                            drawDirection = 1;
+                        }
+                        else
+                        {
+                            tileLocation.Y -= pnlBoard.Size.Height / 5;
+                            drawDirection = 0;
+                        }
+
+                        picBox.BackgroundImage = imgTileCorner;
+                    }
+                    else
+                    {
+                        picBox.BackgroundImage = Properties.Resources.tile_vertical;
+
+                        if (drawDirection == 0)
+                        {
+                            tileLocation.Y -= pnlBoard.Size.Height / 5;
+                        }
+                        else
+                        {
+                            tileLocation.Y += pnlBoard.Size.Height / 5;
+                        }
                     }
                 }
 
-                tile.location = tileLocation;
                 pnlBoard.Controls.Add(picBox);
             }
         }
@@ -161,73 +187,111 @@ namespace CartagenaBuenaventura.Forms
         private void InitPawns(uint pawnsPerPlayer) 
         {
             pnlBoard.Controls.Clear();
-            Point pawnLocation = new Point(0, pnlBoard.Size.Height - 90);
 
             for (int i = 0; i < match.players.Count; i++)
             {
                 for (int j = 0; j < pawnsPerPlayer; j++)
                 {
                     pawns.Add(new Pawn(match.players[i]));
-                    pawns[pawns.Count - 1].img.Location = pawnLocation;
+                    pawns[pawns.Count - 1].img.Location = PawnLocation(0, (j + (i * (int)pawnsPerPlayer)), (int)pawnsPerPlayer);
                     pnlBoard.Controls.Add(pawns[pawns.Count - 1].img);
-
-                    pawnLocation.X += 15;
-                    if ((j + 1) % 2 == 0) 
-                    {
-                        pawnLocation.X -= 30;
-                        pawnLocation.Y += 15; 
-                    }
                 }
-                pawnLocation.X += 30;
-                if (i < 2) { pawnLocation.Y = pnlBoard.Size.Height - 90; }
+            }
+            DrawBoard();
+        }
+
+        // Draw the pawn movement of the move passed as parameter or the last move received from Game.History() method
+        public void PawnMovement(Move move = null)
+        {
+            if (move == null) 
+            { 
+                moves = Game.History(match);
+                move = moves.Last();
+            }
+
+            if (move.origin != null) 
+            {
+                // if the move was not "SKIP" 
+                Pawn auxPawn = pawns.Find(p => { return p.player == move.player && p.position == move.origin; });
+                if (auxPawn != null) { auxPawn.Move(move, board); }
+
+                DrawBoard();
+            }
+        }
+        
+        // receive the tile position and the Nth pawn (beging at 0) inside the tile, then return the location (cordinates)
+        // of this pawn
+        private Point PawnLocation(int tilePosition, int nthPawn, int pawnsPerPlayer)
+        {
+            int x, y;
+            if (tilePosition == 0)
+            {
+                x = ((nthPawn / pawnsPerPlayer) % 2 == 0) ? 0 : 35;
+                y = (((nthPawn / pawnsPerPlayer) / 2) * 45) + 15;
+            }
+            else
+            {
+                int collum = (tilePosition % 5 == 0) ? (tilePosition / 5) : (tilePosition / 5) + 1;
+                int aux;
+
+                if (collum % 2 == 0)
+                {
+                    aux = ((tilePosition % 5 == 0) ? 4 : (tilePosition % 5) - 1);
+                }
                 else
                 {
-                    if (i == 2) { pawnLocation.X = 0; }
-                    pawnLocation.Y = pnlBoard.Size.Height - 45;
+                    aux = (5 - ((tilePosition % 5 == 0) ? 5 : tilePosition % 5));
+                }
+
+                x = (pnlBoard.Size.Width / 10 * 2) + ((collum - 1) * (pnlBoard.Size.Width / 10));
+                y = pnlBoard.Size.Height / 5 * aux;
+            }
+
+            Point location = new Point(x, y);
+
+            location.X = ((nthPawn % pawnsPerPlayer) % 2 == 0) ? location.X : location.X + 15;
+            location.Y = location.Y + ((nthPawn % pawnsPerPlayer) / 2) * 15;
+
+            // margin
+            location.Offset(12, 12);
+
+            return location;
+        }
+
+        // Drawn all pawns on board using the board status information provided by Game.StatusBoard() method
+        // (is passed as a callback to Game.StatusBoard())
+        public List<Tile> DrawPawns(List<string> statusBoard, List<Tile> board)
+        {
+            List<Pawn> auxPawns = new List<Pawn>(pawns);
+            Dictionary<int, int> pawnsOnTile = new Dictionary<int, int>();
+
+            for (int i = 1; i < statusBoard.Count; i++)
+            {
+                /**
+                 * aux[0] -> tile
+                 * aux[1] -> player
+                 * aux[2] -> number of pawns (from the player) on tile
+                 */
+                String[] aux = statusBoard[i].Split(',');
+
+                int tileNum = int.Parse(aux[0]);
+                int numPawns = int.Parse(aux[2]);
+
+                if (!pawnsOnTile.ContainsKey(tileNum))
+                {
+                    pawnsOnTile.Add(tileNum, 0);
+                }
+
+                List<Pawn> playerPawns = auxPawns.FindAll(p => p.player.id == uint.Parse(aux[1]));
+
+                for (int j = 0; j < numPawns; j++)
+                {
+                    playerPawns[j].img.Location = PawnLocation(tileNum, pawnsOnTile[tileNum]++, 6);
+                    auxPawns.Remove(playerPawns[j]);
                 }
             }
-            DrawBoard();
-        }
 
-        //  Every time this method is called, the board is updated with all of the players moves
-        private void RefreshBoard()
-        {
-            List<Move> moves = Game.History(match);
-
-            foreach (Move move in moves)
-            {
-                Console.WriteLine($"id: {move.id}");
-                Console.WriteLine($"player id: {move.player.id}");
-                Console.WriteLine($"origin: {move.origin}");
-                Console.WriteLine($"card: {move.card}");
-                Pawn auxPawn = pawns.Find(p => p.player == move.player && p.position == move.origin);
-                if (auxPawn != null) { Console.WriteLine("Not null"); }
-                auxPawn.Move(move, board);
-            }
-
-            DrawBoard();
-        }
-
-        // Receives a letter from an object and returns an image of the respective object
-        private Image getCardImage(string symbol)
-        {
-            switch (symbol)
-            {
-                case "F":
-                    return Properties.Resources.dager_card;
-                case "G":
-                    return Properties.Resources.bottle_card;
-                case "C":
-                    return Properties.Resources.key_card;
-                case "P":
-                    return Properties.Resources.pistol_card;
-                case "T":
-                    return Properties.Resources.tricorn_card;
-                case "E":
-                    return Properties.Resources.skull_card;
-                default:
-                    return null;
-            }
+            return board;
         }
 
         // Sets the information to create the cards list on the screen
@@ -247,14 +311,15 @@ namespace CartagenaBuenaventura.Forms
         private void DrawHandCards()
         {
             lstHandCards.Clear();
-            
+            imageList.Images.Clear();
 
             List<string> cards = player.ShowHand(player.id, player.password);
 
             int index = 0;
             foreach (string card in cards)
             {
-                imageList.Images.Add(getCardImage(card));
+                Console.WriteLine("Card: " + card);
+                imageList.Images.Add(Game.getCardImage(card));
                 lstHandCards.Items.Add(new ListViewItem
                 {
                     ImageIndex = index,
@@ -267,89 +332,68 @@ namespace CartagenaBuenaventura.Forms
             lstHandCards.View = View.LargeIcon;
         }
 
-        // Display information on board
-        // If there is a player, it is also load hand cards
-        private void RefreshList()
+        // Display information on board during a game
+        private async void RefreshBoard(object sender, EventArgs e)
         {
-            RefreshBoard();
-            if (this.player != null)
+            // TODO: Implement here the code to refresh the board
+
+            //if (this.player != null) { DrawHandCards(); }
+
+            //PawnMovement();
+            //await Game.VerifyTurn(match, moves, PawnMovement);
+            Game.StatusBoard(match, board, DrawPawns);
+            await Task.Delay(5 * 1000);
+            Console.WriteLine("board");
+        }
+
+        // Display information on board during a game
+        private async void RefreshList(object sender, EventArgs e)
+        {
+            bool turnFinish = await robot.Verifying();
+
+            if (turnFinish)
+            {
                 DrawHandCards();
+                Console.WriteLine("mão impressa");
+            }
+
+            await Task.Delay(5 * 1000);
         }
 
-        // Sets the information to create the tiles list on the screen
-        // Call at the same time ShowListTiles
-        private void SetListTiles()
+        // Get information to show whose turn it is
+        private void RefeshPirateTurn()
         {
-            lstTiles.GridLines = true;
-            lstTiles.View = View.Details;
-            lstTiles.FullRowSelect = true;
-            lstTiles.MultiSelect = false;
+            Player playerTurn = Game.VerifyWhoseTurn(this.match);
+            lblPirateName.Text = playerTurn.name;
 
-            lstTiles.Columns.Add("Posição", 80, HorizontalAlignment.Center);
-            lstTiles.Columns.Add("Simbolo", 100, HorizontalAlignment.Center);
-
-            ShowListTiles();
-        }
-
-        // Clean the current data in list
-        // Fill the list tiles with current data from server
-        private void ShowListTiles()
-        {
-            List<Tile> ListTiles = Game.ShowBoard(match.id);
-
-            lstTiles.Items.Clear();
-
-            ListViewItem item;
-            foreach (Tile tile in ListTiles)
+            Color color = (Color) playerTurn.color;
+            switch (color.Name)
             {
-                item = new ListViewItem(tile.position.ToString());
-                item.SubItems.Add(Game.TranslateSymbol(tile.symbol));
-
-                lstTiles.Items.Add(item);
+                case "Red":
+                    pnlPirateImage.BackgroundImage = Properties.Resources.PirateRed;
+                    break;
+                case "Green":
+                    pnlPirateImage.BackgroundImage = Properties.Resources.PirateGreen;
+                    break;
+                case "Yellow":
+                    pnlPirateImage.BackgroundImage = Properties.Resources.PirateYellow;
+                    break;
+                case "Blue":
+                    pnlPirateImage.BackgroundImage = Properties.Resources.PirateBlue;
+                    break;
+                case "Brown":
+                    pnlPirateImage.BackgroundImage = Properties.Resources.PirateBrown;
+                    break;
             }
         }
 
-        // Get current number on numChoosePawn
-        private int getPawnPosition()
+        private void pnlGoBackHome_Click(object sender, EventArgs e)
         {
-            return Convert.ToInt32(numChoosePawn.Value);
-        }
-
-        // Get current clicked card on hand cards list
-        private string getCardSelected()
-        {
-            SelectedListViewItemCollection item = lstHandCards.SelectedItems;
-                string symbol = (string) item[0].Tag;
-
-            return symbol;
-        }
-
-        // Use skip function and renew lists
-        private void btnSkip_Click(object sender, EventArgs e)
-        {
-            player.Skip();
-            RefreshList();
-        }
-
-        // Use go back function and renew lists
-        private void btnMoveBack_Click(object sender, EventArgs e)
-        {
-            player.GoBack(getPawnPosition());
-            RefreshList();
-        }
-
-        // Use move forward function and renew lists
-        private void btnMoveForward_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                player.GoFoward(getPawnPosition(), getCardSelected());
-                RefreshList();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            this.timer.Stop();
+            this.timer = null;
+            this.robot = null;
+            
+            Panel.getInstance().ChangeForm(this, new Home());
         }
     }
 }

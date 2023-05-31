@@ -39,15 +39,19 @@
             // lblPlayerName
             // 
             this.lblPlayerName.AutoSize = true;
-            this.lblPlayerName.Location = new System.Drawing.Point(13, 47);
+            this.lblPlayerName.BackColor = System.Drawing.Color.Transparent;
+            this.lblPlayerName.Font = new System.Drawing.Font("Bauhaus 93", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayerName.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.lblPlayerName.Location = new System.Drawing.Point(36, 81);
             this.lblPlayerName.Name = "lblPlayerName";
-            this.lblPlayerName.Size = new System.Drawing.Size(91, 13);
+            this.lblPlayerName.Size = new System.Drawing.Size(157, 21);
             this.lblPlayerName.TabIndex = 0;
             this.lblPlayerName.Text = "Nome do Jogador";
             // 
             // txtPlayerName
             // 
-            this.txtPlayerName.Location = new System.Drawing.Point(111, 47);
+            this.txtPlayerName.BackColor = System.Drawing.Color.Azure;
+            this.txtPlayerName.Location = new System.Drawing.Point(221, 82);
             this.txtPlayerName.Name = "txtPlayerName";
             this.txtPlayerName.Size = new System.Drawing.Size(225, 20);
             this.txtPlayerName.TabIndex = 1;
@@ -55,15 +59,19 @@
             // lblMatchPassword
             // 
             this.lblMatchPassword.AutoSize = true;
-            this.lblMatchPassword.Location = new System.Drawing.Point(16, 86);
+            this.lblMatchPassword.BackColor = System.Drawing.Color.Transparent;
+            this.lblMatchPassword.Font = new System.Drawing.Font("Bauhaus 93", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMatchPassword.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.lblMatchPassword.Location = new System.Drawing.Point(36, 122);
             this.lblMatchPassword.Name = "lblMatchPassword";
-            this.lblMatchPassword.Size = new System.Drawing.Size(89, 13);
+            this.lblMatchPassword.Size = new System.Drawing.Size(154, 21);
             this.lblMatchPassword.TabIndex = 2;
             this.lblMatchPassword.Text = "Senha da Partida";
             // 
             // txtMatchPassword
             // 
-            this.txtMatchPassword.Location = new System.Drawing.Point(111, 86);
+            this.txtMatchPassword.BackColor = System.Drawing.Color.Azure;
+            this.txtMatchPassword.Location = new System.Drawing.Point(221, 121);
             this.txtMatchPassword.Name = "txtMatchPassword";
             this.txtMatchPassword.PasswordChar = '*';
             this.txtMatchPassword.Size = new System.Drawing.Size(225, 20);
@@ -71,12 +79,16 @@
             // 
             // btnMatchEnter
             // 
-            this.btnMatchEnter.Location = new System.Drawing.Point(19, 222);
+            this.btnMatchEnter.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnMatchEnter.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMatchEnter.Font = new System.Drawing.Font("Bauhaus 93", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMatchEnter.ForeColor = System.Drawing.Color.Azure;
+            this.btnMatchEnter.Location = new System.Drawing.Point(205, 224);
             this.btnMatchEnter.Name = "btnMatchEnter";
-            this.btnMatchEnter.Size = new System.Drawing.Size(75, 23);
+            this.btnMatchEnter.Size = new System.Drawing.Size(75, 37);
             this.btnMatchEnter.TabIndex = 4;
             this.btnMatchEnter.Text = "Entrar";
-            this.btnMatchEnter.UseVisualStyleBackColor = true;
+            this.btnMatchEnter.UseVisualStyleBackColor = false;
             this.btnMatchEnter.Click += new System.EventHandler(this.btnMatchEnter_Click);
             // 
             // lblWarnig
@@ -92,14 +104,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 317);
+            this.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.battle_of_ships;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(496, 283);
             this.Controls.Add(this.lblWarnig);
             this.Controls.Add(this.btnMatchEnter);
             this.Controls.Add(this.txtMatchPassword);
             this.Controls.Add(this.lblMatchPassword);
             this.Controls.Add(this.txtPlayerName);
             this.Controls.Add(this.lblPlayerName);
+            this.DoubleBuffered = true;
             this.Name = "EnterMatchDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EnterMatchDialog";
             this.ResumeLayout(false);
             this.PerformLayout();

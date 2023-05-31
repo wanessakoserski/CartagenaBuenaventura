@@ -14,5 +14,6 @@ namespace CartagenaBuenaventura.Classes
         public int position;
         public Point location;
         public bool[] spotAvailable = new[] { true, true, true };
+        public List<Pawn> pawnsOnTile = new List<Pawn>();
     }
 }

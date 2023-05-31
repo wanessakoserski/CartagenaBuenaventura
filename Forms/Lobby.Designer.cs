@@ -28,97 +28,151 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstPlayers = new System.Windows.Forms.ListView();
-            this.btnRefreshListPlayers = new System.Windows.Forms.Button();
-            this.btnGoBack = new System.Windows.Forms.Button();
-            this.btnStartMatch = new System.Windows.Forms.Button();
-            this.btnGoToBoard = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnEnterTheMatch = new System.Windows.Forms.Button();
+            this.pnlGoBackMatches = new System.Windows.Forms.Panel();
+            this.pnlRefreshListPlayers = new System.Windows.Forms.Panel();
+            this.pnlGoToBoard = new System.Windows.Forms.Panel();
+            this.pnlStartMatch = new System.Windows.Forms.Panel();
+            this.dgdPlayers = new System.Windows.Forms.DataGridView();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgdPlayers)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lstPlayers
-            // 
-            this.lstPlayers.HideSelection = false;
-            this.lstPlayers.Location = new System.Drawing.Point(50, 48);
-            this.lstPlayers.Name = "lstPlayers";
-            this.lstPlayers.Size = new System.Drawing.Size(348, 198);
-            this.lstPlayers.TabIndex = 0;
-            this.lstPlayers.UseCompatibleStateImageBehavior = false;
-            // 
-            // btnRefreshListPlayers
-            // 
-            this.btnRefreshListPlayers.Location = new System.Drawing.Point(50, 264);
-            this.btnRefreshListPlayers.Name = "btnRefreshListPlayers";
-            this.btnRefreshListPlayers.Size = new System.Drawing.Size(173, 23);
-            this.btnRefreshListPlayers.TabIndex = 1;
-            this.btnRefreshListPlayers.Text = "Atualizar Lista de Jogadores";
-            this.btnRefreshListPlayers.UseVisualStyleBackColor = true;
-            this.btnRefreshListPlayers.Click += new System.EventHandler(this.btnRefreshListPlayers_Click);
-            // 
-            // btnGoBack
-            // 
-            this.btnGoBack.Location = new System.Drawing.Point(183, 303);
-            this.btnGoBack.Name = "btnGoBack";
-            this.btnGoBack.Size = new System.Drawing.Size(75, 23);
-            this.btnGoBack.TabIndex = 2;
-            this.btnGoBack.Text = "Voltar";
-            this.btnGoBack.UseVisualStyleBackColor = true;
-            this.btnGoBack.Click += new System.EventHandler(this.btnGoBack_Click);
-            // 
-            // btnStartMatch
-            // 
-            this.btnStartMatch.Location = new System.Drawing.Point(242, 264);
-            this.btnStartMatch.Name = "btnStartMatch";
-            this.btnStartMatch.Size = new System.Drawing.Size(156, 23);
-            this.btnStartMatch.TabIndex = 3;
-            this.btnStartMatch.Text = "Começar a Partida";
-            this.btnStartMatch.UseVisualStyleBackColor = true;
-            this.btnStartMatch.Click += new System.EventHandler(this.btnStartMatch_Click);
-            // 
-            // btnGoToBoard
-            // 
-            this.btnGoToBoard.Location = new System.Drawing.Point(277, 303);
-            this.btnGoToBoard.Name = "btnGoToBoard";
-            this.btnGoToBoard.Size = new System.Drawing.Size(121, 23);
-            this.btnGoToBoard.TabIndex = 4;
-            this.btnGoToBoard.Text = "Ver o Tabuleiro";
-            this.btnGoToBoard.UseVisualStyleBackColor = true;
-            this.btnGoToBoard.Click += new System.EventHandler(this.btnGoToBoard_Click);
             // 
             // btnEnterTheMatch
             // 
-            this.btnEnterTheMatch.Location = new System.Drawing.Point(50, 303);
+            this.btnEnterTheMatch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnEnterTheMatch.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnEnterTheMatch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEnterTheMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnterTheMatch.Font = new System.Drawing.Font("Matura MT Script Capitals", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnterTheMatch.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnEnterTheMatch.Location = new System.Drawing.Point(481, 383);
             this.btnEnterTheMatch.Name = "btnEnterTheMatch";
-            this.btnEnterTheMatch.Size = new System.Drawing.Size(114, 23);
+            this.btnEnterTheMatch.Size = new System.Drawing.Size(313, 41);
             this.btnEnterTheMatch.TabIndex = 5;
-            this.btnEnterTheMatch.Text = "Entrar na Partida";
-            this.btnEnterTheMatch.UseVisualStyleBackColor = true;
+            this.btnEnterTheMatch.Text = "Participar da Batalha";
+            this.btnEnterTheMatch.UseVisualStyleBackColor = false;
             this.btnEnterTheMatch.Click += new System.EventHandler(this.btnEnterTheMatch_Click);
+            // 
+            // pnlGoBackMatches
+            // 
+            this.pnlGoBackMatches.BackColor = System.Drawing.Color.Transparent;
+            this.pnlGoBackMatches.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.go_back_arrow;
+            this.pnlGoBackMatches.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlGoBackMatches.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnlGoBackMatches.Location = new System.Drawing.Point(20, 20);
+            this.pnlGoBackMatches.Name = "pnlGoBackMatches";
+            this.pnlGoBackMatches.Size = new System.Drawing.Size(46, 37);
+            this.pnlGoBackMatches.TabIndex = 6;
+            this.pnlGoBackMatches.Click += new System.EventHandler(this.pnlGoBackMatches_Click);
+            this.pnlGoBackMatches.MouseEnter += new System.EventHandler(this.pnlGoBackMatches_MouseEnter);
+            this.pnlGoBackMatches.MouseLeave += new System.EventHandler(this.pnlGoBackMatches_MouseLeave);
+            // 
+            // pnlRefreshListPlayers
+            // 
+            this.pnlRefreshListPlayers.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.pnlRefreshListPlayers.BackColor = System.Drawing.Color.Transparent;
+            this.pnlRefreshListPlayers.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.refresh;
+            this.pnlRefreshListPlayers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlRefreshListPlayers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnlRefreshListPlayers.Location = new System.Drawing.Point(450, 332);
+            this.pnlRefreshListPlayers.Name = "pnlRefreshListPlayers";
+            this.pnlRefreshListPlayers.Size = new System.Drawing.Size(25, 20);
+            this.pnlRefreshListPlayers.TabIndex = 7;
+            this.pnlRefreshListPlayers.Click += new System.EventHandler(this.pnlRefreshListPlayers_Click);
+            // 
+            // pnlGoToBoard
+            // 
+            this.pnlGoToBoard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlGoToBoard.BackColor = System.Drawing.Color.Transparent;
+            this.pnlGoToBoard.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.eye;
+            this.pnlGoToBoard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlGoToBoard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnlGoToBoard.Location = new System.Drawing.Point(1136, 12);
+            this.pnlGoToBoard.Name = "pnlGoToBoard";
+            this.pnlGoToBoard.Size = new System.Drawing.Size(67, 45);
+            this.pnlGoToBoard.TabIndex = 8;
+            this.pnlGoToBoard.Click += new System.EventHandler(this.pnlGoToBoard_Click);
+            // 
+            // pnlStartMatch
+            // 
+            this.pnlStartMatch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pnlStartMatch.BackColor = System.Drawing.Color.Transparent;
+            this.pnlStartMatch.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.play;
+            this.pnlStartMatch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlStartMatch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnlStartMatch.Location = new System.Drawing.Point(579, 219);
+            this.pnlStartMatch.Name = "pnlStartMatch";
+            this.pnlStartMatch.Size = new System.Drawing.Size(105, 75);
+            this.pnlStartMatch.TabIndex = 9;
+            this.pnlStartMatch.Click += new System.EventHandler(this.pnlStartMatch_Click);
+            // 
+            // dgdPlayers
+            // 
+            this.dgdPlayers.AllowUserToAddRows = false;
+            this.dgdPlayers.AllowUserToDeleteRows = false;
+            this.dgdPlayers.AllowUserToResizeColumns = false;
+            this.dgdPlayers.AllowUserToResizeRows = false;
+            this.dgdPlayers.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.dgdPlayers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgdPlayers.BackgroundColor = System.Drawing.Color.RosyBrown;
+            this.dgdPlayers.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgdPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgdPlayers.ColumnHeadersVisible = false;
+            this.dgdPlayers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.name});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("OCR A Extended", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgdPlayers.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgdPlayers.GridColor = System.Drawing.Color.RosyBrown;
+            this.dgdPlayers.Location = new System.Drawing.Point(481, 300);
+            this.dgdPlayers.Name = "dgdPlayers";
+            this.dgdPlayers.ReadOnly = true;
+            this.dgdPlayers.RowHeadersVisible = false;
+            this.dgdPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgdPlayers.Size = new System.Drawing.Size(313, 77);
+            this.dgdPlayers.TabIndex = 10;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Jogador";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
             // 
             // Lobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1327, 689);
+            this.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.ships_duel;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1243, 737);
+            this.Controls.Add(this.dgdPlayers);
+            this.Controls.Add(this.pnlStartMatch);
+            this.Controls.Add(this.pnlGoToBoard);
+            this.Controls.Add(this.pnlRefreshListPlayers);
+            this.Controls.Add(this.pnlGoBackMatches);
             this.Controls.Add(this.btnEnterTheMatch);
-            this.Controls.Add(this.btnGoToBoard);
-            this.Controls.Add(this.btnGoBack);
-            this.Controls.Add(this.btnStartMatch);
-            this.Controls.Add(this.btnRefreshListPlayers);
-            this.Controls.Add(this.lstPlayers);
+            this.DoubleBuffered = true;
             this.Name = "Lobby";
             this.Text = "MatchLobby";
+            ((System.ComponentModel.ISupportInitialize)(this.dgdPlayers)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView lstPlayers;
-        private System.Windows.Forms.Button btnRefreshListPlayers;
-        private System.Windows.Forms.Button btnGoBack;
-        private System.Windows.Forms.Button btnStartMatch;
-        private System.Windows.Forms.Button btnGoToBoard;
         private System.Windows.Forms.Button btnEnterTheMatch;
+        private System.Windows.Forms.Panel pnlGoBackMatches;
+        private System.Windows.Forms.Panel pnlRefreshListPlayers;
+        private System.Windows.Forms.Panel pnlGoToBoard;
+        private System.Windows.Forms.Panel pnlStartMatch;
+        private System.Windows.Forms.DataGridView dgdPlayers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
     }
 }

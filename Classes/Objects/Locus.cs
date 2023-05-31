@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace CartagenaBuenaventura.Classes
 {
-    public class Move
+    public class Locus
     {
-        public uint id;
-        public uint turn;
+        public int position;
         public Player player;
-        public string card;
-        public uint origin;
-        public uint destination;
+        public int amount;
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CartagenaBuenaventura.Classes;
+using CartagenaBuenaventura.Properties;
 
 namespace CartagenaBuenaventura.Forms
 {
@@ -25,27 +26,22 @@ namespace CartagenaBuenaventura.Forms
 
             if(this.match.user == null && player != null)
                 this.match.user = player;
-            
-            if (this.match.user == null) { btnStartMatch.Enabled = false; }
 
-            if (this.match.status == enums.MatchStatus.InProgress || this.match.status == enums.MatchStatus.Close) 
-                btnGoToBoard.Enabled = true; 
+            if (this.match.user == null)
+                pnlStartMatch.Visible = false;
             else 
-                btnGoToBoard.Enabled = false;
+                btnEnterTheMatch.Visible = false;
 
-            SetListPlayers();
-        }
-
-        // Sets the information to create the players list on the screen
-        private void SetListPlayers()
-        {
-            lstPlayers.GridLines = true;
-            lstPlayers.View = View.Details;
-            lstPlayers.FullRowSelect = true;
-
-            lstPlayers.Columns.Add("Id", 50, HorizontalAlignment.Center);
-            lstPlayers.Columns.Add("Nome", 100, HorizontalAlignment.Center);
-            lstPlayers.Columns.Add("Cor", 100, HorizontalAlignment.Center);
+            if (this.match.status == enums.MatchStatus.InProgress || this.match.status == enums.MatchStatus.Close)
+            {
+                pnlGoToBoard.Visible = true;
+                btnEnterTheMatch.Visible = false;
+            }
+            else
+            {
+                pnlGoToBoard.Visible = false;
+                btnEnterTheMatch.Visible = true;
+            }
 
             ShowListPlayers();
         }
@@ -56,34 +52,37 @@ namespace CartagenaBuenaventura.Forms
         {
             this.match.players = Game.ListPlayers(this.match.id);
 
-            lstPlayers.Items.Clear();
+            dgdPlayers.Rows.Clear();
 
-            ListViewItem item;
             foreach (Player player in this.match.players)
             {
-                item = new ListViewItem(player.id.ToString());
-                item.SubItems.Add(player.name);
-                item.SubItems.Add(player.color.ToString());
-                lstPlayers.Items.Add(item);
+                int index = dgdPlayers.Rows.Add();
+                dgdPlayers.Rows[index].Cells[0].Value = player.name;
+                dgdPlayers.Rows[index].DefaultCellStyle.Font = new Font("OCR A Extended",
+                                                                       14,
+                                                                       FontStyle.Regular,
+                                                                       GraphicsUnit.Pixel);
+
+                dgdPlayers.Rows[index].DefaultCellStyle.BackColor = (Color) player.color;
+
+                if ((Color)player.color == Color.Yellow)
+                    dgdPlayers.Rows[index].DefaultCellStyle.BackColor = Color.Goldenrod;
             }
+
+            dgdPlayers.ClearSelection();
         }
 
         // Refill the players list with current data from server
-        private void btnRefreshListPlayers_Click(object sender, EventArgs e)
+        private void pnlRefreshListPlayers_Click(object sender, EventArgs e)
         {
             ShowListPlayers();
         }
 
-        // Return
-        private void btnGoBack_Click(object sender, EventArgs e)
-        {
-            Panel.getInstance().ChangeForm(this, new Matches());
-        }
-
         // Start match if it is still opened
         // Redirect to board
-        private void btnStartMatch_Click(object sender, EventArgs e)
+        private void pnlStartMatch_Click(object sender, EventArgs e)
         {
+            this.match = Game.SearchMatch(this.match);
             if (this.match.status == enums.MatchStatus.Open)
                 Game.StartMatch(this.match.user.id, this.match.user.password);
 
@@ -91,17 +90,46 @@ namespace CartagenaBuenaventura.Forms
         }
 
         // Go to board
-        private void btnGoToBoard_Click(object sender, EventArgs e)
+        private void pnlGoToBoard_Click(object sender, EventArgs e)
         {
+            this.match = Game.SearchMatch(this.match);
             Panel.getInstance().ChangeForm(this, new Board(this.match));
         }
 
         // Open enter match dialog
         private void btnEnterTheMatch_Click(object sender, EventArgs e)
         {
-            EnterMatchDialog enterMatchDialog = new EnterMatchDialog(this, match);
-            if (enterMatchDialog.ShowDialog() == DialogResult.OK)
-                Console.WriteLine("works");
+            using(EnterMatchDialog enterMatchDialog = new EnterMatchDialog(this, match))
+            {
+                if (enterMatchDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Console.WriteLine("works");
+                    btnEnterTheMatch.Visible = false;
+                    ShowListPlayers();
+                    pnlStartMatch.Enabled = true;
+                    pnlStartMatch.Visible = true;
+                    this.match.user = enterMatchDialog.getPlayer();
+                }
+            }  
+        }
+
+        // Return
+        private void pnlGoBackMatches_Click(object sender, EventArgs e)
+        {
+            Panel.getInstance().ChangeForm(this, new Matches());
+        }
+
+
+        /* Appearance */
+
+        private void pnlGoBackMatches_MouseEnter(object sender, EventArgs e)
+        {
+            pnlGoBackMatches.BackgroundImage = Resources.back_arrow;
+        }
+
+        private void pnlGoBackMatches_MouseLeave(object sender, EventArgs e)
+        {
+            pnlGoBackMatches.BackgroundImage = Resources.go_back_arrow;
         }
     }
 }

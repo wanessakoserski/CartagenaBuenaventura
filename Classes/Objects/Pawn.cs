@@ -47,16 +47,30 @@ namespace CartagenaBuenaventura.Classes
         // placed in the available position inside the destination tile
         public void Move(Move move, List<Tile> board) 
         {
-            this.position = move.destination;
+            this.position = (uint)move.destination;
 
             Tile origin = board[Convert.ToInt32(move.origin)];
             Tile destination = board[Convert.ToInt32(move.destination)];
 
+            board[Convert.ToInt32(move.origin)].pawnsOnTile.Remove(this);
+            board[Convert.ToInt32(move.destination)].pawnsOnTile.Add(this);
+
             origin.spotAvailable[this.spotIndex] = true;
+
+            Console.WriteLine($"board: tile:{board[destination.position].position}, X:{board[destination.position].location.X}, y:{board[destination.position].location.Y}, ");
+            Console.WriteLine($"destination: tile:{destination.position}, X:{destination.location.X}, y:{destination.location.Y}, ");
+            
+            Console.WriteLine($"pawn {destination.position} -> x:{destination.location.X} y: {destination.location.Y}");
 
             if (destination.spotAvailable[0])
             {
                 img.Location = destination.location;
+                if (move.id == 0)
+                {
+                    Point aux = destination.location;
+                    aux.X += 26;
+                    img.Location = aux;
+                }
                 destination.spotAvailable[0] = false;
                 this.spotIndex = 0;
             }
@@ -69,7 +83,7 @@ namespace CartagenaBuenaventura.Classes
                 destination.spotAvailable[1] = false;
                 this.spotIndex = 1;
             }
-            else 
+            else
             {
                 Point auxLocation = destination.location;
                 auxLocation.Y += 15;

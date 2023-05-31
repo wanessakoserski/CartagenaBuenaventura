@@ -33,11 +33,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CartagenaServer">
+    <Reference Include="CartagenaServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>.\CartagenaServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MoreLinq, Version=3.4.2.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>packages\morelinq.3.4.2\lib\net462\MoreLinq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,12 +56,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Game.cs" />
-    <Compile Include="Classes\Match.cs" />
-    <Compile Include="Classes\Move.cs" />
-    <Compile Include="Classes\Pawn.cs" />
-    <Compile Include="Classes\Player.cs" />
-    <Compile Include="Classes\Tile.cs" />
+    <Compile Include="Classes\Automation\Strategies\SelfishStrategy.cs" />
+    <Compile Include="Classes\Automation\Strategy.cs" />
+    <Compile Include="Classes\Objects\Locus.cs" />
+    <Compile Include="Classes\Automation\Robot.cs" />
+    <Compile Include="Classes\Services\Game.cs" />
+    <Compile Include="Classes\Objects\Match.cs" />
+    <Compile Include="Classes\Objects\Move.cs" />
+    <Compile Include="Classes\Objects\Pawn.cs" />
+    <Compile Include="Classes\Objects\Player.cs" />
+    <Compile Include="Classes\DesignComponents\RoundButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Objects\Tile.cs" />
     <Compile Include="Enums\MatchStatus.cs" />
     <Compile Include="Forms\Board.cs">
       <SubType>Form</SubType>
@@ -127,18 +141,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -149,25 +164,67 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tricorn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bottle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\skull.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pistol.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\key.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\dager.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\boat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desert-anchor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fleet-fo-ships.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\go-back-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sea-of-thieves-helm.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ships-duel.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\captain-frame.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\captain-frame1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\battle-of-ships.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wood.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wood1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tile_horizontal.png" />
@@ -176,37 +233,73 @@
     <None Include="Resources\tile_corner.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\red.png" />
+    <None Include="Resources\tile_vertical.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\blue.png" />
+    <None Include="Resources\background.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\yellow.png" />
+    <None Include="Resources\wood.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\brown.png" />
+    <None Include="Resources\woodFloor.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\green.png" />
+    <None Include="Resources\home_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pistol_card.png" />
+    <None Include="Resources\Teste.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\key_card.png" />
+    <None Include="Resources\PirateRed.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tricorn_card.png" />
+    <None Include="Resources\PirateBlue.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\skull_card.png" />
+    <None Include="Resources\PirateBrown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tricorn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pistol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PirateGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PirateYellow.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bottle_card.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dager_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pistol_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tricorn_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skull_card.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

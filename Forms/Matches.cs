@@ -1,14 +1,18 @@
 ﻿using CartagenaBuenaventura.Classes;
+using CartagenaBuenaventura.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CartagenaBuenaventura.Forms
 {
@@ -17,43 +21,37 @@ namespace CartagenaBuenaventura.Forms
         public Matches()
         {
             InitializeComponent();
-            SetListMatches();
-        }
-
-        // Sets the information to create the matches list on the screen
-        private void SetListMatches()
-        {
-            lstMatches.GridLines = true;
-            lstMatches.View = View.Details;
-            lstMatches.FullRowSelect = true;
-            lstMatches.MultiSelect = false;
-
-            lstMatches.Columns.Add("Id", 50, HorizontalAlignment.Center);
-            lstMatches.Columns.Add("Nome", 100, HorizontalAlignment.Center);
-            lstMatches.Columns.Add("Criação", 100, HorizontalAlignment.Center);
-            lstMatches.Columns.Add("Status", 100, HorizontalAlignment.Center);
 
             ShowListMatches();
+
+            btnViewMatch.Enabled = false;
+            btnEnterMatch.Enabled = false;
+            btnViewMatch.BackColor = Color.LightSteelBlue;
+            btnEnterMatch.BackColor = Color.LightSteelBlue;
         }
 
         // Clean the current data in list
         // Fill the matches list with current data from server
         private void ShowListMatches()
         {
-            lstMatches.Items.Clear();
+            dgdMatches.Rows.Clear();
 
             List<Match> ListMatches = Game.ListMatches();
 
-            ListViewItem item;
             foreach (Match match in ListMatches)
             {
-                item = new ListViewItem(match.id.ToString());
-                item.SubItems.Add(match.name);
-                item.SubItems.Add(match.creationDate.ToShortDateString());
-                item.SubItems.Add(match.status.ToString());
-                item.Tag = match;
-                lstMatches.Items.Add(item);
+                dgdMatches.Rows.Add(new object[]
+                {
+                    match.id,
+                    match.name,
+                    match.creationDate.ToShortDateString(),
+                    match.status
+                });
+
+                dgdMatches.Rows[Convert.ToInt32(match.id) - 1].Tag = match;
             }
+
+            dgdMatches.ClearSelection();
         }
 
         // Open create match dialog
@@ -71,23 +69,38 @@ namespace CartagenaBuenaventura.Forms
             ShowListMatches();
             btnViewMatch.Enabled = false;
             btnEnterMatch.Enabled = false;
+            btnViewMatch.BackColor = Color.LightSteelBlue;
+            btnEnterMatch.BackColor = Color.LightSteelBlue;
         }
 
         // Open enter match dialog
         private void btnEnterMatch_Click(object sender, EventArgs e)
         {
-            EnterMatchDialog enterMatchDialog = new EnterMatchDialog(this, GetSelectedMatch());
-            if (enterMatchDialog.ShowDialog() == DialogResult.OK)
-                Console.WriteLine("works");
+            Player player = new Player();
+            using (EnterMatchDialog enterMatchDialog = new EnterMatchDialog(this, GetSelectedMatch()))
+            {
+                if (enterMatchDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Console.WriteLine("works");
+                    player = enterMatchDialog.getPlayer();
+                }
+            }
+            Panel.getInstance().ChangeForm(this, new Lobby(GetSelectedMatch(), player));
         }
 
         // Get current clicked match on matches list
         private Match GetSelectedMatch()
         {
-            SelectedListViewItemCollection item = lstMatches.SelectedItems;
-            Match match = (Match)item[0].Tag;
+            try
+            {
+                DataGridViewSelectedRowCollection selected = dgdMatches.SelectedRows;
+                Match match = (Match)selected[0].Tag;
+                return match;
+            } catch (Exception ex)
+            {
+                return null;
+            }
 
-            return match;
         }
 
         // Attempt to enter lobby match
@@ -99,16 +112,100 @@ namespace CartagenaBuenaventura.Forms
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("Não foi possível carregar lobby da partida\n\n" + ex.Message,
+                    "Error Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
         // Ables button when a item is selected
-        private void lstMatches_SelectedIndexChanged(object sender, EventArgs e)
+        private void dgdMatches_SelectionChanged(object sender, EventArgs e)
         {
-            btnEnterMatch.Enabled = true;
-            btnViewMatch.Enabled = true;
+            btnEnterMatch.Enabled = false;
+            btnEnterMatch.BackColor = Color.LightBlue;
+
+            btnViewMatch.Enabled = false;
+            btnViewMatch.BackColor = Color.LightBlue;
+
+            Match match = GetSelectedMatch();
+            if (match != null)
+            {
+                btnViewMatch.Enabled = true;
+                btnViewMatch.BackColor = Color.Teal;
+
+                if (match.status == enums.MatchStatus.Open)
+                {
+                    btnEnterMatch.Enabled = true;
+                    btnEnterMatch.BackColor = Color.Teal;
+                }
+            }
+        }
+
+        // Come back to Home
+        private void pnlGoBackHome_Click(object sender, EventArgs e)
+        {
+            Panel.getInstance().ChangeForm(this, new Home());
+        }
+
+
+        /* Appearance */
+
+        private void pnlGoBackHome_MouseEnter(object sender, EventArgs e)
+        {
+            pnlGoBackHome.BackgroundImage = Resources.back_arrow;
+        }
+
+        private void pnlGoBackHome_MouseLeave(object sender, EventArgs e)
+        {
+            pnlGoBackHome.BackgroundImage = Resources.go_back_arrow;
+        }
+
+        private void btnRefreshListMatches_MouseEnter(object sender, EventArgs e)
+        {
+            btnRefreshListMatches.BackColor = Color.LightBlue;
+            btnRefreshListMatches.ForeColor = Color.Teal;
+        }
+
+        private void btnViewMatch_MouseEnter(object sender, EventArgs e)
+        {
+            btnViewMatch.BackColor = Color.LightBlue;
+            btnViewMatch.ForeColor = Color.Teal;
+        }
+
+        private void btnCreateMatch_MouseEnter(object sender, EventArgs e)
+        {
+            btnCreateMatch.BackColor = Color.LightBlue;
+            btnCreateMatch.ForeColor = Color.Teal;
+        }
+
+        private void btnEnterMatch_MouseEnter(object sender, EventArgs e)
+        {
+            btnEnterMatch.BackColor = Color.LightBlue;
+            btnEnterMatch.ForeColor = Color.Teal;
+        }
+
+        private void btnRefreshListMatches_MouseLeave(object sender, EventArgs e)
+        {
+            btnRefreshListMatches.BackColor = Color.Teal;
+            btnRefreshListMatches.ForeColor = Color.LightBlue;
+        }
+
+        private void btnViewMatch_MouseLeave(object sender, EventArgs e)
+        {
+            btnViewMatch.BackColor = Color.Teal;
+            btnViewMatch.ForeColor = Color.LightBlue;
+        }
+
+        private void btnCreateMatch_MouseLeave(object sender, EventArgs e)
+        {
+            btnCreateMatch.BackColor = Color.Teal;
+            btnCreateMatch.ForeColor = Color.LightBlue;
+        }
+
+        private void btnEnterMatch_MouseLeave(object sender, EventArgs e)
+        {
+            btnEnterMatch.BackColor = Color.Teal;
+            btnEnterMatch.ForeColor = Color.LightBlue;
         }
     }
 }
