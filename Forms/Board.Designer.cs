@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Board));
-            this.btnSkip = new System.Windows.Forms.Button();
             this.lstHandCards = new System.Windows.Forms.ListView();
             this.pnlBoard = new System.Windows.Forms.Panel();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
@@ -40,16 +39,6 @@
             this.pnlPirateImage = new System.Windows.Forms.Panel();
             this.pnlBackgroundListHandCards.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnSkip
-            // 
-            this.btnSkip.Location = new System.Drawing.Point(1197, 251);
-            this.btnSkip.Name = "btnSkip";
-            this.btnSkip.Size = new System.Drawing.Size(85, 23);
-            this.btnSkip.TabIndex = 2;
-            this.btnSkip.Text = "Pular vez";
-            this.btnSkip.UseVisualStyleBackColor = true;
-            this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
             // 
             // lstHandCards
             // 
@@ -137,7 +126,6 @@
             this.Controls.Add(this.pnlGoBackHome);
             this.Controls.Add(this.lblPirateName);
             this.Controls.Add(this.pnlBackgroundListHandCards);
-            this.Controls.Add(this.btnSkip);
             this.Controls.Add(this.pnlBoard);
             this.Name = "Board";
             this.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -149,7 +137,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnSkip;
         private System.Windows.Forms.ListView lstHandCards;
         private System.Windows.Forms.Panel pnlBoard;
         private System.Windows.Forms.ImageList imageList;
