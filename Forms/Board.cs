@@ -235,7 +235,7 @@ namespace CartagenaBuenaventura.Forms
         
         // receive the tile position and the Nth pawn (beging at 0) inside the tile, then return the location (cordinates)
         // of this pawn
-        private Point PawnLocation(Point tileLocation, int tilePosition, int nthPawn, int pawnsPerPlayer)
+        private Point PawnLocation(int tilePosition, int nthPawn, int pawnsPerPlayer)
         {
             int x, y;
             if (tilePosition == 0)
@@ -269,7 +269,6 @@ namespace CartagenaBuenaventura.Forms
                 y = pnlBoard.Size.Height / 5 * aux;
 
                 Console.WriteLine($"collum: {collum}");
-                Console.WriteLine($"board -> x: {tileLocation.X} y: {tileLocation.Y}");
                 Console.WriteLine($"func -> x: {x} y: {y}");
             }
 
@@ -287,7 +286,6 @@ namespace CartagenaBuenaventura.Forms
         public List<Tile> DrawPawns(List<string> statusBoard, List<Tile> board)
         {
             List<Pawn> auxPawns = new List<Pawn>(pawns);
-            Dictionary<int, List<Pawn>> pawnsOnTile = new Dictionary<int, List<Pawn>>();
 
             for (int i = 1; i < statusBoard.Count; i++)
             {
@@ -301,20 +299,16 @@ namespace CartagenaBuenaventura.Forms
                 int tileNum = int.Parse(aux[0]);
                 int numPawns = int.Parse(aux[2]);
 
-                Point tileLocation = board[tileNum].location;
                 Console.WriteLine($"\n i: {i} >>>");
-                if (!pawnsOnTile.ContainsKey(tileNum))
-                {
-                    pawnsOnTile.Add(tileNum, new List<Pawn>());
-                }
 
                 List<Pawn> playerPawns = auxPawns.FindAll(p => p.player.id == uint.Parse(aux[1]));
 
                 for (int j = 0; j < numPawns; j++)
                 {
-                    playerPawns[j].img.Location = PawnLocation(tileLocation, tileNum, j, 6);
+                    playerPawns[j].img.Location = PawnLocation(tileNum, j, 6);
+                    auxPawns.Remove(playerPawns[j]);
                 }
-                auxPawns.RemoveRange(0, numPawns);
+                //auxPawns.RemoveRange(0, numPawns);
             }
 
             return board;
