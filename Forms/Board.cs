@@ -195,7 +195,7 @@ namespace CartagenaBuenaventura.Forms
                 {
                     pawns.Add(new Pawn(match.players[i]));
                     //pawns[pawns.Count - 1].img.Location = pawnLocation;
-                    pawns[pawns.Count - 1].img.Location = PawnLocation(0, j, (int)pawnsPerPlayer);
+                    pawns[pawns.Count - 1].img.Location = PawnLocation(0, (j + (i * (int)pawnsPerPlayer)), (int)pawnsPerPlayer);
                     pnlBoard.Controls.Add(pawns[pawns.Count - 1].img);
 
                     //pawnLocation.X += 15;
