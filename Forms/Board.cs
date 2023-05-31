@@ -387,54 +387,6 @@ namespace CartagenaBuenaventura.Forms
             }
         }
 
-
-        // Get current number on numChoosePawn
-        private int getPawnPosition()
-        {
-            return Convert.ToInt32(numChoosePawn.Value);
-        }
-
-        // Get current clicked card on hand cards list
-        private string getCardSelected()
-        {
-            SelectedListViewItemCollection item = lstHandCards.SelectedItems;
-                string symbol = (string) item[0].Tag;
-
-            return symbol;
-        }
-
-        // Use skip function and renew lists
-        private void btnSkip_Click(object sender, EventArgs e)
-        {
-            player.Skip();
-            //RefreshList();
-        }
-
-        // Use go back function and renew lists
-        private void btnMoveBack_Click(object sender, EventArgs e)
-        {
-            player.GoBack(getPawnPosition());
-            //Game.StatusBoard(match, board, DrawPawns);
-            //RefreshList();
-        }
-
-        // Use move forward function and renew lists
-        private void btnMoveForward_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                player.GoFoward(getPawnPosition(), getCardSelected());
-                //pawns.First().img.Location = new Point(pnlBoard.Size.Width / 10 * 2, pnlBoard.Size.Height / 5 * 4) ;//board[1].location;
-                //Game.StatusBoard(match, board, DrawPawns);
-                
-                //RefreshList();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
         private void pnlGoBackHome_Click(object sender, EventArgs e)
         {
             this.timer.Stop();

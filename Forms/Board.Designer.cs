@@ -31,9 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Board));
             this.btnSkip = new System.Windows.Forms.Button();
-            this.btnMoveBack = new System.Windows.Forms.Button();
-            this.btnMoveForward = new System.Windows.Forms.Button();
-            this.numChoosePawn = new System.Windows.Forms.NumericUpDown();
             this.lstHandCards = new System.Windows.Forms.ListView();
             this.pnlBoard = new System.Windows.Forms.Panel();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
@@ -41,7 +38,6 @@
             this.lblPirateName = new System.Windows.Forms.Label();
             this.pnlGoBackHome = new System.Windows.Forms.Panel();
             this.pnlPirateImage = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.numChoosePawn)).BeginInit();
             this.pnlBackgroundListHandCards.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,33 +50,6 @@
             this.btnSkip.Text = "Pular vez";
             this.btnSkip.UseVisualStyleBackColor = true;
             this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
-            // 
-            // btnMoveBack
-            // 
-            this.btnMoveBack.Location = new System.Drawing.Point(335, 414);
-            this.btnMoveBack.Name = "btnMoveBack";
-            this.btnMoveBack.Size = new System.Drawing.Size(112, 23);
-            this.btnMoveBack.TabIndex = 3;
-            this.btnMoveBack.Text = "Mover para trás";
-            this.btnMoveBack.UseVisualStyleBackColor = true;
-            this.btnMoveBack.Click += new System.EventHandler(this.btnMoveBack_Click);
-            // 
-            // btnMoveForward
-            // 
-            this.btnMoveForward.Location = new System.Drawing.Point(453, 414);
-            this.btnMoveForward.Name = "btnMoveForward";
-            this.btnMoveForward.Size = new System.Drawing.Size(112, 23);
-            this.btnMoveForward.TabIndex = 4;
-            this.btnMoveForward.Text = "Mover para frente";
-            this.btnMoveForward.UseVisualStyleBackColor = true;
-            this.btnMoveForward.Click += new System.EventHandler(this.btnMoveForward_Click);
-            // 
-            // numChoosePawn
-            // 
-            this.numChoosePawn.Location = new System.Drawing.Point(584, 417);
-            this.numChoosePawn.Name = "numChoosePawn";
-            this.numChoosePawn.Size = new System.Drawing.Size(37, 20);
-            this.numChoosePawn.TabIndex = 5;
             // 
             // lstHandCards
             // 
@@ -170,13 +139,9 @@
             this.Controls.Add(this.pnlBackgroundListHandCards);
             this.Controls.Add(this.btnSkip);
             this.Controls.Add(this.pnlBoard);
-            this.Controls.Add(this.numChoosePawn);
-            this.Controls.Add(this.btnMoveForward);
-            this.Controls.Add(this.btnMoveBack);
             this.Name = "Board";
             this.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.Text = "Board";
-            ((System.ComponentModel.ISupportInitialize)(this.numChoosePawn)).EndInit();
             this.pnlBackgroundListHandCards.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -185,9 +150,6 @@
 
         #endregion
         private System.Windows.Forms.Button btnSkip;
-        private System.Windows.Forms.Button btnMoveBack;
-        private System.Windows.Forms.Button btnMoveForward;
-        private System.Windows.Forms.NumericUpDown numChoosePawn;
         private System.Windows.Forms.ListView lstHandCards;
         private System.Windows.Forms.Panel pnlBoard;
         private System.Windows.Forms.ImageList imageList;
