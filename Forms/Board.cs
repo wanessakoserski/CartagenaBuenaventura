@@ -240,28 +240,44 @@ namespace CartagenaBuenaventura.Forms
             int x, y;
             if (tilePosition == 0)
             {
+                Console.WriteLine("tile 0");
                 // TODO: missing  the possibility of more than one player
                 // pawns on tile 0 need fix in location (x, y)
 
-                x = 0;
-                y = 15;
+                //x = 0;
+                //y = 15;
+
+                int aux = (nthPawn / pawnsPerPlayer);
+                x = (nthPawn == 0) ? 0 : (nthPawn % pawnsPerPlayer == 0) ? (aux - 1) * 35 : aux * 35;
+                y = (nthPawn % pawnsPerPlayer == 0) ? (((aux - 1) / 2) * 45) + 15: ((aux / 2) * 45) + 15;
             }
             else
             {
                 int collum = (tilePosition % 5 == 0) ? (tilePosition / 5) : (tilePosition / 5) + 1;
-                x = (pnlBoard.Size.Width / 10 * 2) + ((collum - 1) * (pnlBoard.Size.Width / 10));
-                y = (collum % 2 == 0) ? pnlBoard.Size.Height / 5 * ((tilePosition % 5 == 0) ? 4 : (tilePosition % 5) - 1) : pnlBoard.Size.Height / 5 * (5 - (tilePosition % 5));
+                int aux;
 
-                Console.WriteLine($"\ncollum: {collum}");
+                if (collum % 2 == 0)
+                {
+                    aux = ((tilePosition % 5 == 0) ? 4 : (tilePosition % 5) - 1);
+                }
+                else
+                {
+                    aux = (5 - ((tilePosition % 5 == 0) ? 5 : tilePosition % 5));
+                }
+
+                x = (pnlBoard.Size.Width / 10 * 2) + ((collum - 1) * (pnlBoard.Size.Width / 10));
+                y = pnlBoard.Size.Height / 5 * aux;
+
+                Console.WriteLine($"collum: {collum}");
                 Console.WriteLine($"board -> x: {tileLocation.X} y: {tileLocation.Y}");
                 Console.WriteLine($"func -> x: {x} y: {y}");
             }
 
             Point location = new Point(x, y);
-            Console.WriteLine($"nthPawn = {nthPawn}\n");
+            Console.WriteLine($"nthPawn = {nthPawn}");
 
-            location.X += (nthPawn % 2 == 0) ? 0 : 15;
-            location.Y += (nthPawn / 2) * 15;
+            location.X = (nthPawn % 2 == 0) ? location.X : location.X + 15;
+            location.Y = location.Y + (nthPawn / 2) * 15;
 
             return location;
         }
@@ -286,7 +302,7 @@ namespace CartagenaBuenaventura.Forms
                 int numPawns = int.Parse(aux[2]);
 
                 Point tileLocation = board[tileNum].location;
-
+                Console.WriteLine($"\n i: {i} >>>");
                 if (!pawnsOnTile.ContainsKey(tileNum))
                 {
                     pawnsOnTile.Add(tileNum, new List<Pawn>());
@@ -297,7 +313,6 @@ namespace CartagenaBuenaventura.Forms
                 for (int j = 0; j < numPawns; j++)
                 {
                     playerPawns[j].img.Location = PawnLocation(tileLocation, tileNum, j, 6);
-                    Console.WriteLine($"X: {playerPawns.First().img.Location.X} Y:{playerPawns.First().img.Location.Y}");
                 }
                 auxPawns.RemoveRange(0, numPawns);
             }
