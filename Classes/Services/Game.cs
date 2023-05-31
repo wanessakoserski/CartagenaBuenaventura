@@ -282,6 +282,7 @@ namespace CartagenaBuenaventura.Classes
                 .Replace("\r", "")
                 .Split('\n')
                 .ToList();
+            statusBoard.RemoveAt(statusBoard.Count() - 1);
 
             // manipulate List<Tile> board with pawns new positions or not if they stay the same
             if (CallBack != null && board != null) { CallBack(statusBoard, board); }
