@@ -33,5 +33,35 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             //        return;
             //}
         }
+
+        // Evaluate the user pawns average position compared to the board average position
+        // return the ration between the user and the whole board average pawns position
+        private int AveragePosition(Dictionary<int, int> pAverage = null)
+        {
+            Dictionary<int, int> playersAverage = new Dictionary<int, int>();  // <id, average panws position>
+            int boardAverage = 0;
+            int totalPawns = 0;
+            int i;
+
+            for (i = 0; i < boardState.Count; i++)
+            {
+                totalPawns += boardState[i].amount;
+                boardAverage += boardState[i].position * boardState[i].amount;
+                playersAverage[(int)boardState[i].player.id] += boardState[i].position * boardState[i].amount;
+            }
+
+            int pawnsPerPlayer = totalPawns / match.players.Count;
+
+            for (i = 0; i < match.players.Count; i++)
+            {
+                playersAverage[(int)match.players[i].id] /= pawnsPerPlayer;
+            }
+
+            if (pAverage != null) { pAverage = playersAverage; }
+            boardAverage /= totalPawns;
+
+            // value > 1 (above), value < 1 (bellow), value == 1 (average)
+            return (playersAverage[(int)match.user.id] / boardAverage);
+        }
     }
 }
