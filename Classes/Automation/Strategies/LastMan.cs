@@ -9,9 +9,12 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
     internal class LastMan : Strategy
     {
         private List<Locus> boardState;
-        public LastMan(Match match) : base(match) 
+        private List<Tile> board;
+
+        public LastMan(Match match, List<Tile> board) : base(match) 
         {
-            boardState = Game.BoardSituation(match);
+            this.boardState = Game.BoardSituation(match);
+            this.board = board;
         }
 
         public override (int, string) makeMovement(int turn, int round)
@@ -62,6 +65,32 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
 
             // value > 1 (above), value < 1 (bellow), value == 1 (average)
             return (playersAverage[(int)match.user.id] / boardAverage);
+        }
+
+        // return a list (dictionary) of one tile of each symbol ahead of the position passed as param that have
+        // atleast one pawn in it
+        private List<string> CheckPawnsAhead(int position)
+        {
+            List<string> possibilities = new List<string>();
+            List<Locus> ahead = boardState.FindAll(locus => { return locus.position > position; });
+            Dictionary<string, int> tilesAhead = new Dictionary<string, int>();  // <symbol, position>
+
+            for (int i = position; (i < this.board.Count) && (tilesAhead.Count < 6); i++)
+            {
+                if (!tilesAhead.ContainsKey(board[i].symbol))
+                {
+                    tilesAhead.Add(board[i].symbol, board[i].position);
+                }
+            }
+
+            for (int i = 0; i < ahead.Count; i++)
+            {
+                if (tilesAhead.ContainsValue(ahead[i].position))
+                {
+                    possibilities.Add(tilesAhead.First(x => x.Value == ahead[i].position).Key);
+                }
+            }
+            return possibilities;
         }
     }
 }
