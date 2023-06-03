@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,6 +92,39 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 }
             }
             return possibilities;
+        }
+
+        // return a list (positon, amount) of the the imediate three tiles behind the position passed as param
+        // that have 2 or 1 pawn in it
+        private List<(int, int)> CheckPawnsBehind(int position)
+        {
+            List<(int position, int amount)> possibilities = new List<(int, int)>();
+            List<Locus> behind = boardState.FindAll(locus => { return locus.position != 0 && locus.position < position; });
+            Dictionary<int, int> tilesBehind = new Dictionary<int, int>();   // <position, number of pawns>
+
+            for (int i = 0; i < behind.Count; i++)
+            {
+                if (!tilesBehind.ContainsKey(behind[i].position))
+                {
+                    tilesBehind.Add(behind[i].position, behind[i].amount);
+                }
+                else
+                {
+                    tilesBehind[behind[i].position] += behind[i].amount;
+                }
+            }
+
+            foreach (KeyValuePair<int, int> x in tilesBehind)
+            {
+                if (x.Value < 3)    // less than 3 pawns on tile
+                {
+                    possibilities.Add((x.Key, x.Value));
+                }
+            }
+
+            possibilities.Sort((a, b) => b.CompareTo(a));   // sort in descending order
+
+            return (List<(int position, int amount)>)possibilities.Take(3);
         }
     }
 }
