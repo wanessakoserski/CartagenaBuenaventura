@@ -76,6 +76,7 @@ namespace CartagenaBuenaventura.Classes
         }
 
         // return pawns position of the respective player
+        /* ONLY STILL HERE FOR VIEWING */
         private List<Locus> getPawns(Player p)
         {
             List<Locus> pawns = new List<Locus>();

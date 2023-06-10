@@ -359,13 +359,30 @@ namespace CartagenaBuenaventura.Forms
             }
         }
 
+        // verify if there is a winner 
+        // in case of a winner, it stops the timer and the robot and declare the winner
+        private void VerifyWinner()
+        {
+            (bool isThereAWinner, Player winner) verifyGame = Game.VerifyWinner(this.match);
+            if (verifyGame.isThereAWinner)
+            {
+                this.timer.Stop();
+                this.timer = null;
+                this.robot = null;
+
+                lblPirateName.Text = "Winner: " + verifyGame.winner.name;
+                pnlPirateImage.BackgroundImage = Properties.Resources.winner;
+            }
+        }
+
         // Display information on board during a game
         private async void RefreshBoard(object sender, EventArgs e)
         {
             Game.StatusBoard(match, board, DrawPawns);
             RefreshPirateTurn();
-            await Task.Delay(5 * 1000);
+            VerifyWinner();
             Console.WriteLine("board");
+            await Task.Delay(5 * 1000);
         }
 
         // Display information on board during a game
@@ -382,6 +399,8 @@ namespace CartagenaBuenaventura.Forms
             await Task.Delay(5 * 1000);
         }
 
+
+        // as soon as redirected, the timer and robot is stopped
         private void pnlGoBackHome_Click(object sender, EventArgs e)
         {
             this.timer.Stop();
