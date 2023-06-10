@@ -23,7 +23,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             // (1) opportunist -> move back (preferably most advanced pawns) if there is an opportunity
             // (2) conservative -> move foward least advanced pawns
             // (3) desesperate -> move back most advanced pawns if there is few or no cards available
-            
+
             //switch (round)  maybe not needed
             //{
             //    case 1:
@@ -35,6 +35,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             //    default:
             //        return;
             //}
+            return (-1, "");
         }
 
         // Evaluate the user pawns average position compared to the board average position
