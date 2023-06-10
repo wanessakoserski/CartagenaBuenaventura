@@ -26,11 +26,7 @@ namespace CartagenaBuenaventura.Forms
 
             if(this.match.user == null && player != null)
                 this.match.user = player;
-
-            if (this.match.user == null)
-                pnlStartMatch.Visible = false;
-            else 
-                btnEnterTheMatch.Visible = false;
+ 
 
             if (this.match.status == enums.MatchStatus.InProgress || this.match.status == enums.MatchStatus.Close)
             {
@@ -42,6 +38,12 @@ namespace CartagenaBuenaventura.Forms
                 pnlGoToBoard.Visible = false;
                 btnEnterTheMatch.Visible = true;
             }
+
+
+            if (player == null)
+                pnlStartMatch.Visible = false;
+            else
+                btnEnterTheMatch.Visible = false;
 
             ShowListPlayers();
         }
