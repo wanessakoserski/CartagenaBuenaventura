@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace CartagenaBuenaventura.Classes.Automation.Strategies
 {
@@ -170,6 +171,65 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             possibilities.Sort((a, b) => b.position.CompareTo(a.position));   // sort in descending order
 
             return (List<(int position, int amount)>)possibilities.Take(n);
+        }
+
+        // Check if the last 3 pawns are close together or not. If so, check the best opportunity between them
+        // to move foward, else retrive the best case scenario for the "last man" to move ahead
+        private (int, string) OpportunitiesAhead()
+        {
+            (string, int) BestMove(int pawnPosition, List<string> cards)
+            {
+                (string symbol, int amount) bestOption = (null, -1);
+                Dictionary<string, List<int>> tilesAhead = this.CheckPawnsAhead(pawns[0].position);
+
+                foreach (KeyValuePair<string, List<int>> tile in tilesAhead)
+                {
+                    if ((cards.Contains(tile.Key)) && (tile.Value.Count > bestOption.amount))
+                    {
+                        bestOption = (tile.Key, tile.Value.Count);
+                    }
+                }
+
+                return bestOption;
+            }
+
+            List<string> c = new List<string>();
+
+            foreach ((string symbol, int amount) in cards)
+            {
+                c.Add(symbol);
+            }
+
+            if (pawns[1].position - pawns[0].position < 4)
+            {
+                List<(string symbol, int seqAmount)> moveOptions = new List<(string, int)>();
+                int i = 0;
+
+                if (pawns[2].position - pawns[1].position < 4)
+                {
+                    for (; i < 3; i++) { moveOptions.Add(BestMove(pawns[i].position, c)); }
+                }
+                else
+                {
+                    for (; i < 2; i++) { moveOptions.Add(BestMove(pawns[i].position, c)); }
+                }
+
+                //moveOptions.Sort((a, b) => b.Item2.CompareTo(a.Item2));
+                (int pawn, int seqAmount) pawnWithBestOp = (0, 0);
+
+                for (i = 0; i < moveOptions.Count; i++)
+                {
+                    if (moveOptions[i].seqAmount > pawnWithBestOp.seqAmount)
+                    {
+                        pawnWithBestOp = (i, moveOptions[i].seqAmount);
+                    }
+                }
+                return (pawnWithBestOp.pawn, moveOptions[pawnWithBestOp.pawn].symbol);
+            }
+            else
+            {
+                return (0, BestMove(pawns[0].position, c).Item1);
+            }
         }
     }
 }
