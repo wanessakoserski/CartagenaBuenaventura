@@ -272,6 +272,13 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             return (bestOpportunity.pawnPos == 0 || bestOpportunity.amount == 0) ? -1 : bestOpportunity.pawnPos;
         }
 
+        // check the type of cards with the biggest quantity and play it with the last man
+        private (int, string) StandardMovement()
+        {
+            cards.Sort((a, b) => b.Item2.CompareTo(a.Item2));   // sort cards by descending order of quantity
+            return (0, cards.First().Item1);
+        }
+
         //
         private (int, string) EvaluateDecision()
         {
@@ -280,6 +287,8 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
 
             bool lowNumCards = (numCards < 3);
             bool lowAvrgPosition = (averagePosition < 1);
+
+
 
             if (lowNumCards)
             {
@@ -291,7 +300,9 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                     if (bestMoveOption.Item1 < 0 || bestMoveOption.Item2 == null)
                     {
                         //buy cards
-                        return (this.OpportunityBehind(), "");
+                        bestMoveOption = (this.OpportunityBehind(), "");
+                        if (bestMoveOption.Item1 == -1) { return this.StandardMovement(); }
+                        else { return bestMoveOption; }
                     }
                     else
                     {
@@ -301,7 +312,9 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 else
                 {
                     // buy cards
-                    return (this.OpportunityBehind(), "");
+                    (int, string) bestMoveOption = (this.OpportunityBehind(), "");
+                    if (bestMoveOption.Item1 == -1) { return this.StandardMovement(); }
+                    else { return bestMoveOption; }
                 }
             }
             else
@@ -313,9 +326,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                     (int, string) bestMoveOption = this.OpportunitiesAhead();
                     if (bestMoveOption.Item1 < 0 || bestMoveOption.Item2 == null)
                     {
-                        // check the type of cards with the biggest quantity and play it with the last man
-                        cards.Sort((a, b) => b.Item2.CompareTo(a.Item2));   // sort cards by descending order of quantity
-                        return (0, cards.First().Item1);
+                        return this.StandardMovement();
                     }
                     else
                     {
@@ -331,7 +342,9 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                     if (bestMoveOption.Item1 < 0 || bestMoveOption.Item2 == null)
                     {
                         //buy cards
-                        return (this.OpportunityBehind(), "");
+                        bestMoveOption = (this.OpportunityBehind(), "");
+                        if (bestMoveOption.Item1 == -1) { return this.StandardMovement(); }
+                        else { return bestMoveOption; }
                     }
                     else
                     {
