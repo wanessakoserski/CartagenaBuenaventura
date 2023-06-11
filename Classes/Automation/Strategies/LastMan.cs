@@ -279,6 +279,15 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             return (0, cards.First().Item1);
         }
 
+        // Check if it is possible to buy cards by moving back one of the pawns, if so return the best option of
+        // movement, else in the case it isnt return the StandardMovement
+        private (int, string) BuyCardsMovement()
+        {
+            (int, string) bestMoveOption = (this.OpportunityBehind(), "");
+            if (bestMoveOption.Item1 == -1) { return this.StandardMovement(); }
+            else { return bestMoveOption; }
+        }
+
         //
         private (int, string) EvaluateDecision()
         {
