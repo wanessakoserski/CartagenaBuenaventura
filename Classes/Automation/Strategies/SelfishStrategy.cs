@@ -9,8 +9,8 @@ namespace CartagenaBuenaventura.Classes.Automation
 {
     enum Select
     {
-        highestRepetition,
-        lowestRepetition
+        highest,
+        lowest
     }
 
     internal class SelfishStrategy : Strategy
@@ -37,17 +37,17 @@ namespace CartagenaBuenaventura.Classes.Automation
 
         private (int, string) moveForward()
         {
-            Locus position = getPawns(this.player).OrderBy(move => move.position).FirstOrDefault();
-            string card = chooseCard(Select.highestRepetition);
+            int position = choosePosition(Select.lowest);
+            string card = chooseCard(Select.highest);
 
-            return (Convert.ToInt32(position.position), card);
+            return (position, card);
         }
 
         private (int, string) moveBack()
         {
-            Locus position = getPawns(this.player).OrderByDescending(move => move.position).FirstOrDefault();
+            int position = choosePosition(Select.highest);
 
-            return (Convert.ToInt32(position.position), "");
+            return (position, "");
         }
 
         private string chooseCard(Select select)
@@ -55,7 +55,7 @@ namespace CartagenaBuenaventura.Classes.Automation
             List<(string card, int count)> cards = this.player.ShowHandCounting();
             (string symbol, int count) card = cards.FirstOrDefault();
 
-            if (select == Select.highestRepetition)
+            if (select == Select.highest)
             {
                 foreach (var each in cards)
                 {
@@ -65,7 +65,7 @@ namespace CartagenaBuenaventura.Classes.Automation
                     }
                 }
             }
-            else
+            else // if (select == Select.lowest)
             {
                 foreach (var each in cards)
                 {
@@ -77,6 +77,22 @@ namespace CartagenaBuenaventura.Classes.Automation
             }
 
             return card.symbol;
+        }
+
+        private int choosePosition(Select select)
+        {
+            Locus position;
+
+            if (select == Select.highest)
+            {
+                position = getPawns(this.player).OrderByDescending(move => move.position).FirstOrDefault();
+            }
+            else // if (select == Select.lowest)
+            {
+                position = getPawns(this.player).OrderBy(move => move.position).FirstOrDefault();
+            }
+
+            return Convert.ToInt32(position.position);
         }
     }
 }

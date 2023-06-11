@@ -53,7 +53,7 @@ namespace CartagenaBuenaventura.Forms
 
             timer.Tick += RefreshBoard;
             timer.Start();
-            RefeshPirateTurn();
+            RefreshPirateTurn();
         }
 
         // Receives a letter from an object and returns an image of the respective object
@@ -332,36 +332,8 @@ namespace CartagenaBuenaventura.Forms
             lstHandCards.View = View.LargeIcon;
         }
 
-        // Display information on board during a game
-        private async void RefreshBoard(object sender, EventArgs e)
-        {
-            // TODO: Implement here the code to refresh the board
-
-            //if (this.player != null) { DrawHandCards(); }
-
-            //PawnMovement();
-            //await Game.VerifyTurn(match, moves, PawnMovement);
-            Game.StatusBoard(match, board, DrawPawns);
-            await Task.Delay(5 * 1000);
-            Console.WriteLine("board");
-        }
-
-        // Display information on board during a game
-        private async void RefreshList(object sender, EventArgs e)
-        {
-            bool turnFinish = await robot.Verifying();
-
-            if (turnFinish)
-            {
-                DrawHandCards();
-                Console.WriteLine("mão impressa");
-            }
-
-            await Task.Delay(5 * 1000);
-        }
-
         // Get information to show whose turn it is
-        private void RefeshPirateTurn()
+        private void RefreshPirateTurn()
         {
             Player playerTurn = Game.VerifyWhoseTurn(this.match);
             lblPirateName.Text = playerTurn.name;
@@ -387,6 +359,48 @@ namespace CartagenaBuenaventura.Forms
             }
         }
 
+        // verify if there is a winner 
+        // in case of a winner, it stops the timer and the robot and declare the winner
+        private void VerifyWinner()
+        {
+            (bool isThereAWinner, Player winner) verifyGame = Game.VerifyWinner(this.match);
+            if (verifyGame.isThereAWinner)
+            {
+                this.timer.Stop();
+                this.timer = null;
+                this.robot = null;
+
+                lblPirateName.Text = "Winner: " + verifyGame.winner.name;
+                pnlPirateImage.BackgroundImage = Properties.Resources.winner;
+            }
+        }
+
+        // Display information on board during a game
+        private async void RefreshBoard(object sender, EventArgs e)
+        {
+            Game.StatusBoard(match, board, DrawPawns);
+            RefreshPirateTurn();
+            VerifyWinner();
+            Console.WriteLine("board");
+            await Task.Delay(5 * 1000);
+        }
+
+        // Display information on board during a game
+        private async void RefreshList(object sender, EventArgs e)
+        {
+            bool turnFinish = await robot.Verifying();
+
+            if (turnFinish)
+            {
+                DrawHandCards();
+                Console.WriteLine("mão impressa");
+            }
+
+            await Task.Delay(5 * 1000);
+        }
+
+
+        // as soon as redirected, the timer and robot is stopped
         private void pnlGoBackHome_Click(object sender, EventArgs e)
         {
             this.timer.Stop();

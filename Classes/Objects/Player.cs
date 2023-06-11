@@ -62,6 +62,24 @@ namespace CartagenaBuenaventura.Classes
             return h;
         }
 
+        public int HandCardCount()
+        {
+            int count = 0;
+
+            List<string> cards = Jogo.ConsultarMao(Convert.ToInt32(id), password)
+                .Replace("\r", "")
+                .Split('\n')
+                .ToList<string>();
+            cards.RemoveAt(cards.Count() - 1);
+
+            foreach (string card in cards)
+            {
+                count++;
+            }
+
+            return count;
+        }
+
         // Receive one pawn position and the symbol of what card should be played and
         // move the pawn to the next open tile with this symbol
         public void GoFoward(int pawnPosition, string symbol) 
