@@ -113,15 +113,16 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 }
                 else
                 {
-                    foreach (int pos in tAhead.Value)
+                    //foreach (int pos in tAhead.Value)
+                    for (int j = 0; j < tAhead.Value.Count; j++)
                     {
-                        if (ahead.Find(x => x.position == pos) == null)
+                        if (ahead.Find(x => x.position == tAhead.Value[j]) == null)
                         {
-                            if (tAhead.Value.Count > pos) 
+                            if (tAhead.Value.Count > j) 
                             {
-                                tAhead.Value.RemoveRange(pos, tAhead.Value.Count);
-                                break;
+                                tAhead.Value.RemoveRange(j, tAhead.Value.Count - j);
                             }
+                            break;
                         }
                     }
                 }
@@ -132,6 +133,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 auxTilesAhead[tAhead.Key] = tilesAhead[tAhead.Key];
             }
 
+            Console.WriteLine($"checkPawnsAhead: {auxTilesAhead.Count}");
             return auxTilesAhead;
 
             //for (i = 0; i < ahead.Count; i++)
@@ -190,7 +192,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             if (possibilities.Count < n) { return  possibilities; }
             else
             {
-                possibilities.RemoveRange(n, possibilities.Count);
+                possibilities.RemoveRange(n, possibilities.Count - n);
                 return possibilities;
             }
             
