@@ -269,7 +269,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 }
             }
 
-            return bestOpportunity.pawnPos;
+            return (bestOpportunity.pawnPos == 0 || bestOpportunity.amount == 0) ? -1 : bestOpportunity.pawnPos;
         }
 
         //
