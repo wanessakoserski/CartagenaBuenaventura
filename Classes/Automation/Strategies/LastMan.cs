@@ -38,7 +38,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             this.pawns = this.getPawns(this.player);    // TODO: eliminar os que estão no barco
             this.pawns.Sort((a, b) => a.position.CompareTo(b.position)); // sort in ascendent order
 
-            //return this.EvaluateDecision();
+            return this.EvaluateDecision();
         }
 
         // Evaluate the user pawns average position compared to the board average position
@@ -246,6 +246,75 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             }
 
             return bestOpportunity.pawnPos;
+        }
+
+        //
+        private (int, string) EvaluateDecision()
+        {
+            int averagePosition = this.AveragePosition();
+            int numCards = cards.Count;
+
+            bool lowNumCards = (numCards < 3);
+            bool lowAvrgPosition = (averagePosition < 1);
+
+            if (lowNumCards)
+            {
+                if (lowAvrgPosition)
+                {
+                    // look for oportunities
+                    // if oportunities bad, then buy cards
+                    (int, string) bestMoveOption = this.OpportunitiesAhead();
+                    if (bestMoveOption.Item1 < 0 || bestMoveOption.Item2 == null)
+                    {
+                        //buy cards
+                        return (this.OpportunityBehind(), "");
+                    }
+                    else
+                    {
+                        return bestMoveOption;
+                    }
+                }
+                else
+                {
+                    // buy cards
+                    return (this.OpportunityBehind(), "");
+                }
+            }
+            else
+            {
+                if (lowAvrgPosition)
+                {
+                    // look oportunities
+                    // advance
+                    (int, string) bestMoveOption = this.OpportunitiesAhead();
+                    if (bestMoveOption.Item1 < 0 || bestMoveOption.Item2 == null)
+                    {
+                        // check the type of cards with the biggest quantity and play it with the last man
+                        cards.Sort((a, b) => b.Item2.CompareTo(a.Item2));   // sort cards by descending order of quantity
+                        return (0, cards.First().Item1);
+                    }
+                    else
+                    {
+                        return bestMoveOption;
+                    }
+
+                }
+                else
+                {
+                    // look for oportunities
+                    // if oportunities bad, then buy cards
+                    (int, string) bestMoveOption = this.OpportunitiesAhead();
+                    if (bestMoveOption.Item1 < 0 || bestMoveOption.Item2 == null)
+                    {
+                        //buy cards
+                        return (this.OpportunityBehind(), "");
+                    }
+                    else
+                    {
+                        return bestMoveOption;
+                    }
+                }
+            }
         }
     }
 }
