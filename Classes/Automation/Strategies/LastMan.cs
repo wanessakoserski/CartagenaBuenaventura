@@ -72,28 +72,71 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
 
         // return a list (dictionary) of one tile of each symbol ahead of the position passed as param that have
         // atleast one pawn in it
-        private List<string> CheckPawnsAhead(int position)
+        private Dictionary<string, List<int>> CheckPawnsAhead(int position)
         {
-            List<string> possibilities = new List<string>();
+            List<(string symbol, int amount)> possibilities = new List<(string, int)>();    // amount of tiles in sequence of a symbol that have atlest one pawn in it
+            //Dictionary<string, int> auxAhead = new Dictionary<string, int>();
             List<Locus> ahead = boardState.FindAll(locus => { return locus.position > position; });
-            Dictionary<string, int> tilesAhead = new Dictionary<string, int>();  // <symbol, position>
+            //Dictionary<string, int> tilesAhead = new Dictionary<string, int>();  // <symbol, position>
+            Dictionary<string, List<int>> tilesAhead = new Dictionary<string, List<int>>();  // <symbol, positions>
 
-            for (int i = position; (i < this.board.Count) && (tilesAhead.Count < 6); i++)
+            int i;
+
+            for (i = position; (i < this.board.Count) /*&& (tilesAhead.Count < 6)*/; i++)
             {
                 if (!tilesAhead.ContainsKey(board[i].symbol))
                 {
-                    tilesAhead.Add(board[i].symbol, board[i].position);
+                    tilesAhead.Add(board[i].symbol, new List<int>() { board[i].position });
                 }
-                }
-
-            for (int i = 0; i < ahead.Count; i++)
-            {
-                if (tilesAhead.ContainsValue(ahead[i].position))
+                else
                 {
-                    possibilities.Add(tilesAhead.First(x => x.Value == ahead[i].position).Key);
+                    tilesAhead[board[i].symbol].Add(board[i].position);
                 }
+            }
+
+            foreach (KeyValuePair<string, List<int>> tAhead in tilesAhead)
+            {
+                if (ahead.Find(x => x.position == tAhead.Value.First()) == null)
+                {
+                    tilesAhead.Remove(tAhead.Key);
+                }
+                else
+                {
+                    foreach (int pos in tAhead.Value)
+                    {
+                        if (ahead.Find(x => x.position == pos) == null)
+                        {
+                            tAhead.Value.RemoveRange(pos, tAhead.Value.Count);
+                            break;
                         }
-            return possibilities;
+                    }
+                }
+            }
+
+            return tilesAhead;
+
+            //for (i = 0; i < ahead.Count; i++)
+            //{
+            //    auxAhead.Add(this.board[ahead[i].position].symbol, ahead[i].position);
+            //}
+
+            //for (i = 0; i < ahead.Count; i++)
+            //{
+            //    if (tilesAhead.ContainsValue(ahead[i].position))
+            //    {
+            //        tilesAhead.
+            //        possibilities.Add(tilesAhead.First(x => x.Value == ahead[i].position).Key);
+            //    }
+            //}
+
+            //for (i = 0; i < possibilities.Count; i++)
+            //{
+            //    List<Locus> auxAhead = ahead.FindAll(x => this.board[x.position].symbol == possibilities[i]);
+
+
+            //}
+
+            //return possibilities;
         }
 
         // return a list (positon, amount) of the the imediate three tiles behind the position passed as param
