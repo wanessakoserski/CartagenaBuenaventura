@@ -309,9 +309,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                     if (bestMoveOption.Item1 < 0 || bestMoveOption.Item2 == null)
                     {
                         //buy cards
-                        bestMoveOption = (this.OpportunityBehind(), "");
-                        if (bestMoveOption.Item1 == -1) { return this.StandardMovement(); }
-                        else { return bestMoveOption; }
+                        return this.BuyCardsMovement();
                     }
                     else
                     {
@@ -321,9 +319,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 else
                 {
                     // buy cards
-                    (int, string) bestMoveOption = (this.OpportunityBehind(), "");
-                    if (bestMoveOption.Item1 == -1) { return this.StandardMovement(); }
-                    else { return bestMoveOption; }
+                    return this.BuyCardsMovement();
                 }
             }
             else
@@ -351,9 +347,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                     if (bestMoveOption.Item1 < 0 || bestMoveOption.Item2 == null)
                     {
                         //buy cards
-                        bestMoveOption = (this.OpportunityBehind(), "");
-                        if (bestMoveOption.Item1 == -1) { return this.StandardMovement(); }
-                        else { return bestMoveOption; }
+                        return this.BuyCardsMovement();
                     }
                     else
                     {
