@@ -88,6 +88,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             List<Locus> ahead = boardState.FindAll(locus => { return locus.position > position; });
             //Dictionary<string, int> tilesAhead = new Dictionary<string, int>();  // <symbol, position>
             Dictionary<string, List<int>> tilesAhead = new Dictionary<string, List<int>>();  // <symbol, positions>
+            Dictionary<string, List<int>> auxTilesAhead = new Dictionary<string, List<int>>(tilesAhead);
 
             int i;
 
@@ -107,7 +108,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             {
                 if (ahead.Find(x => x.position == tAhead.Value.First()) == null)
                 {
-                    tilesAhead.Remove(tAhead.Key);
+                    auxTilesAhead.Remove(tAhead.Key);
                 }
                 else
                 {
@@ -122,7 +123,12 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 }
             }
 
-            return tilesAhead;
+            foreach (KeyValuePair<string, List<int>> tAhead in auxTilesAhead)
+            {
+                auxTilesAhead[tAhead.Key] = tilesAhead[tAhead.Key];
+            }
+
+            return auxTilesAhead;
 
             //for (i = 0; i < ahead.Count; i++)
             //{
