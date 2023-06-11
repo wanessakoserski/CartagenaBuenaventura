@@ -54,7 +54,14 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             {
                 totalPawns += boardState[i].amount;
                 boardAverage += boardState[i].position * boardState[i].amount;
-                playersAverage[(int)boardState[i].player.id] += boardState[i].position * boardState[i].amount;
+                if (playersAverage.ContainsKey((int)boardState[i].player.id))
+                {
+                    playersAverage[(int)boardState[i].player.id] += boardState[i].position * boardState[i].amount;
+                }
+                else
+                {
+                    playersAverage.Add((int)boardState[i].player.id, boardState[i].position * boardState[i].amount);
+                }
             }
 
             int pawnsPerPlayer = totalPawns / match.players.Count;
