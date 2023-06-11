@@ -75,6 +75,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             boardAverage /= totalPawns;
 
             // value > 1 (above), value < 1 (bellow), value == 1 (average)
+            if (boardAverage == 0) { return 1; }
             return (playersAverage[(int)match.user.id] / boardAverage);
         }
 
