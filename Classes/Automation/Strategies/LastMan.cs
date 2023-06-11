@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,11 +12,16 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
     {
         private List<Locus> boardState;
         private List<Tile> board;
+        private List<(string, int)> cards;
+        List<Locus> pawns;
 
-        public LastMan(Match match, List<Tile> board) : base(match) 
+        public LastMan(Match match, List<Tile> board) : base(match)
         {
-            this.boardState = Game.BoardSituation(match);
+            //this.boardState = Game.BoardSituation(match);
             this.board = board;
+            //cards = this.player.ShowHandCounting();
+            //pawns = this.getPawns(this.player);
+            //pawns.Sort((a, b) => b.position.CompareTo(a.position)); // sort in descending order
         }
 
         public override (int, string) makeMovement(int turn, int round)
@@ -24,18 +30,14 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             // (1) opportunist -> move back (preferably most advanced pawns) if there is an opportunity
             // (2) conservative -> move foward least advanced pawns
             // (3) desesperate -> move back most advanced pawns if there is few or no cards available
-            
-            //switch (round)  maybe not needed
-            //{
-            //    case 1:
-            //        return;
-            //    case 2:
-            //        return;
-            //    case 3:
-            //        return;
-            //    default:
-            //        return;
-            //}
+
+
+            this.cards = this.player.ShowHandCounting();
+            this.boardState = Game.BoardSituation(match);
+            this.pawns = this.getPawns(this.player);    // TODO: eliminar os que estão no barco
+            this.pawns.Sort((a, b) => a.position.CompareTo(b.position)); // sort in ascendent order
+
+            //return this.EvaluateDecision();
         }
 
         // Evaluate the user pawns average position compared to the board average position
@@ -82,7 +84,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 {
                     tilesAhead.Add(board[i].symbol, board[i].position);
                 }
-            }
+                }
 
             for (int i = 0; i < ahead.Count; i++)
             {
@@ -90,7 +92,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 {
                     possibilities.Add(tilesAhead.First(x => x.Value == ahead[i].position).Key);
                 }
-            }
+                        }
             return possibilities;
         }
 
