@@ -183,8 +183,14 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             }
 
             possibilities.Sort((a, b) => b.position.CompareTo(a.position));   // sort in descending order
-
-            return (List<(int position, int amount)>)possibilities.Take(n);
+            if (possibilities.Count < n) { return  possibilities; }
+            else
+            {
+                possibilities.RemoveRange(n, possibilities.Count);
+                return possibilities;
+            }
+            
+            //return (List<(int position, int amount)>)possibilities.Take(n);
         }
 
         // Check if the last 3 pawns are close together or not. If so, check the best opportunity between them
