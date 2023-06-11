@@ -139,9 +139,9 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             //return possibilities;
         }
 
-        // return a list (positon, amount) of the the imediate three tiles behind the position passed as param
+        // return a list (positon, amount) of the the imediate n (n > 0) tiles behind the position passed as param
         // that have 2 or 1 pawn in it
-        private List<(int, int)> CheckPawnsBehind(int position)
+        private List<(int, int)> CheckPawnsBehind(int position, int n)
         {
             List<(int position, int amount)> possibilities = new List<(int, int)>();
             List<Locus> behind = boardState.FindAll(locus => { return locus.position != 0 && locus.position < position; });
@@ -167,9 +167,9 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 }
             }
 
-            possibilities.Sort((a, b) => b.CompareTo(a));   // sort in descending order
+            possibilities.Sort((a, b) => b.position.CompareTo(a.position));   // sort in descending order
 
-            return (List<(int position, int amount)>)possibilities.Take(3);
+            return (List<(int position, int amount)>)possibilities.Take(n);
         }
     }
 }
