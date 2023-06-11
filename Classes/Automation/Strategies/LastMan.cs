@@ -117,8 +117,11 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                     {
                         if (ahead.Find(x => x.position == pos) == null)
                         {
-                            tAhead.Value.RemoveRange(pos, tAhead.Value.Count);
-                            break;
+                            if (tAhead.Value.Count > pos) 
+                            {
+                                tAhead.Value.RemoveRange(pos, tAhead.Value.Count);
+                                break;
+                            }
                         }
                     }
                 }
