@@ -231,5 +231,21 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 return (0, BestMove(pawns[0].position, c).Item1);
             }
         }
+
+        // Decides which one of the pawns from the user has the best opportunity to move back and buy cards, then
+        // return its position
+        private int OpportunityBehind()
+        {
+            List<(int, int)> auxBestOp;
+            (int pawnPos, int amount) bestOpportunity = (0, 0);    // <position of the (user) pawn with the best opportunity to go back, amount of pawns behind it>
+
+            for (int i = (pawns.Count - 1); i >= 0; i--)
+            {
+                auxBestOp = this.CheckPawnsBehind(pawns[i].position, 1);
+                bestOpportunity = (bestOpportunity.amount < auxBestOp.First().Item2) ? (i, auxBestOp.First().Item2) : bestOpportunity;
+            }
+
+            return bestOpportunity.pawnPos;
+        }
     }
 }
