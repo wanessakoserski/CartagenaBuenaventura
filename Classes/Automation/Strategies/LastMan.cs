@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace CartagenaBuenaventura.Classes.Automation.Strategies
@@ -262,7 +263,10 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             for (int i = (pawns.Count - 1); i >= 0; i--)
             {
                 auxBestOp = this.CheckPawnsBehind(pawns[i].position, 1);
-                bestOpportunity = (bestOpportunity.amount < auxBestOp.First().Item2) ? (i, auxBestOp.First().Item2) : bestOpportunity;
+                if (auxBestOp != null && auxBestOp.Count != 0)
+                {
+                    bestOpportunity = (bestOpportunity.amount < auxBestOp.First().Item2) ? (i, auxBestOp.First().Item2) : bestOpportunity;
+                }
             }
 
             return bestOpportunity.pawnPos;
