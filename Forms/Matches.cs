@@ -38,6 +38,7 @@ namespace CartagenaBuenaventura.Forms
 
             List<Match> ListMatches = Game.ListMatches();
 
+            int index = 0;
             foreach (Match match in ListMatches)
             {
                 dgdMatches.Rows.Add(new object[]
@@ -48,7 +49,9 @@ namespace CartagenaBuenaventura.Forms
                     match.status
                 });
 
-                dgdMatches.Rows[Convert.ToInt32(match.id) - 1].Tag = match;
+                dgdMatches.Rows[index].Tag = match;
+
+                index++;
             }
 
             dgdMatches.ClearSelection();
