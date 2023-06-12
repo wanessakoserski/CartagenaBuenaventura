@@ -41,13 +41,13 @@
             // 
             // btnEnterTheMatch
             // 
-            this.btnEnterTheMatch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnEnterTheMatch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnEnterTheMatch.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnEnterTheMatch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEnterTheMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnterTheMatch.Font = new System.Drawing.Font("Matura MT Script Capitals", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnterTheMatch.ForeColor = System.Drawing.Color.DarkRed;
-            this.btnEnterTheMatch.Location = new System.Drawing.Point(481, 383);
+            this.btnEnterTheMatch.Location = new System.Drawing.Point(562, 387);
             this.btnEnterTheMatch.Name = "btnEnterTheMatch";
             this.btnEnterTheMatch.Size = new System.Drawing.Size(313, 41);
             this.btnEnterTheMatch.TabIndex = 5;
@@ -71,12 +71,12 @@
             // 
             // pnlRefreshListPlayers
             // 
-            this.pnlRefreshListPlayers.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.pnlRefreshListPlayers.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlRefreshListPlayers.BackColor = System.Drawing.Color.Transparent;
             this.pnlRefreshListPlayers.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.refresh;
             this.pnlRefreshListPlayers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlRefreshListPlayers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlRefreshListPlayers.Location = new System.Drawing.Point(450, 332);
+            this.pnlRefreshListPlayers.Location = new System.Drawing.Point(531, 336);
             this.pnlRefreshListPlayers.Name = "pnlRefreshListPlayers";
             this.pnlRefreshListPlayers.Size = new System.Drawing.Size(25, 20);
             this.pnlRefreshListPlayers.TabIndex = 7;
@@ -89,7 +89,7 @@
             this.pnlGoToBoard.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.eye;
             this.pnlGoToBoard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlGoToBoard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlGoToBoard.Location = new System.Drawing.Point(1136, 12);
+            this.pnlGoToBoard.Location = new System.Drawing.Point(1318, 20);
             this.pnlGoToBoard.Name = "pnlGoToBoard";
             this.pnlGoToBoard.Size = new System.Drawing.Size(67, 45);
             this.pnlGoToBoard.TabIndex = 8;
@@ -102,9 +102,9 @@
             this.pnlStartMatch.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.play;
             this.pnlStartMatch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlStartMatch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlStartMatch.Location = new System.Drawing.Point(579, 219);
+            this.pnlStartMatch.Location = new System.Drawing.Point(675, 137);
             this.pnlStartMatch.Name = "pnlStartMatch";
-            this.pnlStartMatch.Size = new System.Drawing.Size(105, 75);
+            this.pnlStartMatch.Size = new System.Drawing.Size(97, 76);
             this.pnlStartMatch.TabIndex = 9;
             this.pnlStartMatch.Click += new System.EventHandler(this.pnlStartMatch_Click);
             // 
@@ -114,7 +114,7 @@
             this.dgdPlayers.AllowUserToDeleteRows = false;
             this.dgdPlayers.AllowUserToResizeColumns = false;
             this.dgdPlayers.AllowUserToResizeRows = false;
-            this.dgdPlayers.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.dgdPlayers.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dgdPlayers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgdPlayers.BackgroundColor = System.Drawing.Color.RosyBrown;
             this.dgdPlayers.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -131,7 +131,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgdPlayers.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgdPlayers.GridColor = System.Drawing.Color.RosyBrown;
-            this.dgdPlayers.Location = new System.Drawing.Point(481, 300);
+            this.dgdPlayers.Location = new System.Drawing.Point(562, 304);
             this.dgdPlayers.Name = "dgdPlayers";
             this.dgdPlayers.ReadOnly = true;
             this.dgdPlayers.RowHeadersVisible = false;
@@ -151,7 +151,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.ships_duel;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1243, 737);
+            this.ClientSize = new System.Drawing.Size(1422, 917);
             this.Controls.Add(this.dgdPlayers);
             this.Controls.Add(this.pnlStartMatch);
             this.Controls.Add(this.pnlGoToBoard);

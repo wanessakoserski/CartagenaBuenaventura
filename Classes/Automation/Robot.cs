@@ -4,6 +4,7 @@ using System.Linq;
 using MoreLinq;
 using System.Threading.Tasks;
 using CartagenaBuenaventura.Classes.Automation;
+using CartagenaBuenaventura.Classes.Automation.Strategies;
 
 namespace CartagenaBuenaventura.Classes
 {
@@ -14,12 +15,12 @@ namespace CartagenaBuenaventura.Classes
         private int turn;
         private Strategy strategy;
         
-        public Robot(Match match) 
+        public Robot(Match match, List<Tile> board) 
         { 
             this.match = match;
             this.player = this.match.user;
             this.turn = 0;
-            this.strategy = new SelfishStrategy(this.match);
+            this.strategy = new LastMan(this.match, board);
         }
 
         // check if it is your current turn and if it is, execute the game strategy
@@ -47,6 +48,7 @@ namespace CartagenaBuenaventura.Classes
                 for (int round = 1; round <= 3; round++)
                 {
                     (int pawnPosition, string card) = strategy.makeMovement(this.turn, round);
+                    Console.WriteLine($"pPosition: {pawnPosition}, card: {card}");
 
                     if (pawnPosition >= 0 && card != "")
                         this.player.GoFoward(pawnPosition, card);
@@ -76,6 +78,7 @@ namespace CartagenaBuenaventura.Classes
         }
 
         // return pawns position of the respective player
+        /* ONLY STILL HERE FOR VIEWING */
         private List<Locus> getPawns(Player p)
         {
             List<Locus> pawns = new List<Locus>();

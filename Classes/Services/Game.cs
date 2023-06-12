@@ -401,5 +401,21 @@ namespace CartagenaBuenaventura.Classes
 
             return status;
         }
+
+        // return if there is any winners
+        public static (bool, Player) VerifyWinner(Match match)
+        {
+            List<Locus> inBoard = Game.BoardSituation(match);
+            foreach (Locus pawns in inBoard)
+            {
+                if (pawns.position == 37
+                    && pawns.amount == 6)
+                {
+                    return (true, pawns.player);
+                }
+            }
+
+            return (false, null);
+        }
     }
 }
