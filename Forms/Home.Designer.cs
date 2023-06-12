@@ -46,9 +46,9 @@
             this.btnPlayCartagena.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPlayCartagena.Font = new System.Drawing.Font("Sitka Display", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlayCartagena.ForeColor = System.Drawing.Color.White;
-            this.btnPlayCartagena.Location = new System.Drawing.Point(336, 416);
+            this.btnPlayCartagena.Location = new System.Drawing.Point(336, 764);
             this.btnPlayCartagena.Name = "btnPlayCartagena";
-            this.btnPlayCartagena.Size = new System.Drawing.Size(109, 23);
+            this.btnPlayCartagena.Size = new System.Drawing.Size(747, 23);
             this.btnPlayCartagena.TabIndex = 0;
             this.btnPlayCartagena.Text = "Jogar Cartagena";
             this.btnPlayCartagena.UseVisualStyleBackColor = false;
@@ -67,9 +67,9 @@
             this.btnExit.FlatAppearance.BorderSize = 40;
             this.btnExit.Font = new System.Drawing.Font("Sitka Display", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(336, 495);
+            this.btnExit.Location = new System.Drawing.Point(336, 843);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(109, 23);
+            this.btnExit.Size = new System.Drawing.Size(747, 23);
             this.btnExit.TabIndex = 1;
             this.btnExit.Text = "Sair";
             this.btnExit.UseVisualStyleBackColor = false;
@@ -88,12 +88,13 @@
             this.btnHowToPlay.FlatAppearance.BorderSize = 40;
             this.btnHowToPlay.Font = new System.Drawing.Font("Sitka Display", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHowToPlay.ForeColor = System.Drawing.Color.White;
-            this.btnHowToPlay.Location = new System.Drawing.Point(336, 455);
+            this.btnHowToPlay.Location = new System.Drawing.Point(336, 803);
             this.btnHowToPlay.Name = "btnHowToPlay";
-            this.btnHowToPlay.Size = new System.Drawing.Size(109, 23);
+            this.btnHowToPlay.Size = new System.Drawing.Size(747, 23);
             this.btnHowToPlay.TabIndex = 2;
             this.btnHowToPlay.Text = "Como funciona";
             this.btnHowToPlay.UseVisualStyleBackColor = false;
+            this.btnHowToPlay.Visible = false;
             this.btnHowToPlay.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
             this.btnHowToPlay.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
             // 
@@ -106,7 +107,7 @@
             this.Title.Font = new System.Drawing.Font("Harlow Solid Italic", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(106)))), ((int)(((byte)(157)))));
             this.Title.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.Title.Location = new System.Drawing.Point(201, 37);
+            this.Title.Location = new System.Drawing.Point(520, 37);
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(438, 121);
             this.Title.TabIndex = 3;
@@ -121,7 +122,7 @@
             this.Caption.BackColor = System.Drawing.Color.Transparent;
             this.Caption.Font = new System.Drawing.Font("Harlow Solid Italic", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Caption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(252)))), ((int)(((byte)(255)))));
-            this.Caption.Location = new System.Drawing.Point(229, 132);
+            this.Caption.Location = new System.Drawing.Point(548, 132);
             this.Caption.Name = "Caption";
             this.Caption.Size = new System.Drawing.Size(378, 40);
             this.Caption.TabIndex = 4;
@@ -134,7 +135,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(784, 569);
+            this.ClientSize = new System.Drawing.Size(1422, 917);
             this.Controls.Add(this.Caption);
             this.Controls.Add(this.Title);
             this.Controls.Add(this.btnHowToPlay);

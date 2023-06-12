@@ -30,6 +30,10 @@ namespace CartagenaBuenaventura.Forms
         public Board(Match match)
         {
             this.match = match;
+
+            // ensure data is up to date
+            this.match.players = Game.ListPlayers(this.match.id);
+
             this.player = this.match.user;
 
             InitializeComponent();
@@ -336,7 +340,7 @@ namespace CartagenaBuenaventura.Forms
         private void RefreshPirateTurn()
         {
             Player playerTurn = Game.VerifyWhoseTurn(this.match);
-            lblPirateName.Text = (playerTurn == null) ? "Error: playerTurn == null" : playerTurn.name;
+            lblPirateName.Text = playerTurn.name;
 
             Color color = (Color) playerTurn.color;
             switch (color.Name)
@@ -355,6 +359,8 @@ namespace CartagenaBuenaventura.Forms
                     break;
                 case "Brown":
                     pnlPirateImage.BackgroundImage = Properties.Resources.PirateBrown;
+                    break;
+                default:
                     break;
             }
         }
