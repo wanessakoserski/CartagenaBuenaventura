@@ -38,6 +38,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             this.boardState = Game.BoardSituation(match);
             this.pawns = this.getPawns(this.player);    // TODO: eliminar os que estão no barco
             this.pawns.Sort((a, b) => a.position.CompareTo(b.position)); // sort in ascendent order
+            this.pawns.RemoveAll(x => x.position == 37);
 
             return this.EvaluateDecision();
         }
@@ -229,12 +230,12 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 c.Add(symbol);
             }
 
-            if (pawns[1].position - pawns[0].position < 4)
+            if ((this.pawns.Count >= 2) && (pawns[1].position - pawns[0].position < 4))
             {
                 List<(string symbol, int seqAmount)> moveOptions = new List<(string, int)>();
                 int i = 0;
 
-                if (pawns[2].position - pawns[1].position < 4)
+                if ((this.pawns.Count >= 3) && (pawns[2].position - pawns[1].position < 4))
                 {
                     for (; i < 3; i++) { moveOptions.Add(BestMove(pawns[i].position, c)); }
                 }
@@ -244,7 +245,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 }
 
                 //moveOptions.Sort((a, b) => b.Item2.CompareTo(a.Item2));
-                (int pawn, int seqAmount) pawnWithBestOp = (0, 0);
+                (int pawn, int seqAmount) pawnWithBestOp = (-1, 0);
 
                 for (i = 0; i < moveOptions.Count; i++)
                 {
@@ -253,11 +254,11 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                         pawnWithBestOp = (i, moveOptions[i].seqAmount);
                     }
                 }
-                return (pawnWithBestOp.pawn, moveOptions[pawnWithBestOp.pawn].symbol);
+                return (pawnWithBestOp.pawn == -1) ? (-1, null) : (this.pawns[pawnWithBestOp.pawn].position, moveOptions[pawnWithBestOp.pawn].symbol);
             }
             else
             {
-                return (0, BestMove(pawns[0].position, c).Item1);
+                return (this.pawns.Count != 0) ? (this.pawns[0].position, BestMove(pawns[0].position, c).Item1) : (-1, null);
             }
         }
 
@@ -284,7 +285,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
         private (int, string) StandardMovement()
         {
             cards.Sort((a, b) => b.Item2.CompareTo(a.Item2));   // sort cards by descending order of quantity
-            return (this.pawns.First().position, cards.First().Item1);
+            return (this.pawns.Count != 0) ? (this.pawns.First().position, cards.First().Item1) : (-1, null);
         }
 
         // Check if it is possible to buy cards by moving back one of the pawns, if so return the best option of
