@@ -411,7 +411,7 @@ namespace CartagenaBuenaventura.Forms
         // as soon as redirected, the timer and robot is stopped
         private void pnlGoBackHome_Click(object sender, EventArgs e)
         {
-            this.timer.Stop();
+            if (this.timer != null) { this.timer.Stop(); }
             this.timer = null;
             this.robot = null;
             
