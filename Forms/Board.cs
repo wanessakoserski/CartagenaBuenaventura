@@ -336,7 +336,7 @@ namespace CartagenaBuenaventura.Forms
         private void RefreshPirateTurn()
         {
             Player playerTurn = Game.VerifyWhoseTurn(this.match);
-            lblPirateName.Text = playerTurn.name;
+            lblPirateName.Text = (playerTurn == null) ? "Error: playerTurn == null" : playerTurn.name;
 
             Color color = (Color) playerTurn.color;
             switch (color.Name)
@@ -388,7 +388,15 @@ namespace CartagenaBuenaventura.Forms
         // Display information on board during a game
         private async void RefreshList(object sender, EventArgs e)
         {
-            bool turnFinish = await robot.Verifying();
+            bool turnFinish = false;
+            try
+            {
+                turnFinish = await robot.Verifying();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             if (turnFinish)
             {
