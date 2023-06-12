@@ -47,7 +47,7 @@ namespace CartagenaBuenaventura.Forms
             else
             {
                 SetListHandCards();
-                this.robot = new Robot(this.match);
+                this.robot = new Robot(this.match, board);
                 timer.Tick += RefreshList;                
             }
 
