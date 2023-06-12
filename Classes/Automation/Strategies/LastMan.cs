@@ -89,11 +89,10 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             List<Locus> ahead = boardState.FindAll(locus => { return locus.position > position; });
             //Dictionary<string, int> tilesAhead = new Dictionary<string, int>();  // <symbol, position>
             Dictionary<string, List<int>> tilesAhead = new Dictionary<string, List<int>>();  // <symbol, positions>
-            Dictionary<string, List<int>> auxTilesAhead = new Dictionary<string, List<int>>(tilesAhead);
 
             int i;
 
-            for (i = position; (i < this.board.Count) /*&& (tilesAhead.Count < 6)*/; i++)
+            for (i = (position + 1); (i < this.board.Count - 1) /*&& (tilesAhead.Count < 6)*/; i++)
             {
                 if (!tilesAhead.ContainsKey(board[i].symbol))
                 {
@@ -104,6 +103,8 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                     tilesAhead[board[i].symbol].Add(board[i].position);
                 }
             }
+
+            Dictionary<string, List<int>> auxTilesAhead = new Dictionary<string, List<int>>(tilesAhead);
 
             foreach (KeyValuePair<string, List<int>> tAhead in tilesAhead)
             {
@@ -128,13 +129,15 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 }
             }
 
+            Dictionary<string, List<int>> auxTAhd = new Dictionary<string, List<int>>(auxTilesAhead);
+
             foreach (KeyValuePair<string, List<int>> tAhead in auxTilesAhead)
             {
-                auxTilesAhead[tAhead.Key] = tilesAhead[tAhead.Key];
+                auxTAhd[tAhead.Key] = tilesAhead[tAhead.Key];
             }
 
-            Console.WriteLine($"checkPawnsAhead: {auxTilesAhead.Count}");
-            return auxTilesAhead;
+            Console.WriteLine($"checkPawnsAhead: {position}, {auxTAhd.Count}");
+            return auxTAhd;
 
             //for (i = 0; i < ahead.Count; i++)
             //{
@@ -270,7 +273,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
                 auxBestOp = this.CheckPawnsBehind(pawns[i].position, 1);
                 if (auxBestOp != null && auxBestOp.Count != 0)
                 {
-                    bestOpportunity = (bestOpportunity.amount < auxBestOp.First().Item2) ? (i, auxBestOp.First().Item2) : bestOpportunity;
+                    bestOpportunity = (bestOpportunity.amount < auxBestOp.First().Item2) ? (pawns[i].position, auxBestOp.First().Item2) : bestOpportunity;
                 }
             }
 
@@ -281,7 +284,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
         private (int, string) StandardMovement()
         {
             cards.Sort((a, b) => b.Item2.CompareTo(a.Item2));   // sort cards by descending order of quantity
-            return (0, cards.First().Item1);
+            return (this.pawns.First().position, cards.First().Item1);
         }
 
         // Check if it is possible to buy cards by moving back one of the pawns, if so return the best option of
@@ -299,7 +302,7 @@ namespace CartagenaBuenaventura.Classes.Automation.Strategies
             int averagePosition = this.AveragePosition();
             int numCards = cards.Count;
 
-            bool lowNumCards = (numCards < 3);
+            bool lowNumCards = (numCards < 4);
             bool lowAvrgPosition = (averagePosition < 1);
 
 
