@@ -96,4 +96,22 @@ A estratégia adotada, busca preferencialmente avançar os ultimos peões e reto
 \
 &nbsp;
 
+## :radioactive: Errata 
+
+Possíveis bugs que podem peristir:
+- Problema com font: a fonte utilizada sem não identificada pela Windows Forms, assim que inicializada as configurações são mudadas
+  - Mudança de fonte
+  - Mudança de tamanho
+  - Mudança de cor 
+- Problema com sumiço de componente: o Windows Forms redmiciona toda vez que o projeto é compilado, teoricamente para de adaptar ao seu computador
+  - Não encontrou componente
+  - Componente desalinhado
+  - Component não acessível ou não facilmente acessível 
+- Erro de resx: não encontrou a image que ele tentou reederizar
+
+#### Como pode ser resolvido?
+- Essas configurações estão declaradas no `.Desing` dos Forms, porque foi configurado visualmente. Para contornar isso, o melhor seria configurar isso pelo `.cs` do Forms
+
+#### Por que não foi resolvido ainda?
+- Durante a programação do projeto não ocorreu tanto esses erros, pois foi feito uma configuração enviesada aos nosso computadores. Apenas for percebido que este problema era grave quando começamos a testar em outras máquinas para teste do bot
 
