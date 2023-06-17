@@ -80,15 +80,19 @@ namespace CartagenaBuenaventura.Forms
         private void btnEnterMatch_Click(object sender, EventArgs e)
         {
             Player player = new Player();
+            bool enter = false;
             using (EnterMatchDialog enterMatchDialog = new EnterMatchDialog(this, GetSelectedMatch()))
             {
                 if (enterMatchDialog.ShowDialog() == DialogResult.OK)
                 {
                     Console.WriteLine("works");
                     player = enterMatchDialog.getPlayer();
+                    enter = true;
                 }
             }
-            Panel.getInstance().ChangeForm(this, new Lobby(GetSelectedMatch(), player));
+
+            if (enter)
+                Panel.getInstance().ChangeForm(this, new Lobby(GetSelectedMatch(), player));
         }
 
         // Get current clicked match on matches list

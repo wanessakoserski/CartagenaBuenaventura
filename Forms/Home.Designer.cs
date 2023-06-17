@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.btnPlayCartagena = new CartagenaBuenaventura.Classes.RoundButton();
             this.btnExit = new CartagenaBuenaventura.Classes.RoundButton();
             this.btnHowToPlay = new CartagenaBuenaventura.Classes.RoundButton();
@@ -133,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.desert_anchor;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1154, 535);
             this.Controls.Add(this.Caption);

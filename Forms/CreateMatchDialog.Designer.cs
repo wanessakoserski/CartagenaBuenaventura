@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateMatchDialog));
             this.lblMatchName = new System.Windows.Forms.Label();
             this.txtMatchName = new System.Windows.Forms.TextBox();
             this.lblMatchPassword = new System.Windows.Forms.Label();
@@ -41,11 +40,11 @@
             // 
             this.lblMatchName.AutoSize = true;
             this.lblMatchName.BackColor = System.Drawing.Color.Transparent;
-            this.lblMatchName.Font = new System.Drawing.Font("Bauhaus 93", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMatchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMatchName.ForeColor = System.Drawing.Color.Maroon;
             this.lblMatchName.Location = new System.Drawing.Point(225, 29);
             this.lblMatchName.Name = "lblMatchName";
-            this.lblMatchName.Size = new System.Drawing.Size(47, 18);
+            this.lblMatchName.Size = new System.Drawing.Size(51, 20);
             this.lblMatchName.TabIndex = 0;
             this.lblMatchName.Text = "Nome";
             // 
@@ -61,11 +60,11 @@
             // 
             this.lblMatchPassword.AutoSize = true;
             this.lblMatchPassword.BackColor = System.Drawing.Color.Transparent;
-            this.lblMatchPassword.Font = new System.Drawing.Font("Bauhaus 93", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMatchPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMatchPassword.ForeColor = System.Drawing.Color.Maroon;
             this.lblMatchPassword.Location = new System.Drawing.Point(225, 114);
             this.lblMatchPassword.Name = "lblMatchPassword";
-            this.lblMatchPassword.Size = new System.Drawing.Size(51, 18);
+            this.lblMatchPassword.Size = new System.Drawing.Size(56, 20);
             this.lblMatchPassword.TabIndex = 2;
             this.lblMatchPassword.Text = "Senha";
             // 
@@ -82,7 +81,7 @@
             // 
             this.btnCreateMatch.BackColor = System.Drawing.Color.RosyBrown;
             this.btnCreateMatch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCreateMatch.Font = new System.Drawing.Font("Bauhaus 93", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateMatch.ForeColor = System.Drawing.Color.Maroon;
             this.btnCreateMatch.Location = new System.Drawing.Point(245, 272);
             this.btnCreateMatch.Name = "btnCreateMatch";
@@ -105,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.captain_frame;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(364, 311);
             this.Controls.Add(this.lblWarning);

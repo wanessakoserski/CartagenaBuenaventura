@@ -21,6 +21,7 @@ namespace CartagenaBuenaventura.Forms
             InitializeComponent();
             this.screen = screen;
             this.match = match;
+            this.DialogResult = DialogResult.Cancel;
         }
 
         private void btnMatchEnter_Click(object sender, EventArgs e)

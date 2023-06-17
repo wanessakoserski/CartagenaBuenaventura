@@ -59,7 +59,7 @@
             this.btnEnterMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnterMatch.Font = new System.Drawing.Font("Sitka Subheading", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnterMatch.ForeColor = System.Drawing.Color.LightBlue;
-            this.btnEnterMatch.Location = new System.Drawing.Point(536, 464);
+            this.btnEnterMatch.Location = new System.Drawing.Point(881, 445);
             this.btnEnterMatch.Name = "btnEnterMatch";
             this.btnEnterMatch.Size = new System.Drawing.Size(156, 57);
             this.btnEnterMatch.TabIndex = 4;
@@ -78,7 +78,7 @@
             this.btnViewMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewMatch.Font = new System.Drawing.Font("Sitka Subheading", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewMatch.ForeColor = System.Drawing.Color.LightBlue;
-            this.btnViewMatch.Location = new System.Drawing.Point(304, 464);
+            this.btnViewMatch.Location = new System.Drawing.Point(304, 445);
             this.btnViewMatch.Name = "btnViewMatch";
             this.btnViewMatch.Size = new System.Drawing.Size(156, 57);
             this.btnViewMatch.TabIndex = 4;
@@ -96,7 +96,7 @@
             this.btnRefreshListMatches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefreshListMatches.Font = new System.Drawing.Font("Sitka Subheading", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefreshListMatches.ForeColor = System.Drawing.Color.LightBlue;
-            this.btnRefreshListMatches.Location = new System.Drawing.Point(119, 464);
+            this.btnRefreshListMatches.Location = new System.Drawing.Point(119, 445);
             this.btnRefreshListMatches.Name = "btnRefreshListMatches";
             this.btnRefreshListMatches.Size = new System.Drawing.Size(156, 57);
             this.btnRefreshListMatches.TabIndex = 2;
@@ -114,7 +114,7 @@
             this.btnCreateMatch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreateMatch.Font = new System.Drawing.Font("Sitka Subheading", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateMatch.ForeColor = System.Drawing.Color.LightBlue;
-            this.btnCreateMatch.Location = new System.Drawing.Point(350, 464);
+            this.btnCreateMatch.Location = new System.Drawing.Point(695, 445);
             this.btnCreateMatch.Name = "btnCreateMatch";
             this.btnCreateMatch.Size = new System.Drawing.Size(156, 57);
             this.btnCreateMatch.TabIndex = 0;
@@ -133,7 +133,7 @@
             this.gbxListMatches.ForeColor = System.Drawing.Color.White;
             this.gbxListMatches.Location = new System.Drawing.Point(119, 54);
             this.gbxListMatches.Name = "gbxListMatches";
-            this.gbxListMatches.Size = new System.Drawing.Size(573, 247);
+            this.gbxListMatches.Size = new System.Drawing.Size(918, 247);
             this.gbxListMatches.TabIndex = 6;
             this.gbxListMatches.TabStop = false;
             this.gbxListMatches.Text = "Lista de Partidas";
@@ -153,7 +153,7 @@
             this.dgdMatches.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.CadetBlue;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("OCR A Extended", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Teal;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -168,8 +168,8 @@
             this.status});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.Azure;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("OCR A Extended", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.PowderBlue;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -189,13 +189,13 @@
             this.dgdMatches.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgdMatches.RowHeadersVisible = false;
             this.dgdMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgdMatches.Size = new System.Drawing.Size(561, 222);
+            this.dgdMatches.Size = new System.Drawing.Size(906, 222);
             this.dgdMatches.TabIndex = 7;
             this.dgdMatches.SelectionChanged += new System.EventHandler(this.dgdMatches_SelectionChanged);
             // 
             // id
             // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("OCR A Extended", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.id.DefaultCellStyle = dataGridViewCellStyle2;
             this.id.FillWeight = 37.22156F;
             this.id.HeaderText = "Id";
@@ -204,7 +204,7 @@
             // 
             // name
             // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("OCR A Extended", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.name.DefaultCellStyle = dataGridViewCellStyle3;
             this.name.FillWeight = 182.7412F;
             this.name.HeaderText = "Nome da Partida";
@@ -213,7 +213,7 @@
             // 
             // date
             // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("OCR A Extended", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.date.DefaultCellStyle = dataGridViewCellStyle4;
             this.date.FillWeight = 69.16135F;
             this.date.HeaderText = "Data de Criação";
@@ -222,7 +222,7 @@
             // 
             // status
             // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("OCR A Extended", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.status.DefaultCellStyle = dataGridViewCellStyle5;
             this.status.FillWeight = 110.8761F;
             this.status.HeaderText = "Status";
@@ -250,7 +250,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.fleet_fo_ships;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(809, 554);
+            this.ClientSize = new System.Drawing.Size(1154, 535);
             this.Controls.Add(this.pnlGoBackHome);
             this.Controls.Add(this.gbxListMatches);
             this.Controls.Add(this.btnEnterMatch);

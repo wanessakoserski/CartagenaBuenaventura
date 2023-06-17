@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Board));
             this.lstHandCards = new System.Windows.Forms.ListView();
             this.pnlBoard = new System.Windows.Forms.Panel();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
@@ -45,7 +44,7 @@
             this.lstHandCards.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstHandCards.BackColor = System.Drawing.SystemColors.Control;
-            this.lstHandCards.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lstHandCards.BackgroundImage")));
+            this.lstHandCards.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.wood2;
             this.lstHandCards.BackgroundImageTiled = true;
             this.lstHandCards.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstHandCards.HideSelection = false;
@@ -73,7 +72,7 @@
             // 
             // pnlBackgroundListHandCards
             // 
-            this.pnlBackgroundListHandCards.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlBackgroundListHandCards.BackgroundImage")));
+            this.pnlBackgroundListHandCards.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.wood2;
             this.pnlBackgroundListHandCards.Controls.Add(this.lstHandCards);
             this.pnlBackgroundListHandCards.Location = new System.Drawing.Point(672, 106);
             this.pnlBackgroundListHandCards.Name = "pnlBackgroundListHandCards";
@@ -119,9 +118,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::CartagenaBuenaventura.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1247, 683);
+            this.ClientSize = new System.Drawing.Size(1154, 507);
             this.Controls.Add(this.pnlPirateImage);
             this.Controls.Add(this.pnlGoBackHome);
             this.Controls.Add(this.lblPirateName);
