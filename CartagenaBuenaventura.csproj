@@ -292,5 +292,11 @@
   <ItemGroup>
     <None Include="Resources\background.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\parrot.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -39,7 +39,6 @@
             this.ClientSize = new System.Drawing.Size(1130, 657);
             this.Font = new System.Drawing.Font("Sitka Display", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Panel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

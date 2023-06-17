@@ -231,6 +231,16 @@ namespace CartagenaBuenaventura.Properties {
         }
         
         /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Icon semelhante a (Ícone).
+        /// </summary>
+        internal static System.Drawing.Icon Icon {
+            get {
+                object obj = ResourceManager.GetObject("Icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap key {
@@ -247,6 +257,16 @@ namespace CartagenaBuenaventura.Properties {
             get {
                 object obj = ResourceManager.GetObject("key_card", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Icon semelhante a (Ícone).
+        /// </summary>
+        internal static System.Drawing.Icon parrot {
+            get {
+                object obj = ResourceManager.GetObject("parrot", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

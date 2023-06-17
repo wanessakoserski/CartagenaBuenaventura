@@ -18,6 +18,7 @@ namespace CartagenaBuenaventura
         private Panel()
         {
             InitializeComponent();
+            this.Icon = new Icon("../../Resources/parrot.ico");
             this.Controls.Add(new Home());
         }
 
