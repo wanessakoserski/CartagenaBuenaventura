@@ -107,7 +107,7 @@ Possíveis bugs que podem peristir:
   - Não encontrou componente
   - Componente desalinhado
   - Component não acessível ou não facilmente acessível 
-- Erro de resx: não encontrou a image que ele tentou reederizar
+- Erro de resx: não encontrou a image que ele tentou renderizar
 
 #### Como pode ser resolvido?
 - Essas configurações estão declaradas no `.Desing` dos Forms, porque foi configurado visualmente. Para contornar isso, o melhor seria configurar isso pelo `.cs` do Forms
